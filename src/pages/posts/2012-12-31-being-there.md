@@ -1,0 +1,53 @@
+---
+title: "Being There"
+publishDate: "2012-12-31"
+layout: ../../layouts/BlogPost.astro
+---
+
+I have realized
+
+as I have grown up
+
+that what I appreciated most
+
+is now being acknowledged, so here is a toast
+
+to what means the most.
+
+To my family who was just there
+
+to hear my thoughts and listen to my prayers.
+
+To my friends who were just there
+
+to laugh with and show they cared.
+
+To those who were there on the court, field, and in the classroom
+
+who I never got to know but respected my platform.
+
+To those I only seen for a moment there in time
+
+who helped me to see the world differently, unlike mine.
+
+To those there who have gone on before me
+
+whose influences are strong and presence unearthly.
+
+To those I only know through others
+
+affecting my life in ways unknown.
+
+I have realized
+
+as I have grown up
+
+that what I appreciated most
+
+is now being acknowledged.
+
+So here is a toast
+
+to what means the most:
+
+BEING THERE.

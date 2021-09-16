@@ -1,0 +1,118 @@
+---
+title: 'Functional Programming in JS with Ramda: Arrays and Objects'
+description: "If you don’t know already arrays and objects in JS are mutable. That means that you can change the values of those objects without having…"
+publishDate: '2017-04-09'
+layout: ../../layouts/BlogPost.astro
+---
+
+If you don’t know already arrays and objects in JS are mutable. That means that you can change the values of those objects without having to create a brand new object afterwards. This is considered an anti-pattern in FP as mutable data types increase the difficulty of tracking down where bugs originate from. The more mutable state the greater the chance that a 🐛settles in and finds a nice 🏠 in your program. Don’t forget to welcome your new neighbor!
+
+This is all swell and dandy to learn about but how does one address such madness. Thankfully there are a handful of helper functions that do exactly what we need: updating an array/object and returning a new array/object afterwards. Let’s take a look at a basic example where I update a value in both an `[]` and `{}`.
+
+```javascript
+// Array example
+import update from 'ramda/src/update'
+
+const array = \[1,2,3,4,5\]
+const replaceSecondValueOfArray = update(
+  1, // The index I want to update
+  11 // The value I want to update it with
+)
+
+const result = replaceSecondValueOfArray(array)
+console.log(result) //= \[1,11,3,4,5\] - this array is new!
+```
+
+Now let’s take a look at an `{}` example.
+
+```javascript
+// Object example
+import assoc from 'ramda/src/assoc'
+
+const object = { name: 'Adam' }
+const replaceNameValue = assoc(
+  'name', // The property I want to change
+  'Mada'  // The new value I want the property to have
+)
+
+const result = replaceNameValue(object)
+console.log(result) //= { name: 'Mada' } - this object is new!
+```
+
+That was a nice warm up. Let’s now update the values more dynamically. For an `[]`, let’s take a value we want to change and make it into an `{}` of that value instead. You will see what I mean.
+
+```javascript
+// Dynamic array example
+import adjust from 'ramda/src/adjust'
+
+const array = \[1,2,3,4,5\]
+const makeSecondArrayValueAnObject = adjust(
+  value => ({value}), // The function I want to call on that value
+  1                   // The index I want to call this function on
+)
+
+const result = makeSecondArrayValueAnObject(array)
+console.log(result) //= \[1,{value: 2},3,4,5\]
+```
+
+Let’s look at an `{}` example for good measure!
+
+```javascript
+// Dynamic object example
+import evolve from 'ramda/src/evolve'
+import toUpper from 'ramda/src/toUpper'
+
+const object = { name: 'Adam' }
+const makeNameValueAllUppers = evolve(
+  { name: toUpper }, // The transformation object
+  // This consists of the property name and a function to call
+  // on the property value
+)
+
+const result = makeNameValueAllUppers(object)
+console.log(result) //= { name: 'ADAM' }
+```
+
+That’s pretty cool, right? And each time any change is made you get a new array or object returned. Immutable all the things!
+
+This also comes in pretty ✋ with react components as well. Let’s say you have an input component whose field value you are holding is in react’s component state. If you were to strictly use react, you would probably do something like this.
+
+```javascript
+onChangeInput = event => {
+  this.setState({ input: event.target.value })
+}
+```
+
+That is a perfectly good way to do it. But for the sake of learning let’s see how we would use Ramda helpers to spruce it up a little.
+
+```javascript
+import assoc from 'ramda/src/assoc'
+
+onChangeInput = e => {
+  this.setState(assoc('input', e.target.value))
+}
+```
+
+See what I did there? If you didn’t know already, `setState` is a function that takes the previous state as an argument. What I wrote above can also be written as:
+
+```javascript
+import assoc from 'ramda/src/assoc'
+
+onChangeInput = e => {
+  this.setState(prevState =>
+    assoc('input', e.target.value, prevState)
+  )
+}
+```
+
+The `assoc` helper updates the value for the specified property but also makes a copy of state so we don’t have to specify which part we are actually changing as you saw in the previous example without `assoc`.
+
+Pretty neat, huh?!
+
+In this lesson you learned about about the FP concept of immutability. JS objects and arrays are not immutable by default but there are helper functions in 🐏 that help us to practice immutability within a JS environment. You also learned how to update objects and arrays dynamically, even getting into how you might use it with a front-end library like React.
+
+I hope this lesson was helpful and if you enjoyed it please leave a comment!
+
+### Resources
+
+- [Ramda Docs](http://ramdajs.com/docs/)

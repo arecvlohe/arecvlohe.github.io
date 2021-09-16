@@ -1,0 +1,13 @@
+---
+title: "The Plunge"
+publishDate: "2014-06-12"
+layout: ../../layouts/BlogPost.astro
+---
+
+I have really done it this time. I have gone in to the deep end, plunged into the abyss. Without a life preserver or looking back. I have terminated my facebook account. Technically, I deactivated my facebook account, but terminated sounds better, especially in terminator voice, "_I won't be back_." I have done this before, but this time it's different. This time it's not about connecting with people on a deeper level, it's about connecting with myself on a deeper level. Let me tell you why.
+
+Facebook, in real life terms, is essentially running into someone you know or used to know at the supermarket, or gas station, or where ever. You chat for a few minutes, touch on the high points, have a few laughs maybe, and move on with the day. That's something that is perfectly normal and something to look forward to as I go about my daily routine. A nice break from the monotony life can be at times. Yet, those interactions, if those were the only or predominant interactions I had, would not suffice or in any way substitute for the real, deep, and strong bonds with friends and family.
+
+But that understanding alone was not enough for my to say sayonara to facebook. What really changed my view of facebook came down to something much more profound to me: My connection to others is stronger and more real in the spiritual realm than in the physical. What does that mean? For me, it means that I have a real connection with others when I listen to my subconsciousness and dreams relating to them. I have a truer connection to others when I pray and meditate about them. Therefore, my connection to others is made through a higher power, greater than any power on Earth, and that type of connection needs no internet.
+
+This realization forced me to change. It forced me to take my spirituality much more serious and to work more at understanding my subconscious. To this point I have learned quite a bit so far. I realize that social media is not just a bunch of applications that defy being obsolete, but social media is now a cultural staple. It is integral to how we interact, or more so how we interact without actually interacting. But what does this say about me? I am writing a blog where I give my thoughts on things for the world to see without interacting. That is true. I am in the same boat as anyone else using social media. But what I also hope to show is that I am not afraid to be vulnerable, honest, and open about who I am. All in an effort to strengthen connections and make lasting bonds with others, God willing.

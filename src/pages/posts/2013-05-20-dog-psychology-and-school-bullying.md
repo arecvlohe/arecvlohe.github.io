@@ -1,0 +1,13 @@
+---
+title: "Dog Psychology and School Bullying"
+publishDate: "2013-05-20"
+layout: ../../layouts/BlogPost.astro
+---
+
+I love the show the "Dog Whisperer" and I don't even have a dog. The reason I like watching it is because I get to observe and understand a myriad of animal behaviors, both canine and human: aggression, anxiety, dominance, submissiveness, and balance. The ultimate goal for Cesar Milan, the dog whisperer, is to create balance in the both the human dog owner and the pet dog.  
+
+Cesar's training mantra is broken down into three steps: exercise, discipline, and affection. Before Cesar can train any dog he puts it in a less anxious state of mind. Taking a dog for a walk, run, or a couple minutes on the treadmill usually does the work. After a bit of exercise Cesar implements discipline. This occurs when he puts a dog in a situation that normally creates either an anxious or aggressive response. Cesar calmly and assertively addresses the behaviors of the dog in order for it not to exhibit those actions again. Gradually he leads the dog away from psychology tendencies that the dog owners do not want. Lastly, when the dog has behaved in an acceptable manner, Cesar gives affection as a way of positive reinforcement. The dogs fully recover from their bad behavior with these three steps coupled with the assertive leadership approach of the dog owners.
+
+Does this have anything to do with school bullying? I think it does. In schools now there is more attention being directed at an important issue: school bullying. For good reason since girls and boys are beginning to take their own lives, or the lives of others, because of it. I don't think it is a coincidence that the bullying problem is occurring in a school era where children are spending less and less time exercising or taking part in some form of physical education. Less exercise and a home life that may consist of aggression and/or anxiety compounds the fragile state of mind that children have at school. Therefore, I don't think it surprising that children are acting out poor behavior through destructive or self destructive means.  
+
+Dog and animal psychology is also human psychology. Children will act aggressive, anxious, submissive, and dominant. However, there are ways to lead children away from destructive behaviors and towards a state of calmness and balance. Children don't need drugs and over-the-counter pills to cloud their psychological issues but rather a society/community that embraces "primitive" solutions to "primitive" problems. You see the symptoms: school shootings and bullying. The question is: Do you recognize the problem?

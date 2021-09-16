@@ -1,0 +1,99 @@
+---
+title: "Functional Programming in JS with Ramda"
+description: "Functional programming, or FP, is all the rage now in JavasScript. And for good reason. One of the main benefits of using an FP style is…"
+publishDate: '2017-04-08'
+layout: ../../layouts/BlogPost.astro
+---
+
+Functional programming, or FP, is all the rage now in JavasScript. And for good reason. One of the main benefits of using an FP style is its re-usability. But I am not here to bore you about theory. I am here to show you how I use FP on a daily basis to make my programs more terse, readable, and maintainable. Well, at least in my opinion.
+
+One of the main libraries I use is Ramda. I work mostly in React and these two libraries complement each other quite well.
+
+One of the main pain points of working with front in code is the dreaded ampersand️ stairway to hell 👹. You have probably seen one in the wild. Let me show you an example:
+
+```javascript
+response &&
+response.body &&
+response.body.data &&
+response.body.data.name
+```
+
+This is known as [short-circuit evaluation](https://en.wikipedia.org/wiki/Short-circuit_evaluation). Once one of those paths resolves to null then the entire expression is false and the program moves on to whatever it needs to do next. That comes in handy because at run-time this value will not exist until the browser has requested the information from the server. The request sent and the response received happens pretty fast but when the browser first loads it knows nothing about `_response.body.data.name_` and so will return you something to the effect of `Cannot read property body of undefined`. 😱
+
+That’s where Ramda 🐏 comes in. With a nice helper function called `path`, you can safely execute your code at run-time and not get dinged with `undefined` errors in your console.
+
+```javascript
+// Imagine a react component
+
+import path from 'ramda/src/path'
+
+const name = path(\['body', 'data', 'name'\])
+
+<h1>{name(this.props.response)}</h1>
+```
+
+All functions in Ramda are curried. That means that the data is passed in last. So `name` here is actually a function which expects an argument that has an object with the path of `body.data.name`. It’s okay if it doesn’t. If the path does not exist the function will return `undefined` but _without_ the run-time error. No run-time errors FTW 🙌!
+
+But let’s say you needed to do a bit more than just pluck the `name` from the `response` object. What if you needed to transform that value and make it uppercase for example.
+
+Now we are getting into composition. Composition is similar to chaining, except that with ⛓_ing_ you can’t pass the data in last. Let’s look at a contrived example.
+
+```javascript
+const arr = \[1,2,3,4,5\]
+const addOneAndRemoveNumsSmallerThanFive =
+  arr
+    .map(v => v + 1)
+    .filter(v => v > 4)
+console.log(addOneAndRemoveNumsSmallerThanFive) //= \[5, 6\]
+```
+
+`addOneAndRemoveNumsSmallerThanFive` here is the result of the mapped and filtered value but there no way to reuse `addOneAndRemoveNumsSmallerThanFive` in any other context. Hello composition!
+
+```javascript
+import map     from 'ramda/src/map'
+import filter  from 'ramda/src/filter'
+import compose from 'ramda/src/compose'
+
+const arr0 = \[5,6,7,8,9\]
+const arr1 = \[1,2,3,4,5\]
+const addOneAndRemoveSmallerThanFiveAllTheThings = compose(
+  filter(x => x > 4)
+  map(x => x + 1)
+)
+
+const result0 = addOneAndRemoveSmallerThanFiveAllTheThings(arr0)
+console.log(result0) //= \[5, 6\]
+
+const result1 = addOneAndRemoveSmallerThanFiveAllTheThings(arr1)
+console.log(result1) //= \[6, 7, 8, 9, 10\]
+```
+
+Wow, that’s pretty nice! Now what does that have to do with what we were trying to solve before which was handling value transformations? Slow your roll, man! Here it is. We can do the exact same thing as above but instead we are transforming a response object from the server in style. Here goes!
+
+```javascript
+// Again, imagine a react component
+import compose from 'ramda/src/compose'
+import toUpper from 'ramda/src/toUpper'
+import pathOr  from 'ramda/src/pathOr'
+
+const nameInAllCaps = compose(
+  toUpper,
+  pathOr('', \['body', 'data', 'name'\])
+)
+
+<h1>{nameInAllCaps(this.props.response)}</h1>
+```
+
+You probably noticed I snuck in something there. `pathOr` is a sister to `path` but instead of passing back `undefined` if the value does not exist, it will pass back a default value, which I set to `‘’`. This is important as `toUpper` expects a `string` and we don’t want to disappoint! The worst thing that can happen is we get an empty string inside our `h1` but at least our browser won’t stop working because of a 🏃🏻🕰 error.
+
+So that’s how I use Ramda in my day-to-day activities and in the process I have stamped out the ampersand stairway to 🔥.
+
+In this lesson, you learned about `composition`, one of many functional concepts that I believe help us to write cleaner, more maintainable, code.
+
+For information check out Ramda’s amazing library.
+
+I hope this article was helpful and if you liked it please leave a comment below!
+
+### Resources
+
+- [Ramda](http://ramdajs.com/)

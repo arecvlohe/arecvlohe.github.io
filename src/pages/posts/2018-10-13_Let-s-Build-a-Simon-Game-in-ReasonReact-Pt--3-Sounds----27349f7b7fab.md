@@ -1,0 +1,171 @@
+---
+title: "Let’s Build a Simon Game in ReasonReact Pt. 3 Sounds"
+description: "Go FFI Yourself!"
+publishDate: '2018-10-13'
+layout: ../../layouts/BlogPost.astro
+---
+
+**_UPDATE 03/23/2020 : This post has been updated to the latest ReasonML and JavaScript ecosystem versions_.**
+
+Today you will look at how to add sounds to your Simon Game. As I have said in previous posts, Reason has an excellent [FFI](https://reasonml.github.io/docs/en/external#docsNav) (foreign function interface) that allows you to interoperate with JavaScript and still maintain a great level of type security 👮‍♀️. In this article, you will learn how to use Reason’s FFI to bind to the Web Audio API in order to play a sound whenever a user clicks on a colored box. Specifically, you will create a binding to the [HTMLAudioElement API](https://developer.mozilla.org/en-US/docs/Web/API/HTMLAudioElement#Methods). You are not going to create a sound, although that would be super awesome. Instead, you will use the HTMLAudioElement API to merely play an audio file. Let’s begin.
+
+### Background 👨‍🏫
+
+First I want to talk about FFI in the context of ReasonReact and the Web API. When you use ReasonReact you have access to the Web API because your code is being run in the context of the browser. You create a binding using the `[@bs.val]` directive and `external` keyword. A good example of this is binding to a set of functions on the `window` object called `setTimeout` and `clearTimeout`.
+
+```javascript
+\[@bs.val\] external setTimeout : (unit => unit, int) => float = "setTimeout";
+\[@bs.val\] external clearTimeout : float => unit = "clearTimeout";
+```
+
+_Reference:_ [_https://bucklescript.github.io/docs/en/bind-to-global-values_](https://bucklescript.github.io/docs/en/bind-to-global-values)
+
+Here is what is going, or at least how I understand it:
+
+*   `[@bs.val]` declares a binding
+*   `external` declares the bound value exists outside of the file
+*   `clearTimeout: float => unit` the definition of the internal function name (how the function is called within Reason), it accepts a `float` and returns nothing, referred to as `unit`
+*   `= "clearTimeout"` the name of the function it’s binding to that exists outside the file
+*   `= “”` in some instances you will see this as an empty string, this means the internal name and external name are the same, although this is discouraged now
+
+### Web Audio API 🔊
+
+With the knowledge above in hand let’s create a binding for the `Audio` constructor. It works a little differently though. It’s used as a constructor which means you instantiate it with the `new` keyword: `new Audio(“some-audio-file.mp4”)`. Thankfully BuckleScript gives us a good example of how to do this using the `Date` constructor.
+
+```javascript
+type t;
+\[@bs.new\] external createDate : unit => t = "Date";
+
+let date = createDate();
+```
+
+_Reference:_ [_https://bucklescript.github.io/docs/en/class#new_](https://bucklescript.github.io/docs/en/class#new)
+
+Here you see the `[@bs.new]` binding directive. This tells BuckleScript that when it compiles this it needs to use the `new` keyword. Example output:
+
+```javascript
+var date = new Date();
+```
+
+Just as in the case of the `Date` constructor, the `Audio` constructor when instantiated will return an object with more values and functions. For example:
+
+```javascript
+const audio = new Audio("some-audio-file.mp4");
+audio.play();
+audio.pause();
+```
+
+There are the `play` and `pause` methods. Just as before, thankfully you have an example of how to declare a constructor instance in Reason to interop with JavaScript.
+
+```javascript
+class type \_rect =
+  \[@bs\]
+  {
+    pub draw: unit => unit
+  };
+
+type rect = Js.t(\_rect);
+```
+
+_Reference:_ [_https://bucklescript.github.io/docs/en/class#bind-to-js-classes_](https://bucklescript.github.io/docs/en/class#bind-to-js-classes)
+
+Here you are creating a `class` type. Just as before, you create a binding with the `[@bs]` directive. In this case, you have just one function, `draw`, which is a function that returns nothing, hence the `unit => unit`. This class type, or instance, can then be exported as a type using `Js.t`. If this is making any sense at all, you now have the requisite information to create a binding to the `Audio` constructor.
+
+Let’s start with creating the type class, which will be used to refer to the `Audio` instance.
+
+```javascript
+/\* Audio.re \*/
+class type audioInstance =
+  \[[@bs](http://twitter.com/bs "Twitter profile for @bs")\]
+  {
+    pub play: unit => unit;
+  };
+```
+
+For now, we only care about the `play` function. It is a function which takes no arguments and returns nothing.
+
+Now you can export this class type, or instance type, using `Js.t`.
+
+```javascript
+/\* Audio.re \*/
+type t = Js.t(audioInstance);
+```
+
+At this point, create a function that instantiates the external `Audio` constructor with the `new` keyword. Remember, you need to use the `[@bs.new]` directive.
+
+```javascript
+/\* Audio.re \*/
+\[[@bs](http://twitter.com/bs "Twitter profile for @bs").new\] external make: string => t = "Audio";
+```
+
+You are creating a binding to the `“Audio”` constructor that exists on the `window` to the internal function `make`. Just as `Audio` accepts a string to an audio resource when it is instantiated, so does `make`. It returns an audio instance type, known as `t`. The audio instance type has the method `play`. Did you catch all that? 😅
+
+**_NOTE: Although the above works there is an even easier way to do this:_**
+
+```javascript
+type t;
+\[[@bs](http://twitter.com/bs "Twitter profile for @bs").new\] external make: string => t = "Audio";
+\[[@bs](http://twitter.com/bs "Twitter profile for @bs").send\] external play: t => unit = "play";
+```
+
+The `[@bs.send]` directive works with JS objects to add functions to an instance of `self`. So instead of doing what I posted above, I think it’s easier to do it this way.
+
+### Sounds 🎶
+
+With the `Audio` constructor now bound correctly to be used within Reason, create a `Sound.re` file in order to create audio instances for each sound in the game.
+
+```javascript
+/\* Sound.re \*/
+let green =
+  Audio.make("[https://s3.amazonaws.com/freecodecamp/simonSound1.mp3](https://s3.amazonaws.com/freecodecamp/simonSound1.mp3)");
+
+let red =
+  Audio.make("[https://s3.amazonaws.com/freecodecamp/simonSound2.mp3](https://s3.amazonaws.com/freecodecamp/simonSound2.mp3)");
+
+let blue =
+  Audio.make("[https://s3.amazonaws.com/freecodecamp/simonSound3.mp3](https://s3.amazonaws.com/freecodecamp/simonSound3.mp3)");
+
+let yellow =
+  Audio.make("[https://s3.amazonaws.com/freecodecamp/simonSound4.mp3](https://s3.amazonaws.com/freecodecamp/simonSound4.mp3)");
+
+let error =
+  Audio.make(
+    "[https://s3.amazonaws.com/adam-recvlohe-sounds/error.wav](https://s3.amazonaws.com/adam-recvlohe-sounds/error.wav)",
+  );
+```
+
+Just so you see can see the side-by-side, the generated BuckleScript output looks like this:
+
+```javascript
+var green = new Audio("[https://s3.amazonaws.com/freecodecamp/simonSound1.mp3](https://s3.amazonaws.com/freecodecamp/simonSound1.mp3)");
+
+var red = new Audio("[https://s3.amazonaws.com/freecodecamp/simonSound2.mp3](https://s3.amazonaws.com/freecodecamp/simonSound2.mp3)");
+
+var blue = new Audio("[https://s3.amazonaws.com/freecodecamp/simonSound3.mp3](https://s3.amazonaws.com/freecodecamp/simonSound3.mp3)");
+
+var yellow = new Audio("[https://s3.amazonaws.com/freecodecamp/simonSound4.mp3](https://s3.amazonaws.com/freecodecamp/simonSound4.mp3)");
+
+var error = new Audio("[https://s3.amazonaws.com/adam-recvlohe-sounds/error.wav](https://s3.amazonaws.com/adam-recvlohe-sounds/error.wav)");
+```
+
+This is just what you need. Each value now has a `play` method which you can call within ReasonReact.
+
+You don’t need the `error` sound now but you will in the future. To be continued on that part.
+
+### Play ⏯
+
+Now the important stuff. Let’s actually play the sound! For now, let’s just play the corresponding sound depending on which box the user clicks on.
+
+```javascript
+/\*App.re\*/
+<div
+  className={Styles.box(Green)}
+  onClick={\_e => Sound.green->Audio.play)}
+/>
+```
+
+Yay! 🙌 Do this for each box. Start your application using `yarn start` and hear the sounds of accomplishment in your browser.
+
+### Summary 📝
+
+In this article, you learned about Reason’s FFI and you bound one function from the Web Audio API. Awesome work! There is still much to learn here but hopefully binding to DOM API’s isn’t so scary anymore 👹.

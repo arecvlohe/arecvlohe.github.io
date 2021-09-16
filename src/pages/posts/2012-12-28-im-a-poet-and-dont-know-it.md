@@ -1,0 +1,45 @@
+---
+title: "I'm a Poet and Don't Know It"
+publishDate: "2012-12-28"
+layout: ../../layouts/BlogPost.astro
+---
+
+My Dad is an artist. He has written screen plays, poems, and songs. He is where I get my creativity and my ability to write poetry. There really isn't an ability to write, anybody can write poetry, but something in me compels me to write things. What better way to share something personal of mine than to share a poem I have written. Below is something I wrote recently, kind of philosophical.
+
+## You Can
+
+You can have without obtaining;
+
+Find without seeking;
+
+Know without seeing;
+
+Understand without thinking;
+
+Create without building;
+
+Move without walking;
+
+Elevate without jumping;
+
+Talk without speaking;
+
+Lead without directing;
+
+Dominate without winning;
+
+Love without caring;
+
+Feel without touching;
+
+Hurt without harming.
+
+We have what we have,
+
+and what we do not,
+
+and do not want,
+
+because it was given to us,
+
+but not given by us.

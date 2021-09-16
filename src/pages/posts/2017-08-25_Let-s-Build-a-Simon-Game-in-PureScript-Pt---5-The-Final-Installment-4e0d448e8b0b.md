@@ -1,0 +1,280 @@
+---
+title: "Let’s Build a Simon Game in PureScript Pt . 5 The Final Installment"
+description: "Functional Programming the Front End with PureScript and Pux"
+publishDate: '2017-08-25'
+layout: ../../layouts/BlogPost.astro
+---
+
+To summarize, in the last [post](https://blog.cloudboost.io/lets-build-a-simon-game-in-purescript-pt-4-43be7acfeb6b) you learned how to create an animation in PureScript using the Pux architecture and some handy tools from the PureScript ecosystem. In this post, you will expand upon the previous lessons and generate an animated sequence that you can then check against user input.
+
+This lesson will probably be the longest of all the other lessons but it will also be the final lesson so it shouldn’t be too bad 😜.
+
+### Generate A Random Sequence 🎉
+
+The core of this game is a random series of button presses that users have to repeat in order to win. First, let’s create a button that when pressed starts the game and generates the random sequence for the user and places the sequence in state. Then you can reference that sequence later when you want to check it against user input. Hop on over to the view and add a button to start the game.
+
+```haskell
+import Text.Smolder.HTML (div, button) -- Added button
+
+\-- The other divs are above
+button #! onClick (const StartGame ) $ text "Start"
+```
+
+As you probably noticed, `StartGame` is not a registered tag in your `Event` tagged union. Head on over to the `Events.purs` file and make that change.
+
+```haskell
+data Event = UserClick String | ResetColor | StartGame
+```
+
+Now that you have the event, let’s head on over to the `Update.purs` file and start to think about how to generate the random sequence. Thankfully, you already have a helper built for this called `generateRandoSequence` which will finally come in handy ✋.
+
+Add a new `foldp` function and pattern match on the `StartGame` event.
+
+```haskell
+foldp StartGame state = onlyEffects state
+  \[ do
+      colors <- liftEff generateRandoSequence
+      pure $ Just $ NextSequence colors
+  \]
+```
+
+Okay, you know that that `generateRandoSequence` creates a side-effect of `RANDOM`. So you will need to update `AppEffects` to be aware of that type.
+
+```haskell
+import Control.Monad.Eff.Random (RANDOM) -- Added
+
+type AppEffects = (console :: CONSOLE, random :: RANDOM)
+```
+
+You also know that Pux only executes asynchronous effects, which is why you call `liftEff` on `generateRandoSequence`, essentially taking a synchronous effect and make it asynchronous.
+
+```haskell
+import Control.Monad.Eff.Class (liftEff) -- Added
+```
+
+And because `effects` expects a `Maybe Event` to be returned, here you provide `NextSequence` with the random `colors` sequence. That `Event`, however, is not part of the tagged union. Run on over to `Events.purs` and fix that.
+
+```haskell
+data Event
+  = UserClick String
+  | ResetColor
+  | StartGame
+  | NextSequence (List String)
+```
+
+You will probably get yelled at that type `List` is not defined. Make sure to import the `List` type at the top of the file.
+
+```haskell
+import Data.List (List)
+```
+
+Let’s now handle the `NextSequence` event in the `foldp` function and update the state. Before doing this, update the `State` type and the `init` function.
+
+```haskell
+type State =
+  { currentColor :: String
+  , sequence :: List String
+  }
+
+init :: State
+init =
+  { currentColor: ""
+  , sequence: Nil
+  }
+```
+
+You know that the sequence will be a `List String` so it’s easy to declare that type in state. But what about an empty `List`. Thankfully there is a type for that called `Nil` that you can use in the `init` function. To bring in `Nil` make sure you updated your `Data.List` import.
+
+```haskell
+import Data.List (List(..)) -- Changed
+```
+
+Whoah 😅. Okay, everything is now in place to update the state after clicking the start button. Let’s add a bit more logic to the `foldp` function to get that going. All you have to do is pattern match on the `NextSequence` event and update the state.
+
+```haskell
+import Control.Monad.Aff.Console (logShow) -- Added
+
+foldp (NextSequence colors ) state =
+  { state: state { sequence = colors }
+  , effects: \[ logShow colors $> pure Nothing \]
+  }
+```
+
+Just for kicks and gigs, you are logging what you have to the console so you can see the output.
+
+At this point I think it’s safe to run `pulp server` and when you click the `start` button you should see something in your console.
+
+### Generate an Animated Sequence 🎭
+
+Up to this point you have created a random sequence and made it part of state. What you haven’t done is make it animated. This is another core tenant of the game and once this is completed I think it will give you enough momentum to continue on and complete this project without much more assistance.
+
+To understand what an animated sequence entails I think it’s important to first understand what a round is in the Simon game. A round consists of a series of button clicks followed by user input. The button clicks that a user inputs have to align with the same sequence as the original, otherwise the user has to start the round back again, or if in strict mode, start back at 1.
+
+For example, if the series is: “red”, “blue”. The user has to input “red” and “blue” in that order otherwise the user starts back at 2 and this all starts over again. The kick off of a round starts after clicking the start button. Let’s create a function that given a count will animate a sequence to up to that count. This is what I came up with:
+
+You will need some array helpers. So first install:
+
+```bash
+bower install --save purescript-arrays
+```
+
+Then inside of `Update.purs`:
+
+```haskell
+\-- Added imports
+import Data.Array (range, concatMap)
+import Data.List (fromMaybe, index)
+import Data.Int (toNumber)
+
+generatePlaySequence :: forall e. Int -> List String -> Array (Aff e (Maybe Event))
+generatePlaySequence count sequence =
+  range 0 (count - 1) #
+  concatMap (\\v ->
+    \[ do
+        delay $ Milliseconds ((toNumber v + 1.0) \* 1000.0)
+        let color = fromMaybe "" $ index sequence v
+        pure $ Just $ AnimateColor color
+    \]
+  )
+```
+
+How does this actually work 🤔? Good question. I have no idea 😊. Just kidding. What I am trying to do here is to create a series of effects that are delayed each by 1 second. I am using concatMap because inside of the `concatMap` function I have a `do` block inside of an array. It would be an array of arrays in the end but with `concatMap` you get one nice flattened array. To get the color from the `List` I am using `fromMaybe`. In case a color does not exist in that index it can be safely handled, instead of breaking the browser. And the animate effect at the end is called to actually animate the color. You already have the code for what that entails. You know the process! Add the event in the `Event.purs` file.
+
+```haskell
+data Event
+  = UserClick String
+  | ResetColor
+  | StartGame
+  | NextSequence (List String)
+  | AnimateColor String
+```
+
+Then add the pattern match to the `foldp` function.
+
+This doesn’t quite get you to animating a sequence, yet. Do you know why? Well, first we haven’t called the `generatePlaySequence` function for starters. Do that inside the `NextSequence` pattern.
+
+```haskell
+foldp (NextSequence colors ) state =
+  { state: state { sequence = colors, count = state.count + 1 }
+  , effects: \[ pure $ Just $ PlaySequence \]
+  }
+```
+
+Whenever you click the start button a new sequence is created but also the count of the game begins. That’s why you add 1 to count. Oh, and by the way, update the state and init functions to reflect this new state being tracked.
+
+```haskell
+type State =
+  { currentColor :: String
+  , sequence :: List String
+  , count :: Int
+  }
+
+init :: State
+init =
+  { currentColor: ""
+  , sequence: Nil
+  , count: 0
+  }
+```
+
+You probably also noticed that I added a new effect, `PlaySequence`. That can only mean two things. Update the `Event.purs` file and then the`Update.purs` `foldp` function.
+
+```haskell
+data Event
+  = UserClick String
+  | ResetColor
+  | StartGame
+  | NextSequence (List String)
+  | AnimateColor String
+  | PlaySequence
+
+foldp PlaySequence state = onlyEffects state (generatePlaySequence state.count state.sequence)
+```
+
+Given a count and the sequence, the Simon game can now actually do something when you click start. Let’s try it out. Run `pulp server` and see what happens when you click start.
+
+You could either be saying, “yay!” or “gosh darn it!” at this point. When you clicked the start button a domino effect should have gone off. First a new sequence should have been created. After it’s created `PlaySequence` effect should have been called. At that point the count is 1 and the sequence, well, is the sequence. The function `generatePlaySequence` function creates a range between 0 and the count minus 1. Then creates an array of `do` blocks that are delayed 1 second apart. Each delay entails `AnimateColor` which given `color` makes that the `currentColor`, darkening it on the screen, and after 300 milliseconds, it resets. Whoah, that’s a lot! I am getting dizzy. Let’s keep going!
+
+_If you keep hitting the start button the count will continue to get bigger and you will see longer and longer sequences! The sequences will be new random sequences each time as well_ 😲
+
+### Tracking User Input 👩‍💻
+
+The next phase of this post is to track user input. The reason for this is to compare the sequence and make sure the user matches that sequence to the tee. If the user does not match the sequence then the round starts over.
+
+There is already a function that tracks user input. It’s `foldp`, duh! But the specific pattern is `UserClick`. I think an easy way to do this is with a `let` expression and some `if/else` blocks. To track user clicks it needs to be held in state somewhere. Let’s call it `userClicks`.
+
+```haskell
+type State =
+  { currentColor :: String
+  , sequence :: List String
+  , count :: Int
+  , userClicks :: List String
+  }
+
+init :: State
+init =
+  { currentColor: ""
+  , sequence: Nil
+  , count: 0
+  , userClicks: Nil
+  }
+```
+
+Next let’s compare what the user clicks with the current sequence up to the current count of the game. You can start with happy path where user clicks equal the sequence up to that count.
+
+```haskell
+foldp (UserClick color) state =
+  let
+    nextUserClicks = snoc state.userClicks color
+    allMatch = nextUserClicks == (slice 0 (length nextUserClicks) state.sequence)
+  in
+    if allMatch && (length nextUserClicks) == state.count then
+      { state: state { count = state.count + 1, userClicks = Nil }
+      , effects:
+        \[ pure $ Just $ AnimateColor color
+        , pure $ Just PlaySequence
+        \]
+      }
+    else if allMatch then
+      { state: state { userClicks = nextUserClicks }
+      , effects: \[ pure $ Just $ AnimateColor color \]
+      }
+    else
+      { state: state
+      , effects:
+        \[ pure $ Just $ AnimateColor color
+        , pure $ Just PlaySequence
+        \]
+      }
+```
+
+For each `UserClick` you will create what the `nextUserClicks` will be. If the sequence of `nextUserClicks` and the `sequence` up to that point are the same, then you know that the user has input the correct information. There is also a fork here. There is a point when the `userClicks` is the same length as the count and when it’s not. When it’s not, but `allMatch`, then you still need to pass back the `nextUserClicks`. When it is, you need to go to the next round. This is done with adding a new count, and resetting `userClicks` to `Nil`. Otherwise, you pass back the state and replay the sequence. Make sense? 🤔
+
+For some more kicks and gigs let’s see this run in the browser. Run `pulp server` and see what you got.
+
+### Summary ✅
+
+You should be proud. You have learned a lot over these past 5 lessons. Now take your knowledge and build out the rest of this Simon game and complete the rest of the user stories. I think I have done my best to give you the momentum to carry this project to fruition, if not, you can take it into an entirely different direction as well. Who knows, you might even write a blog post about it 😁.
+
+Below is what you have accomplished so far and what needs to be added. I am depending on your! 😉
+
+User Stories:
+
+*   ̶I̶ ̶a̶m̶ ̶p̶r̶e̶s̶e̶n̶t̶e̶d̶ ̶w̶i̶t̶h̶ ̶a̶ ̶r̶a̶n̶d̶o̶m̶ ̶s̶e̶r̶i̶e̶s̶ ̶o̶f̶ ̶b̶u̶t̶t̶o̶n̶ ̶p̶r̶e̶s̶s̶e̶s̶
+*   ̶E̶a̶c̶h̶ ̶t̶i̶m̶e̶ ̶I̶ ̶i̶n̶p̶u̶t̶ ̶a̶ ̶s̶e̶r̶i̶e̶s̶ ̶o̶f̶ ̶b̶u̶t̶t̶o̶n̶ ̶p̶r̶e̶s̶s̶e̶s̶ ̶c̶o̶r̶r̶e̶c̶t̶l̶y̶,̶ ̶I̶ ̶s̶e̶e̶ ̶t̶h̶e̶ ̶s̶a̶m̶e̶ ̶s̶e̶r̶i̶e̶s̶ ̶o̶f̶ ̶b̶u̶t̶t̶o̶n̶ ̶p̶r̶e̶s̶s̶e̶s̶ ̶b̶u̶t̶ ̶w̶i̶t̶h̶ ̶a̶n̶ ̶a̶d̶d̶i̶t̶i̶o̶n̶a̶l̶ ̶s̶t̶e̶p̶
+*   I hear a sound that corresponds to each button when I click the button and when the series of buttons plays
+*   If I press the wrong button, I am notified I have done so and ̶t̶h̶e̶ ̶s̶e̶r̶i̶e̶s̶ ̶o̶f̶ ̶b̶u̶t̶t̶o̶n̶ ̶p̶r̶e̶s̶s̶e̶s̶ ̶s̶t̶a̶r̶t̶ ̶o̶v̶e̶r̶
+*   I can see how many steps are in the current series
+*   If I want to restart, I can hit a button to do so, and I return to a single step
+*   I can play strict mode where if I get a button press wrong, the game notifies me and the game restarts the current random series from one
+*   I can win the game by getting a series of 20 steps correct. I am notified of my victory and I restart with a new random series of buttons presses
+
+As I have said repeatedly, I recommend looking at the book [PureScript by Example](https://leanpub.com/purescript/read) as well as the [PureScript Documentation](https://github.com/purescript/documentation) to get some background if you haven’t done so already. Also, check out all the library document on [Pursuit](https://pursuit.purescript.org/). If you have any questions check out the [Slack](https://fpchat-invite.herokuapp.com/) or [Gitter](https://gitter.im/purescript/purescript) channels. Until next time, keep hacking!
+
+Part 5 of this project is tagged and can be found on Github here:
+
+- [PureScript Simon Game Part 5](https://github.com/arecvlohe/ps-medium-simon-game/tree/part_5)
+
+If you are wanting to see what a finished product looks like, check this one out:
+
+- [PureScript Simon Game](https://github.com/arecvlohe/purescript-simon-game)

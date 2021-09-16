@@ -1,0 +1,84 @@
+---
+title: "Dear Company"
+description: "Let Me Tell You Who I am and What I am About"
+publishDate: '2018-09-13'
+layout: ../../layouts/BlogPost.astro
+---
+
+Hello 👋. My name is Adam [Recvlohe](https://medium.com/@arecvlohe/my-last-name-100c297e7a8e) (thlee-juh-lah-hee) and I am passionate about fostering and reinforcing a strong programming culture at the company I work. What does this mean? Well…let me explain.
+
+### Why?
+
+You might be wondering why I am writing this. The reason is because I want to declare to the world what I want to be a part of. The intent is to find like-minded people who are looking for the same. I always say, “you can’t find what you’re not looking for.” In that spirit, let me tell you what _I am_ looking for.
+
+### First Things First
+
+First let me talk a little about my background and interests. I am mainly a front-end developer who has worked mostly with React over the past few years and have really enjoyed it. I have a strong interest in functional programming which has guided me to learn about compile-to-js languages like Elm, PureScript, and ReasonML.
+
+I am well aware of the transition the front-end ecosystem is making towards css-in-js and fell in love with using styled-components after using it for only a short time. I can dabble on the backend if need be. For example, I am comfortable setting up a node API and have set up simple projects in Rails and Phoenix, the web frameworks for Ruby and Elixir respectively. The JS ecosystem moves at a blazing™ pace so I try to keep up by reading through [echojs](http://www.echojs.com/latest/0) every few days.
+
+Additionally, as you can probably tell, I like writing and I am very comfortable giving presentations. I think this comes in handy for any company when transitioning to a new framework or getting employees up to speed on an old project.
+
+**Languages**: JavaScript, Node, Elixir
+
+**Compile-to-JS**: ReasonML, Elm, PureScript, Babel/ES2015+
+
+**Frameworks**: Phoenix
+
+**Libraries**: React, Ramda, Lodash, Styled Components, Date Functions, Webpack, SASS/SCSS, create-react-app
+
+**Testing**: Cypress, Storybook, Puppeteer, Jest, Mocha, Chai, Expect
+
+**OSS Contributions**: [react-big-calendar](https://github.com/intljusticemission/react-big-calendar), [reasonml-cheat-sheet](https://github.com/arecvlohe/reasonml-cheat-sheet)
+
+**Résumé**: [https://represent.io/adamrecvlohe](https://represent.io/adamrecvlohe)
+
+**Github**: [https://github.com/arecvlohe](https://github.com/arecvlohe)
+
+**LinkedIn**: [https://www.linkedin.com/in/adamrecvlohe/](https://www.linkedin.com/in/adamrecvlohe/)
+
+### My Philosophy
+
+#### Team Oriented 👬👫👭
+
+I am not a Bible thumper at all but I love this verse: “As iron sharpens iron, so one man sharpens another.” Development is a team activity and requires a mindset focused on helping the team become more efficient and effective. One way of helping the team become more efficient is building tools to help speed up development. This may mean writing a helper library of common functionalities or setting up a development environment that works on any machine.
+
+Secondly, to become more effective the team has to hold itself to a higher standard of quality. This may mean asking a team member to defend their architecture choice in a code review or passionately defending a tool that you know will help the team in the long run. For example, using a type safe language over a dynamic one, or setting up quality assessment tools as part of continuous integration. If we as a team can contribute to these efforts of self-improvement together then we all reap the benefits of our work.
+
+Building tools is certainly helpful but would not be as impactful without solid communication behind them. My definition of efficient communication is when someone shares ideas clearly, leaving no doubt to the listener. Effective communication is when someone conveys ideas in a tone that is easily received by the listener. Giving efficient and effective feedback further builds trust among team members and helps to push the team to work better together.
+
+#### Feedback 🗣
+
+I think giving honest and empathetic feedback is the best way to help others grow professionally. I am equally comfortable speaking to someone’s strengths as well as pointing out where there is room for improvement. You will not be great at everything but you can grow to be more well rounded in your position.
+
+However, to get to that point you need not just feedback but [radical candor](https://www.radicalcandor.com/). Radical candor is a way of giving feedback that is direct yet effective. There is a lot of nuance to this because someone who gives direct feedback may not be effective giving it. This is because direct feedback is most well received when the person it’s for knows the person giving it is genuinely invested in the person’s growth. They are not merely telling the person to change in order to control or manipulate them. And the person hearing this knows that. It takes time to get to this point.
+
+There needs to be investment on both sides in learning about each other’s motivations and intentions. It takes going through experiences that each person begins to learn the person next them wants to see them improve. I am equally committed to giving feedback as I am learning about who the person is and building the trust needed to truly give not just feedback, but radical, life changing, candor.
+
+#### Agree to Disagree 🤝
+
+At the end of the day, decisions have to be made. There is not enough time in the day to address everyone’s concern, or at times, anyone’s concern. But what is important is everyone’s voice is heard. When there is debate around an action, it can only enhance its execution.
+
+As a company, it is important that everyone strives to find the right answer to the problem and putting their ego aside. This can make for a lively debate on the principles behind the choice and puts the decision makers in the best possible position to succeed at their goal. Does this mean we all reach consensus? Does this mean everything is rainbows and unicorns and everyone gets along? In short, no.
+
+It’s perfectly okay to agree to disagree for any number of reasons. But when people feel their voice is heard and they can give opinions that are contrary to popular, or unpopular, opinion I think the company has a greater chance at solving the problem the right way.
+
+#### Position to Succeed ⚾️
+
+What I have said above can be dwindled down to a single phrase: put the company in a position to succeed. One of my favorite leaders is Joe Maddon, current manager of the Chicago Cubs, and former manager of the Tampa Bay Rays. I am from St. Pete, FL where the Rays play so I got to follow the rise of the Rays that occurred in the mid 2000's. The pinnacle of that era was seeing the [Rays win the wildcard back in 2011](https://www.youtube.com/watch?v=hZItPjUqdiY&t=132s).
+
+Maddon played in the AL East. That meant playing against the Red Sox and Yankees. Both of which had tons of cash and could easily buy the most talent in any given year. And yet the Rays were competitive year in and year out. How could an organization that could barely pay the rent for Tropicana Field put out onto the field a competitive and entertaining team? They put themselves in a position to succeed. This meant focusing on some core principles: Good pitching, strong defense, and sabermetrics, as detailed in the book [Moneyball](https://en.wikipedia.org/wiki/Moneyball). With these principles in mind the Rays were able to outplay and outsmart the competition.
+
+This didn’t mean the Rays won the World Series, although they did play in it in 2008. But year in and year out, the Rays were consistent, and by the end of each season put themselves in the best position possible to reach the playoffs, and many times did. It is no different for any company. You will not succeed at every endeavor, but if you have solid principles, you put yourself in a position to succeed at a high level.
+
+### What You Can Do for Me
+
+What do I actually want to achieve in my career? I want to become an expert in my field. This requires building a lot of projects and building them for a production environment. I am still relatively early in my career and I am constantly refining my approach and delivery of projects. I am looking for a company that wants to help me grow into a well-rounded developer. This means working on the front-end domain, of course, but will let me tackle the backend when the opportunities arise. Also, I want to sharpen my abilities in all areas: code review, architecture, design, client interaction, and many more developer and interpersonal skills. The more refined I can be as a developer the more I can help not only myself grow but those around me as well.
+
+In time, I would like to have my own company. Building a company from the ground-up comes with a lot of responsibility. Some, if not many, responsibilities I am not as familiar with. It would be great to learn the ins-and-outs of how a company works in order to grow myself in this area.
+
+### Summary 📝
+
+If you have gotten this far then let me say thank you. If you think my ideas of a great culture and company align with yours, feel free to give me a shout here through either a comment or private note. I believe strongly there are companies out there with strong programming cultures. It is my desire to be a part of and foster them. I hope to one day lead one. Until then I will continue to work towards my goals and build software in the best way I know how.
+
+_Special thanks to_ [_A. Sharif_](https://medium.com/u/52e7bcc5db67) _for encouraging me to share this about myself and giving feedback on what I wrote. Also, thank you to_ [_Kyle Shevlin_](https://medium.com/u/e55117c5994d) _for reviewing it and pointing out where it can be improved. The open source community is an amazing space to be a part of and it’s awesome to get support from you both. Thank you!_

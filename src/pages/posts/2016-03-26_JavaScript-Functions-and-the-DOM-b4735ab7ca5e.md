@@ -1,0 +1,301 @@
+---
+title: "JavaScript Functions and the DOM"
+description: ''
+publishDate: '2016-03-26'
+layout: ../../layouts/BlogPost.astro
+---
+
+This is the second lesson I gave as part of my ‘Intro to JavaScript Course’ for Tampa Bay youth. In this lesson, we discussed and programmed ways we can interact with the DOM through creating a hex clock and a simple drawing app. If you want to follow along create an account on codepen.io, create a new pen, and you will bet set.
+
+### What is the DOM?
+
+The DOM, or Document Object Model, represents the web page as a tree of elements. The tree is made up of parent-child relationships with the parent having one or many children referred to as nodes, but you can think of them as branches.
+
+```
+               Example DOM
+
+          HTML
+  \_\_\_\_\_\_\_\_\_|\_\_\_\_\_\_\_\_\_
+  |                 |
+HEAD               BODY———————— —————————
+  |                 |          |         |
+TITLE            HEADER       MAIN     FOOTER
+  |            \_\_\_\_\_|\_\_\_\_\_
+My Site        |         |
+              DIV       DIV
+```
+
+This is just a small example but underneath the _body_ tag, where I have three semantic divs, can become much more complex if it was an actual web page. Just imagine a much larger offshoot of branches that are for other divs, list items, links, etc.
+
+We have already worked with the DOM before from our previous lesson where we learned how to use HTML5 canvas.
+
+```javascript
+var canvas = document.body.getElementById(‘canvas’);
+```
+
+Here we are using the _document_ object’s _getElementById_ method to traverse the DOM and pick out the node with the _id_ of ‘canvas’. We then assign that node to the variable _canvas_. This will allow us to modify and make changes to that node within our script.
+
+### Show Me the Money! I mean Window Dimensions
+
+Now let’s take what we know and do something a little different. Instead of using HTML5 canvas to interact with a web page, we are going to interact with the body directly. Let’s first get the _width_ and _height_ of the DOM window.
+
+```javascript
+var width = window.innerWidth;
+var height = window.innerHeight;
+```
+
+Now let’s take the information that we got from using the _window_ object’s _innerWidth_ and _innerHeight_ properties and display them on the web page.
+
+```javascript
+var dimensions = document.createElement(‘P’);
+dimensions.textConent = width + ‘, ‘ + height;
+document.body.appendChild(dimensions);
+```
+
+Here we are using the _document_ object’s _createElement_ method to create a paragraph element. We then set the text for that element to equal what the dimensions of the window are. To display this on the actual page we use the _document_ object’s _appendChild_ method, passing in the element we want to append, in this case, _dimensions_.
+
+### Where Is the Freaking Mouse?
+
+That was okay. Now let’s do something that’s a bit more interactive. This time, we will get the x and y coordinates of the mouse when it hovers over the DOM.
+
+```javascript
+document.body.style.height = '100vh';
+
+document.body.addEventListener("mousemove", function(event) {
+  var x = event.clientX;
+  var y = event.clientY;
+  document.body.innerHTML = x + ', ' + y;
+});
+```
+
+First, what we did was set the height of the body tag to equal 100% of the viewport height. As you may know already, a block tag like body will only expand to the height of the elements within it. We want it to expand the entire page so that when the mouse hovers over the body it will be hovering over the entire window.
+
+Secondly, we added an event listener to the _body_. The event that we want the _body_ to listen for is the _mousemove_. The _addEventListener_ method takes the event type, in this case _mousemove_, and a callback function. The callback function takes the data of that event and passes it to the callback function. We are calling that data _event_. With that data in hand, we can then call on some of the properties that data has like what the x and y coordinates are of the mouse. We get access to those properties using _event.clientX_ and _event.clientY_. Then all we do afterward is put that data into the body using the _innerHTML_ property.
+
+Pretty neat huh? This was a bit cooler than before but we can do better. We can add some more functionality to the program so that the body’s background color changes based on the x and y coordinates.
+
+```javascript
+document.body.innerHTML = x + ', ' + y;
+document.body.style.backgroundColor = 'rgb(' + x + ', ' + y + ', 0)’;
+```
+
+Wow, pretty neat! Okay, maybe just for me.
+
+Let’s recap. There are many ways to interact with the DOM. We can add elements, add event listeners, and manipulate the DOM based on the feedback we get from event listeners.
+
+### Let’s Build a Hex Clock
+
+We are going to take what we learned a step further and create a hex clock. What is a hex clock you say? A hex clock is a timer that changes a web pages color each second. To start let’s create a function that gets the time of day.
+
+#### getTimeOfDay Function
+
+```javascript
+function getTimeOfDay() {
+  var date = new Date();
+  var hour = date.getHours();
+  var min = date.getMinutes();
+  var sec = date.getSeconds();
+  document.body.innerHTML = ‘’ + hour + min + sec;
+  return ‘’ + hour + min + sec;
+}
+```
+
+JavaScript has many handy utilities to make things a little easier for programmers. One of those utilities is the _Date_ object. As you may have noticed we instantiate a _Date_ object with the _new_ keyword. Once instantiated we can begin to use methods that allow use to retrieve data such as what the current hours, minutes, and seconds are. After getting that data I am then setting the _innerHTML_ property of the body to equal it. I am returning a string of _hour_, _min_, and _sec_ because we will need it later.
+
+Now every time we call this function we will get a new date object and from that, we will get the new hours, minutes, and seconds.
+
+Next, let’s make a function that creates a color based on the time we get from the _getTimeOfDay_ function.
+
+#### getColor Function
+
+```javascript
+function getColor(time) {
+  var color = '#' + time;
+  document.body.style.backgroundColor = color;
+}
+```
+
+This is simple enough. We are passing in a _time_ parameter and adding a hash to it to make the variable _color_ into a hexadecimal. Hexadecimals are one of the ways of referencing colors. We then set the document’s body background color property to that hexadecimal.
+
+Now all we have to do is wire this up so that the background changes each second. Here we will use another handy global function called _setInterval_.
+
+#### setInterval Function
+
+```javascript
+setInterval(function() {
+  return getColor(getTimeOfDay());
+}, 1000);
+```
+
+If you are working on this project early in the morning, like before ten, then you will notice that you don’t have any color on the screen. Do you know why? The reason is when the _Date_ object gets the hours and it’s before ten, it will pass back 9. Not 09, just plain 9. That means that we don’t have a hexadecimal, we have a number fewer than 6 characters in length. I say fewer because when any number is less than ten we only get back one number. We need _the_ variables _hour_, _min_, and _sec_ to be composed of two numbers even when they are less than ten. To do that we will update the _getTimeOfDay_ function. We will use some functional programming to achieve this by using JavaScripts _map_ function.
+
+```javascript
+function getTimeOfDay() {
+  var date = new Date();
+  var hour = date.getHours();
+  var min = date.getMinutes();
+  var sec = date.getSeconds();
+  // — Add below
+  var array = \[hour, min, sec\];
+  var newArray = array.map(function(time) {
+      var newTime = time < 10 ? ‘0’ + time : String(time);
+      return newTime;
+  });
+
+  hour = newArray\[0\];
+  min = newArray\[1\];
+  sec = newArray\[2\];
+  // — Add above
+  document.body.innerHTML = hour + min + sec;
+  return hour + min + sec;
+}
+```
+
+We kind of made a quantum leap by adding the _map_ function so let me tell you what’s happening. We are creating a new array that is composed of the time values. We are iterating over that array using the _map_ function and storing those values in a new array. When we iterate over all the values in the array we are passing each value in as the variable _time_. Then, inside of the callback function we are creating a new time. Here we use the ternary operator to check if the time value is less than ten. If that statement is true, we return the time with a zero in front. If that statement is false, we return the time back as a string. Afterward, we set _hour_, _min_, and _sec_ to equal the values in _newArray_.
+
+When you put it all together, this is what you get, with some minor adjustments:
+
+```javascript
+function getTimeOfDay() {
+  var date = new Date();
+  var hour = date.getHours();
+  var min = date.getMinutes();
+  var sec = date.getSeconds();
+  var array = \[hour, min, sec\];
+  var newArray = array.map(function(time) {
+      var newTime = time < 10 ? ‘0’ + time : String(time);
+      return newTime;
+  });
+  hour = newArray\[0\];
+  min = newArray\[1\];
+  sec = newArray\[2\];
+  document.body.innerHTML = hour + min + sec;
+  return hour + min + sec;
+}
+
+function getColor(time) {
+  var color = '#' + time;
+  document.body.style.backgroundColor = color;
+}
+
+function compose(f, g) {
+  return f(g());
+}
+
+function start() {
+  setInterval(function() {
+    compose(getColor, getTimeOfDay);
+  }, 1000);
+}
+
+window.onload = start;
+```
+
+As you will see here I added a _compose_ function and put our _setInterval_ inside of a _start_ function so that when the window is loaded the _start_ function will kick it all off. This is not much different, just a bit more functional in nature.
+
+### Simple Drawing App
+
+What do you think we can do next? You think we can make a drawing app with everything that we know. Let’s see what we can do.
+
+First, let’s create the canvas element.
+
+```javascript
+var canvasEl = document.createElement('CANVAS');
+canvasEl.id = 'canvas';
+document.body.appendChild(canvasEl);
+
+var canvas = document.querySelector('canvas');
+var context = canvas.getContext('2d');
+```
+
+Now let’s add some event listeners to the body element so that we know when to begin drawing the line, when to stop drawing the line, and when to resize the canvas.
+
+```javascript
+document.body.addEventListener('mousedown', start);
+document.body.addEventListener('mouseup', stop);
+document.body.addEventListener(‘onresize’, sizeCanvas);
+```
+
+Next, we can begin creating the functionality for the app, starting with the start function.
+
+```javascript
+function start(event) {
+  var x = event.clientX;
+  var y = event.clientY;
+
+  context.beginPath();
+  context.moveTo(x, y);
+}
+```
+
+Now when we stop we want the line to stop and complete the drawing of the line.
+
+```javascript
+function stop(event) {
+  var x = event.clientX;
+  var y = event.clientY;
+
+  context.lineTo(x, y);
+  context.stroke();
+}
+```
+
+Lastly, whenever the window loads or resizes we want the canvas to resize based on the size of the window.
+
+```javascript
+function sizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+window.onload = sizeCanvas;
+```
+
+Now let’s see it all come together.
+
+```javascript
+var canvasEl = document.createElement(‘CANVAS’);
+canvasEl.id = ‘canvas’;
+document.body.appendChild(canvasEl);
+var canvas = document.querySelector(‘canvas’);
+var context = canvas.getContext(‘2d’);
+
+document.body.addEventListener(‘mousedown’, start);
+document.body.addEventListener(‘mouseup’, stop);
+document.body.addEventListener(‘onresize’, sizeCanvas);
+
+function start(event) {
+  var x = event.clientX;
+  var y = event.clientY;
+
+  context.beginPath();
+  context.moveTo(x, y);
+}
+
+function stop(event) {
+  var x = event.clientX;
+  var y = event.clientY;
+
+  context.lineTo(x, y);
+  context.stroke();
+}
+
+function sizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+window.onload = sizeCanvas;
+```
+
+You freaking did it! Great job! Now if you want to level up your skills, even more, try to take on the challenge below.
+
+### Challenges
+
+1.  Add functionality to the drawing app so that it allows you to draw circles along with lines.
+
+### Summary
+
+In this lesson, you learned how to add interactivity to your web page with the help of event listeners. You also learned a little bit about functional programming and how to make your code a bit more readable. I hope this lesson was helpful. I tried teaching these concepts making apps that are a bit more interesting than having a button pop-up an alert.
+
+To view the code for a version of the hex clock I made, go [here](http://codepen.io/arecvlohe/pen/BKWvNp). To view the code for the drawing app, go [here](http://codepen.io/arecvlohe/pen/mPWoda).

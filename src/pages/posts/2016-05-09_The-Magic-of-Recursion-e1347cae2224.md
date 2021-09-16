@@ -1,0 +1,37 @@
+---
+title: "The Magic of Recursion"
+publishDate: '2016-05-09'
+layout: ../../layouts/BlogPost.astro
+---
+
+Recursion is a great tool to have as a programmer if you know what the hell it does. I have read my fair share of explanations so let me take a stab at this topic that continues to screw people over, including myself.
+
+Before I get into my example I first want to say that the best way to learn difficult topics is to practice coding exercises that deal with them. Yes, I am talking about practice as Allen Iverson would say. Take advantage of sites such as [HackerRank](https://www.hackerrank.com/), [CodeWars](http://www.codewars.com/), and/or [CodeFight](https://codefights.com/)s to get the most out of your programming acumen.
+
+I am now going to do something that has not been done in the history or programming. I am going to use an example of recursion that does not involve the Fibonacci sequence or factorials. Oh hell naw! Instead, the example I want to use is of a program that goes through an object and counts how many strings are in each object, including nested objects. The answer I will give is one way of solving this problem, you may come up with a different solution and I hope you do!
+
+Let’s take a look at an example call for this function:
+
+Let’s not use recursion at this point and just solve the problem the good ole’ iterative way. To iterate over an object we can use the _for…in_ or _for…of_ but I want to use the _Object.keys().forEach()_ function instead, just to mix things up. Let’s create the _stringCount_ function while also declaring a _count_ so that we can keep track of the string values in the object.
+
+Note: I will be using ES6's _let_ in this example. In some environments you may not be able to use this outside of strict mode, therefore, you will need _use strict_ at the top of your file.
+
+If you call this function with the current example you should get 1 returned because only the first property, _name_, has a string value that we can iterate over. Easy enough, right? You iterate through the entire object and increase the counter when you encounter, no pun intended, a string.
+
+But as you can tell this only works for an object with a depth of 1. All other objects get ignored and we get infuriated because we know we have to now use recursion!
+
+Before we go further let’s point out two things. One, we are using a loop to go through all the values in the object. That means we know that the loop will end at some point. We don’t have to worry about going into an infinite loop. In some recursion examples, you will hear about a _base_ case that breaks out of a recursive function. Well, for us, it’s the _forEach_ method that is going to do it.
+
+Second, we see the _stringCount_ function returns a _count_ at the end. This is important because when we use recursion it is this value that we need to keep track of the total count. We also know it will always be returned by _stringCount_.
+
+Now let’s use recursion to iterate over the values in the array that has the names of my friends. What do I need to do? I need to call the function again passing in the array value. But what will that do? That will call the function and look to iterate over the values. Currently, we are using a method that iterates over object literals, not arrays. What we need to do now is provide an _if_ statement for iterating other both an object literal and array. Let me show you how I did this.
+
+OMG, we just used recursion! As you can now see I am checking for whether the incoming object is either an array or object literal. In case you didn’t know, in JavaScript, arrays and object literals are both types of _objects_. It’s best practice to use other methods that confirm that the object is actually an array. To do this I am using the _Array.isArray()_ method.
+
+Now let’s get into what’s happening. I first check for the type of object that is being passed to _stringCount_. If the object is an object literal it’s executed in the first _if_ statement. If it’s an array it’s executed in the second. When we passed in the object literal the first time, the first _if_ statement is executed. It iterates over all values checking to see if the value is a string. If the value is a string, I increase the counter. If the value is an array, I call the function and pass it the array.
+
+Now the tricky part. You see I am using _count+= stringCount(object\[key\])_. Remember I mentioned before that _stringCount_ will always return _count_ when it finishes executing. If there are no strings it returns 0, if 1, it returns 1. Secondly, as I said before, we are iterating over the object and the array using a loop. We know the loop will end and when it does we will get a count returned. We then take that value, _stringCount(object\[key\])_, and add it to _count_ when it’s done executing. Neat, huh?
+
+Now you see the power of recursion and anytime you need to count strings in an object or array you know where to go! Apologies to those who want me to solve the entire problem, but I will not go further with the current example. Instead, I leave it as a ‘fun’ activity for you to work on. I recommend that you try other solutions but please don’t spoil it for others!
+
+I hope this post was helpful and maybe opened up your eyes to the wonderful world of recursion. It’s not so bad once you get past factorials and Fibonacci sequences!

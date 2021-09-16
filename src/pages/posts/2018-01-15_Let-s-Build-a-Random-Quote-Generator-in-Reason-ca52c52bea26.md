@@ -1,0 +1,370 @@
+---
+title: "Let’s Build a Random Quote Generator in Reason"
+description: "Code Snippets to Help You Learn ReasonML and ReasonReact"
+publishDate: '2018-01-15'
+layout: ../../layouts/BlogPost.astro
+---
+
+I finally caved and tried out ReasonML over the weekend. Not because I wanted to but rather because I think ReasonML is a natural progression for web developers coming from JavaScript who want to get into functional programming (FP) using familiar syntax and libraries. If you are looking to shower your code with parenthesis, commas, and semicolons while utilizing FP features like pattern matching look no further than ReasonML. I do enjoy the terseness of Elm and the expressiveness of PureScript but I can’t get away from the elegant paradigm that React inspired. React’s component-based architecture is great and finding an FP language with React bindings that I understand is even better! In this article, I hope to fill in the gaps for those starting out and who need a few code snippets to hit the ground running on their ReasonML journey.
+
+### What You Will Need/Want
+
+*   [Reason](https://reasonml.github.io/docs/en/global-installation.html)\*
+*   [Editor Plugin](https://reasonml.github.io/docs/en/editor-plugins.html)
+*   [Reason React](https://reasonml.github.io/reason-react/docs/en/installation.html)\*\*
+*   [Community Support](https://discordapp.com/invite/reasonml)
+*   [Developer UX](https://reasonml.github.io/docs/en/extra-goodies.html)
+
+\*I used OPAM
+\*\*I used Reason Scripts
+
+### Step 1 Setup
+
+After installing what you need above you can create a `reason-react` starter project using `yarn`:
+
+```
+yarn create react-app <app-name> --scripts-version reason-scripts
+```
+
+### Step 2 Dependencies
+
+You will need an external library that implements the fetch API and you will get this from `bs-fetch`. I think it should be called `fetch-bs` but what do I know 😁.
+
+yarn add bs-fetch
+
+Then after fetching the data, it will need to be parsed using a decoder. A decoder is a way of transforming a non-reason type into a reason type. The same idea holds for Elm and PureScript. In this case, you are taking `JSON` and converting it into a `reason` `record`.
+
+yarn add bs-json
+
+Modules are not explicitly imported into files like they are in JavaScript. Instead, the modules are automagically 🐇 🎩 imported with the filename as a namespace. However, you have to make the compiler aware of the module in order to use it. This happens in the `bsconfig.json` file.
+
+```javascript
+"bs-dependencies": [
+  "reason-react",
+  "bs-jest",
+  "bs-fetch",
+  "bs-json"
+],
+```
+
+### Step 3 Setup Component
+
+A basic app component is already setup for you but it doesn’t have everything you need to handle state like you expect in `react`. Instead you need what is called a `reducerComponent` along with some other boilerplate.
+
+```javascript
+\[%bs.raw {|require('./app.css')|}\];
+
+type state = { quote: string, author: string };
+
+type action = NoOp;
+
+let component = ReasonReact.reducerComponent("App");
+
+let make = \_children => {
+  ...component,
+  initialState: () => {
+    quote: "Hello, world!",
+    author: "Anonymous",
+  },
+  reducer: (action, \_state) => {
+    switch action {
+    | NoOp => ReasonReact.NoUpdate;
+    }
+  },
+  render: self =>
+    <div className="App">
+      <div>(ReasonReact.stringToElement(self.state.quote)) </div>
+      <div>{ReasonReact.stringToElement(self.state.author)}</div>
+    </div>
+};
+```
+
+Let’s have a look at what’s familiar and not so familiar about this. There is `initialState`, the initial state of the component. I placed some dummy data to start. If you are using a `reducerComponent` you will be asked to define both `state` and `action` types. In this case, the state is simply a `record` of `quote` and `author` both of type `string`. I added a `NoOp` `action` type just to get the component working. Inside of the render function, there is `self`. The `self` variable acts as a conduit for `this` which `reason`/`bucklescript`/`ocaml` has no concept of. What stuck out the most for me was `ReasonReact.stringToElement`. Remember, these are bindings for `react` and not the full suite of tools like `JSX`. That is why functions exist to transform strings into an HTML text representation. If you see a variable with an underscore it means it’s not being used like `_children`. This helps the compiler to selectively remove data that doesn’t need to be held in memory. Take it out for a spin and see what you find in the browser.
+
+```bash
+yarn start
+```
+
+### Step 4 Fetch Data
+
+Now it’s about to get interesting. Next, you will fetch data. First, let’s create a function that fetches the data. I will call this function `fetchQuote`.
+
+```javascript
+let make = \_children => {
+
+let fetchQuote = () => {
+    Js.Promise.(
+      Fetch.fetch("[https://randomquoteapi.glitch.me/funny](https://randomquoteapi.glitch.me/funny)")
+      |> then\_(Fetch.Response.text)
+      |> then\_(text => {
+          Js.log(text);
+          Js.Promise.resolve();
+        })
+    ) |> ignore;
+  };
+
+{
+  ...component,
+  initialState: () => {
+    quote: "Hello, world!",
+    author: "Anonymous",
+  },
+  reducer: (action, \_state) => {
+    switch action {
+    | NoOp => ReasonReact.NoUpdate;
+    }
+  },
+  didMount: (\_self) => {
+    fetchQuote();
+    ReasonReact.NoUpdate;
+  },
+  render: self =>
+    <div className="App">
+      <div>(ReasonReact.stringToElement(self.state.quote)) </div>
+      <div>{ReasonReact.stringToElement(self.state.author)}</div>
+    </div>
+  }
+};
+```
+
+Notice that I have another set of curly braces `{}` surrounding the function. That’s important. Here I am using reason’s `Promise` implementation and inside that, I have my `fetch` call.
+
+```javascript
+let fetchQuote = () => {
+    Js.Promise.(
+      Fetch.fetch("[https://randomquoteapi.glitch.me/funny](https://randomquoteapi.glitch.me/funny)")
+      |> then\_(Fetch.Response.text)
+      |> then\_(text => {
+          Js.log(text);
+          Js.Promise.resolve();
+        })
+    ) |> ignore;
+  };
+```
+
+I `log` the results to the console and `resolve` the `Promise`. Keep in mind that `reason` is compatible with `bucklescript` and you will see `bucklescript` helper libraries like `Js.Promise` and `Js.log` throughout `reason`’s documentation. You’ll notice `ignore` at the tail end of the `Promise` chain, which does nothing more than informing the compiler that nothing is being returned.
+
+The only other thing I added was a `didMount` lifecycle method, which is passed `self`.
+
+```javascript
+didMount: (\_self) => {
+  fetchQuote();
+  ReasonReact.NoUpdate;
+},
+```
+
+Because `self` is not being used in this instance it is prepended with an underscore. I call the `fetchQuote` function and if all goes as planned you should see the API response in the `console`.
+
+### Step 5 Update Component State
+
+In order to update component state, you need to transform this string representation of `JSON` into a `reason` `record`. With the help of `json-bs`, I mean `bs-json`, you can do this. The decoder will look something like this:
+
+```javascript
+let parseResponse = (json: Js.Json.t) : state =>
+  Json.Decode.{
+    quote: field("quote", string, json),
+    author: field("author", string, json)
+  };
+```
+
+Be sure to place this underneath your `state` and `action` types. It’s pretty straight forward. Here you are converting the `JSON` string representation by plucking the `quote` and `author` field and placing them into a `record`. Next let’s parse the `JSON` string and update component state.
+
+```javascript
+type state = { quote: string, author: string };
+
+type action = NextQuote(state) | NoOp;
+
+let parseResponse = (json: Js.Json.t) : state =>
+  Json.Decode.{
+    quote: field("quote", string, json),
+    author: field("author", string, json)
+  };
+
+let component = ReasonReact.reducerComponent("App");
+
+let make = \_children => {
+
+let fetchQuote = (self) => {
+    Js.Promise.(
+      Fetch.fetch("[https://randomquoteapi.glitch.me/funny](https://randomquoteapi.glitch.me/funny)")
+      |> then\_(Fetch.Response.text)
+      |> then\_(text => {
+          let result = parseResponse(Js.Json.parseExn(text));
+          self.ReasonReact.send(NextQuote(result));
+          Js.Promise.resolve();
+        })
+    ) |> ignore;
+  };
+
+{
+  ...component,
+  initialState: () => {
+    quote: "Hello, world!",
+    author: "Anonymous",
+  },
+  reducer: (action, \_state) => {
+    switch action {
+    | NextQuote(result) => ReasonReact.Update(result);
+    | NoOp => ReasonReact.NoUpdate;
+    }
+  },
+  didMount: (self) => {
+    fetchQuote(self);
+    ReasonReact.NoUpdate;
+  },
+  render: self =>
+    <div className="App">
+      <div>(ReasonReact.stringToElement(self.state.quote)) </div>
+      <div>{ReasonReact.stringToElement(self.state.author)}</div>
+    </div>
+  }
+};
+```
+
+What the hell is going on!? Well, to get the parsed response from the API you also need a helper function called `Js.Json.parseExn`.
+
+let result = parseResponse(Js.Json.parseExn(text));
+
+From my research, it looks as if `buckscript` is looking into a more streamlined way of parsing `JSON`. If you are reading this from the future then be thankful you do not have to deal with encoders/decoders! Any who, after parsing the `JSON` and making it into a `record` I send it back to my `reducer` with the `action` type of `NextQuote`.
+
+```javascript
+self.ReasonReact.send(NextQuote(result));
+```
+
+It is an `action` type which takes a `state` type.
+
+```javascript
+type action = NextQuote(state) | NoOp;
+```
+
+Inside of my `reducer`, I use the shorthand way of updating state.
+
+```javascript
+| NextQuote(result) => ReasonReact.Update(result);
+```
+
+It’s the same as writing:
+
+```javascript
+ReasonReact.Update({ quote: result.quote, author: result.author });
+```
+
+There is a quirk, however, and that is this line:
+
+```javascript
+self.ReasonReact.send(NextQuote(result));
+```
+
+You have to use `self.ReasonReact.send` and not `self.send` because otherwise, you get an `unbound` field error. It’s one example of the weirdness of `reason-react` but it’s not nearly as bad as `undefined is not a function` so deal with it. Also, notice that I am passing `self` in from where the `fetchQuote` is called in `didMount`.
+
+```javascript
+didMount: (self) => {
+  fetchQuote(self);
+  ReasonReact.NoUpdate;
+},
+```
+
+I knew I couldn’t get anything passed you! If all works as expected you should see a new random quote in your browser on each refresh.
+
+
+### Step 6 Update Quote on User Click Event
+
+Let’s add some interactivity! You will add a button that when clicked will fetch a new random quote. First, add an action type of `Click`.
+
+```javascript
+type action = NextQuote(state) | Click | NoOp;
+```
+
+Next, add a button that sends a `Click` action to the `reducer`.
+
+```javascript
+<div className="App">
+  <div>(ReasonReact.stringToElement(self.state.quote)) </div>
+  <div>{ReasonReact.stringToElement(self.state.author)}</div>
+  <button onClick=(\_event => self.send(Click))>{ReasonReact.stringToElement("Fetch New Quote")}</button>
+</div>
+```
+
+Lastly, handle the `Click` action in the `reducer`.
+
+```javascript
+| Click => ReasonReact.SideEffects(fetchQuote);
+```
+
+Again, this is shorthand for:
+
+```javascript
+| Click => ReasonReact.SideEffects(self => fetchQuote(self));
+```
+
+If all went well, you should see new random quote after clicking the button!
+
+The code in all it’s glory:
+
+```javascript
+[%bs.raw {|require('./app.css')|}];
+
+type state = { quote: string, author: string };
+
+type action = NextQuote(state) | Click | NoOp;
+
+let parseResponse = (json: Js.Json.t) : state =>
+  Json.Decode.{
+    quote: field("quote", string, json),
+    author: field("author", string, json)
+  };
+
+let component = ReasonReact.reducerComponent("App");
+
+let make = \_children => {
+
+let fetchQuote = (self) => {
+    Js.Promise.(
+      Fetch.fetch("[https://randomquoteapi.glitch.me/funny](https://randomquoteapi.glitch.me/funny)")
+      |> then\_(Fetch.Response.text)
+      |> then\_(text => {
+          let result = parseResponse(Js.Json.parseExn(text));
+          self.ReasonReact.send(NextQuote(result));
+          Js.Promise.resolve();
+        })
+    ) |> ignore;
+  };
+
+{
+  ...component,
+  initialState: () => {
+    quote: "Hello, world!",
+    author: "Anonymous",
+  },
+  reducer: (action, \_state) => {
+    switch action {
+    | NextQuote(result) => ReasonReact.Update(result);
+    | Click => ReasonReact.SideEffects(fetchQuote);
+    | NoOp => ReasonReact.NoUpdate;
+    }
+  },
+  didMount: (self) => {
+    fetchQuote(self);
+    ReasonReact.NoUpdate;
+  },
+  render: self =>
+    <div className="App">
+      <div>(ReasonReact.stringToElement(self.state.quote)) </div>
+      <div>{ReasonReact.stringToElement(self.state.author)}</div>
+      <button onClick=(\_event => self.send(Click))>{ReasonReact.stringToElement("Fetch New Quote")}</button>
+    </div>
+  }
+};
+```
+
+### Step 7 Rejoice!
+
+Wow, you just completed your first reason/reason-react app. Now when you get around the water cooler with your co-workers you will have a pretty cool story to tell! Maybe.
+
+### Summary
+
+In this article, you learned how to create a random quote generator in `reason` with the `reason-react` UI library. Along the way you installed dependencies, utilized browser APIs, built a reason-react component with lifecycle methods, and created something completely useless 😆. I hope the code snippets above help you on your journey to learning ReasonML. And who knows, maybe it becomes the language that replaces `undefined is not a function`.
+
+### Source Code
+
+[https://github.com/arecvlohe/reason-react-medium-example](https://github.com/arecvlohe/reason-react-medium-example)

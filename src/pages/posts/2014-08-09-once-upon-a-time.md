@@ -1,0 +1,13 @@
+---
+title: "Once upon a time..."
+publishDate: "2014-08-09"
+layout: ../../layouts/BlogPost.astro
+---
+
+Once upon a time there was a boy who did not know much about the world and what it would bring. To him it was all very confusing. He would fail and succeed all along the way; although at times things never seemed to go his way or negative things ever go away. But it's safe to say he grew.
+
+He wasn't grown even when he was finished growing. Instead, he continued masquerading. Fleeing the truth of the voice within for the simple pleasure of a whim. He wouldn't let go for fear of change nor accept the thought of devolving his aim. He continued to fall to the lowest depths seeking refuge in the darkness of vast breadth.
+
+With everything stacked against his favor he let go of his pride and sought the creator. Listened again to the voice within and let go of his pride that cast him aside. He sought the truth of the ether to never again be the weaker. Unknowing of what lies ahead he accepts the fate before he tucks to bed. To meet the maker is in the cards at each and every meter.
+
+Now grown he has a few things to call his own. But it was what shaped his dome that makes him sewn. Back together with the village he knows well but now better. The horizon looks like it does not end and for some reason sparkles with a grin. He leads while being led down the path he shall only tread. Future past imbued and the boy that was once confused is now a man patient and infused.

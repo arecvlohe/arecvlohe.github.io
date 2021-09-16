@@ -1,0 +1,37 @@
+---
+title: "Sugar: The Gateway Ingredient"
+publishDate: "2014-08-05"
+layout: ../../layouts/BlogPost.astro
+---
+
+We all love sugar and we can expect to find it in almost everything we eat. So is there sugarcane in my bread? Not exactly. And here lies the biggest problem. People don't know what's in their food, hence, nor the type of sugar they are consuming. It's not that sugar is inherently bad, it's that they are not all the same. They each impact the body in different ways; some more negatively than others.
+
+The most common form of sugar is sucrose which comes from fruits and vegetables.1 "Table sugar" is the concentrated form of sucrose that is harvested from sugar beets or sugar cane.2 The sugar from these plants is then processed into white, brown, or liquid sugar. These processed sugars are added to recipes based on their crystalline design and unique properties.3 The types of sugar for each include:
+
+**White**: Regular, Fruit, Bakers Special, Superfine, Powdered, Coarse, Sanding4
+
+**Brown**: Turbinado (?), Evaporated Cane Juice, Brown, Barbados (?), Free-Flowing (_wonder how that one tastes_), Demerara (??)5
+
+**Liquid**: Liquid, Amber, Invert6
+
+What is with all the different types of sugar? Yes, they may have different properties and some are better than others at certain things, but, why so much now-a-days? Well, the main reason I think is most people have lost their palate. People are now unaccustomed to drinks that are slightly bitter or meals that are savory. There is no balance between all of the five tastes (Salty, Sour, Sweet, Bitter, and Savory) in fast food that can actually elevate a dish. Instead, most meals come with some type of sugar because it makes us "feel good," not because the taste of the food is superior but because it satisfies a small fix.
+
+Companies like Coca-Cola know this very well and in this period of abundance they have more of this ingredient than they know what to do with. However, these companies have evolved and realized an even greater scheme that allows them to sell even more of their product: Adding a highly concentrated form of a naturally occurring substance. Does that sound familiar to you? Do you know of any other examples of highly concentrated forms of a naturally occurring substance? How about heroin (opium poppy), cocaine (coca), or LSD (rye fungus).
+
+Now you probably know what substance I am going to talk about: High fructose corn syrup (HFCS). This ingredient is found in most drinks, foods, and is progressively becoming a staple ingredient of the American diet. This concentrated form of fructose is extremely different from the sugars listed above for one simple reason: [the human body processes it more like alcohol than a simple carbohydrate](https://www.youtube.com/watch?v=dBnniua6-oM). In short, HFCS runs right through the system without being effectively broken down while also undermining the brains ability to determine satiation. Not only that, soft drink companies load their products with salt that only reinforces the consumers urge to hydrate, thus drinking even more.
+
+Sugar is great. It adds a great taste to dressings and baked goods when used in moderation. However, the consumption of sugar can lead to the consumption of its more concentrated counterpart (HFCS). That can trigger serious health issues (diabetes) down the line. If there is one thing to keep in mind, it's that not all sugars are the same, especially HFCS. If you read your food labels you might begin to realize what seems like an innocent fix to you is a total coupe for the corporation. And if your not cautious, a full-blow addiction. 
+
+## End Notes
+
+1 The Sugar Association Website. All About Sugar. http://www.sugar.org/all-about-sugar/
+
+2 ibid.
+
+3 The Sugar Association Website. Types of Sugar. http://www.sugar.org/all-about-sugar/types-of-sugar/
+
+4 ibid.
+
+5 ibid.
+
+6 ibid.

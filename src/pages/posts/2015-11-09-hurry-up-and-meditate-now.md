@@ -1,0 +1,33 @@
+---
+title: "Hurry Up and Meditate Now!"
+publishDate: "2015-11-09"
+layout: ../../layouts/BlogPost.astro
+---
+
+Whenever I talk with friends or associates about meditation it's always met with a bit of skepticism. Probably because it's my default answer to all of their questions. "I have high blood pressure, what should I do?" Meditate. "I have a chance to work for another company, but I am unsure. What should I do?" Meditate. "There is this guy/girl I like, but I don't know what to do?" Meditate. "The sky is falling!" Meditate.
+
+My friends are tired of it. However, I am sure the real reason why it's met with so much skepticism is the belief that when you meditate,  you're not actually doing anything. And therefore, if you're not doing anything, then you are not helping yourself or making the situation any better. You will be surprised at how difficult it can be to do _nothing_ and therein lies why it's so beneficial. 
+
+Meditation is a simple practice that is hard to master. The reason being is because our motivations in life are fueled by some form of stress or anxiety. Think about it. Why did you do so well in school? Because you were stressed about failing. Why did you work so hard for that raise? Because you were concerned about the future of your family. Why did you change careers? Because you were worried about how your future would turn out. Although this may not be the only motivation, it plays a big part in pushing us in the direction we want to go.
+
+Doing nothing, therefore, seems kind of counter-intuitive to the normal way we think and react. This is understandable and I thought the same way for a long time. [But it turns out it's exactly the opposite because doing nothing actually helps you to make better decisions about the matters that stress you the most](http://www.huffingtonpost.com/2012/11/15/meditation-emotional-processing-emotions-brain_n_2123753.html).
+
+I stumbled upon meditation after a difficult period in my life. I was just let go from my job and didn't have anything lined up. And I wouldn't have anything lined up for another 8 months. But during that time of unemployment I took the time to look at the man in the mirror and see how he could change his ways. What I found was quite surprising. 
+
+When I began meditating I noticed I had an elevated heart rate. It was around 90 beats per minute, similar to if I was doing a modest workout. I also noticed that I could not focus clearly and was quite fidgety for no good reason. Like a child in kindergarten having to reluctantly lay down during nap time. But I asked myself, 'Why can't I stop moving for 20, 30, 40 minutes? If I tell myself not to move for that amount of time, can I do it?
+
+I challenged myself and started out small. Five minutes here, ten minutes there. Then gradually I got up to an hour. I did this in parallel with breathing exercises and I was able to bring down my heart rate to about 60 beats per minute, and correspondingly my anxiety and fidgetiness declined as well.
+
+So what did I learn during this time? First, **it's difficult to focus if you don't teach yourself to focus**. Meditation is mainly about focus. Beginners are encouraged to focus on either their breathing or  one idea or thought. It can be many variations about that one idea, but one idea nonetheless. If you think this is easy, then you can ask yourself why everyone else is not doing it.
+
+Second, **when you focus well you begin to have tunnel vision**. That means that all other matters and concerns are blocked out and for that period in time you are 'distracted' from any and all stressors in your life. What this teaches you is that you are in control of your mind and how you react to stress. Meditation, therefore, is one effective way of focusing your thoughts and energy in a positive direction. 
+
+Third, **you don't really realize how much stress/anxiety affects you until you listen to your body**. Like I mentioned previously, I never even noticed that my heart rate was so high until I actually focused on my breathing and quieted my mind. You may be surprised at what else you will find when you zone out the distractions and focus on your inner self.  
+
+Lastly, **meditation may not always provide an answer but it does clear your mind enough to allow you to see the truth**. I think when people consider meditation I think they may expect something out of it. That may not be the best approach. In a way, meditation is like taking out the trash, you may not get anything out of it per say, but you are happy that your house is clean. [That is what meditation can provide, a clear mind that puts you in the position to make better decisions later on](http://www.massgeneral.org/about/pressrelease.aspx?id=1329). 
+
+I hope this was helpful. I provided a list of resources at the bottom that helped me get on the right track in regards to meditation. I hope they help you do the same. If you have any questions or comments, feel free to ask. Now get to meditating, hurry!
+
+- [The Wim Hof Method](http://www.wimhofmethod.com/)
+- [Calm](http://www.calm.com/)
+- [Breathology](https://www.breatheology.com/)

@@ -1,0 +1,15 @@
+---
+title: "The CIA Knows Me Better Than You"
+publishDate: "2012-12-28"
+layout: ../../layouts/BlogPost.astro
+---
+
+Is that headline weird and/or scary? The fact is that it's probably true. Is that fair that some dweeb in Washington who documents everything I say and do knows me better than you, a person that I am friends with? Well I don't. I don't think it's fair that he or she can write a ten page paper, no double-space mind you, about me with facts from Google and you can't recall off the top of your head what my middle name is (Elliott. Good job!). I do think, however, my file takes up a little space because I was involved in the Florida Chapter of the American Indian Movement, Nakba'48, and other social organizations in college that are not looked at favorably by the U.S. government. I think being part of the African Student Union while not being African went a little too far.
+
+In this age of Facebook, Twitter, and Google+ we have learned a new behavior. How to say the least about ourselves while interacting for the least amount of time. When I was in Oklahoma I spent a lot of time with my native community, days and sometimes weeks. This was usually during gatherings for ceremonies or a family get together. This harkens to a time when social media did not exist and we knew each other really well. Although some tribal communities lack access to high speed internet they do not lack connection to one another. Conversations usually extend well beyond "140" syllables and while their "status" is the first topic of discussion, it's certainly not the last.
+
+I can't even say that it was that I conversed with different people that made the interaction memorable. Being at the ceremonial ground and being amongst a cohesive group is what stands out to me. Sitting around at the ground and just being there amongst people and knowing that if I needed something to eat, drink, or place to sleep would be provided for gave me a great sense of security simply because of their presence. That more than anything stands out to me and makes me realize what is a miss in social media.
+
+I wrote a poem one time called, "Just Being There." People really don't have to say anything to make someone feel secure or feel like someone likes them. A "like" on any social network does not fill the energy that is provided when someone is in your actual presence and is there for you. Overtime, yes, you do get to know that person because you talk and you learn things. But what is more important is to take the time to do things together. Just be there. 
+
+The CIA may know me better because they have a computer robot that can probe the web for information about me, but if you took the time to read this than I appreciate you for that. I appreciate the time you took out of your day to read something about me and to ponder it or to even act on it. It helps me and I hope it helps you to share your story with someone else. Not with the intention to feel understood, that is not the point of any of these posts. But to be a presence in someone's life, however long that lasts.
