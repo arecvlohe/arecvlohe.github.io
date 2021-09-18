@@ -1,5 +1,5 @@
 {
-  "name": "@example/blog",
+  "name": "adam-recvlohe-blog",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -9,7 +9,8 @@
     "preview": "astro preview"
   },
   "devDependencies": {
-    "astro": "^0.20.5",
-    "@astrojs/renderer-preact": "^0.2.1"
+    "@astrojs/renderer-preact": "0.2.1",
+    "astro": "0.20.5",
+    "tailwindcss": "2.2.15"
   }
 }
