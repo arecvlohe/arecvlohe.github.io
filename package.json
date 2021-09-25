@@ -7,7 +7,7 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "deploy": "gh-pages -d dist"
+    "deploy": "yarn build && touch ./dist/.nojekyll && gh-pages -d dist"
   },
   "devDependencies": {
     "@astrojs/renderer-preact": "0.2.2",
