@@ -6,11 +6,13 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "deploy": "gh-pages -d dist"
   },
   "devDependencies": {
     "@astrojs/renderer-preact": "0.2.2",
     "astro": "0.20.7",
+    "gh-pages": "^3.2.3",
     "tailwindcss": "2.2.15"
   }
 }
