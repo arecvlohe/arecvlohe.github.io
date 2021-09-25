@@ -1,25 +1,14 @@
 ---
 // Component Imports
-import { Markdown } from 'astro/components'
 import BaseHead from '../components/BaseHead.astro';
 import BlogHeader from '../components/BlogHeader.astro';
 import BlogPostPreview from '../components/BlogPostPreview.astro';
 
-
-// Component Script:
-// You can write any JavaScript/TypeScript that you'd like here.
-// It will run during the build, but never in the browser.
-// All variables are available to use in the HTML template below.
 let title = 'Spotted Arrow';
 let description = 'Hesci! Welcome to my blog. My name is Adam Recvlohe (Spotted Arrow). I am a member of Tvlvhase Wvkokaye Tribal Town and son of Bear Clan. I am citizen of Muscogee Nation as well as the United States and Canada. I am an advocate for Natives in Tech, a nonprofit building a tech ecosystem for Native technologists and communities as well as a supporter of the Muscogee Language Foundation that works to keep Muscogee a living language. Here you will find prose that I\'ve written. Enjoy!';
-let permalink: string = 'https://example.com/';
-
-// Data Fetching: List all Markdown posts in the repo.
+let permalink: string = 'https://adamrecvlohe.com';
 let allPosts = Astro.fetchContent('./posts/*.md');
 allPosts = allPosts.sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate));
-
-// Full Astro Component Syntax:
-// https://docs.astro.build/core-concepts/astro-components/
 ---
 <html lang="en">
   <head>
