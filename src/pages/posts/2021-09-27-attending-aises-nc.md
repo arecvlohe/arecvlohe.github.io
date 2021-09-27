@@ -1,7 +1,7 @@
 ---
-title: Big Everything and AISES NC
+title: Re-thinking attending AISES NC
 publishDate: "2021-09-27"
-description: "Connecting with other Native technologists but in a way that I can feel good about"
+description: "The case against attending a conference funded by Big Oil"
 layout: ../../layouts/BlogPost.astro
 ---
 
