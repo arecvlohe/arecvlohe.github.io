@@ -18,7 +18,7 @@ Let's do a run-through of these different entities and how they've harmed Native
 - Wells Fargo
   - [Enbridge and DAPL pipelines](https://www.sierraclub.org/compass/2017/12/wells-fargo-has-choice-make-keystone-xl-tar-sands-double-down-or-divest)
 - Chevron
-  - [Tar Sands](https://tarsandsblockade.org/milford/)
+  - [Tar Sands](https://www.reuters.com/article/us-chevron-divestiture-canada-idUSKBN17F1S7)
 - US Government
   - [Regime change in Bolivia](https://fpif.org/ending-regime-change-in-bolivia-and-the-world/)
 
