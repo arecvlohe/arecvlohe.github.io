@@ -14,6 +14,7 @@ Let's do a run-through of these different entities and how they've harmed Native
 - Exxon
   - [DAPL Investments](https://wallstreetwatchdogs.com/2021/04/05/exxon-sues-energy-transfer/)
   - [Alaskan Oil Spills](https://www.ran.org/the-understory/extreme_energy_injustice/)
+  - [Ex-employee Heads Enbridge Development](https://gizmodo.com/amazons-former-security-chief-is-now-guarding-the-line-1847724615)
 - Wells Fargo
   - [Enbridge and DAPL pipelines](https://www.sierraclub.org/compass/2017/12/wells-fargo-has-choice-make-keystone-xl-tar-sands-double-down-or-divest)
 - Chevron
