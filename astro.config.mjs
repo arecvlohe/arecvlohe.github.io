@@ -13,7 +13,7 @@ export default /** @type {import('astro').AstroUserConfig} */ ({
   devOptions: {
     tailwindConfig: "./tailwind.config.js",
     buildOptions: {
-      site: "https://arecvlohe.github.io",
+      site: process.env.BUILD_GITLAB ? "https://arecvlohe.gitlab.com/blog" : "https://arecvlohe.github.io",
     },
     build: {
       outDir: process.env.BUILD_GITLAB ? "public" : undefined,
