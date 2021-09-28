@@ -9,17 +9,17 @@ I didn't attend [AISES](https://www.aises.org/)' (American Indian Science and En
 
 It's not just that these entities are bad, which of course they are, but that they also harm our own Native communities. I feel as though the oil conglomerates seize the opportunity to show how much they "care" about Native technologists and scientists as a way to "balance out" the harm they've done to us.
 
-Let's do a run-through of these different entities and how they've harmed Native peoples:
+Let's do a quick run-through of these different entities and how they've harmed Native peoples:
 
-- Exxon
+### Exxon
   - [DAPL Investments](https://wallstreetwatchdogs.com/2021/04/05/exxon-sues-energy-transfer/)
   - [Alaskan Oil Spills](https://www.ran.org/the-understory/extreme_energy_injustice/)
   - [Ex-employee Heads Enbridge Development](https://gizmodo.com/amazons-former-security-chief-is-now-guarding-the-line-1847724615)
-- Wells Fargo
+### Wells Fargo
   - [Enbridge and DAPL pipelines](https://www.sierraclub.org/compass/2017/12/wells-fargo-has-choice-make-keystone-xl-tar-sands-double-down-or-divest)
-- Chevron
+### Chevron
   - [Tar Sands](https://www.reuters.com/article/us-chevron-divestiture-canada-idUSKBN17F1S7)
-- US Government
+### NSA
   - [Regime change in Bolivia](https://fpif.org/ending-regime-change-in-bolivia-and-the-world/)
 
 This is just what I could find with a simple search. There is probably much more out there and certainly more to include from a historical perspective. Don't get me wrong, I would love to spend time at AISES National Conference and talk face-to-face with other Native technologists and scientists. But knowing what I know now, I can't in good conscious contribute my time and energy to a conference that enthusiastically accepts support from some of the largest entities harming our relatives to the north and south. If it takes these entities' donations in order for the conference to exist, in my opinion, I'd rather it not. We can do so much better for ourselves, our peoples, and our ancestors. It's time we start.

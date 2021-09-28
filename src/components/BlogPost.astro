@@ -18,7 +18,6 @@ const { title, publishDate, heroImage, alt } = Astro.props;
         {heroImage && <img width="720" height="420" class="hero-image" loading="lazy" src={heroImage} alt={alt} />}
         <p class="publish-date">{publishDate}</p>
         <h1 class="title">{title}</h1>
-        <Author name="@AdamRecvlohe" href="https://twitter.com/adamrecvlohe" />
       </header>
       <main>
         <slot />
