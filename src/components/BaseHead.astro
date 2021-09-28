@@ -5,6 +5,7 @@ export interface Props {
   permalink: string;
 }
 const { title, description, permalink } = Astro.props;
+const logoUrl = '/assets/logo.jpg'
 ---
 
 <!-- Global Metadata -->
@@ -23,12 +24,12 @@ const { title, description, permalink } = Astro.props;
 <meta property="og:url" content={permalink} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content="https://avatars2.githubusercontent.com/u/9747933?s=460&v=4" />
+<meta property="og:image" content={logoUrl} />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={permalink} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<meta property="twitter:image" content="https://avatars2.githubusercontent.com/u/9747933?s=460&v=4" />
+<meta property="twitter:image" content={logoUrl} />
 
