@@ -5,11 +5,9 @@ description: "The case against attending a conference funded by Big Oil"
 layout: ../../layouts/BlogPost.astro
 ---
 
-I didn't attend [AISES](https://www.aises.org/)' (American Indian Science and Engineering Society) National Conference in person this year, although I did sit on a panel virtually, and may not attend again in the future. It's certainly where I'd like to be but having attended the past 2 years I noticed AISES has a pretty strong relationship with entities that I might not have expected: Chevron, NSA, Exxon Mobil, and Wells Fargo among others. I pause and wonder what our ancestors might think of us when we invite to the table multi-national corporations that contribute to war, environmental destruction, and the decay of sovereign governments. Being there is quite surreal in this regard.
+I didn't attend the 2021 [AISES](https://www.aises.org/)' (American Indian Science and Engineering Society) National Conference in person this year, although I did sit on a panel virtually, and I am reconsidering my attendance in the future. It's certainly where I'd like to be. Being able to speak, interact, and engage with other Native technologists and scientists is an awesome, profound, and uplifting experience. I learn so much and grow new relationships, many of which have had profound impacts on my life. However, having attended the past 2 years I noticed AISES has a pretty strong relationship with entities that I might not have expected: Chevron, Exxon Mobil, US National Intelligence, and Wells Fargo among others. I pause and wonder what our ancestors might think of us when we invite to the table multi-national corporations and government entities that contribute to war, environmental destruction, and the decay of sovereign governments. Being there is quite surreal in this regard, to see the juxtaposition of Native peoples in STEM supporting one another while corporate/government sponsors tear down our communities and our homelands. How have we come to accept this as the status quo? How can we work towards decolonizing tech and science when we ourselves are taking the money of colonizing, extractive, and harmful entities? This is not good medicine for our people.
 
-It's not just that these entities are bad, which of course they are, but that they also harm our own Native communities. I feel as though the oil conglomerates seize the opportunity to show how much they "care" about Native technologists and scientists as a way to "balance out" the harm they've done to us.
-
-Let's do a quick run-through of these different entities and how they've harmed Native peoples:
+A few examples of AISES' sponsors working against Native communities:
 
 ### Exxon
   - [DAPL Investments](https://wallstreetwatchdogs.com/2021/04/05/exxon-sues-energy-transfer/)
@@ -22,7 +20,7 @@ Let's do a quick run-through of these different entities and how they've harmed 
 ### NSA
   - [Regime change in Bolivia](https://fpif.org/ending-regime-change-in-bolivia-and-the-world/)
 
-This is just what I could find with a simple search. There is probably much more out there and certainly more to include from a historical perspective. Don't get me wrong, I would love to spend time at AISES National Conference and talk face-to-face with other Native technologists and scientists. But knowing what I know now, I can't in good conscious contribute my time and energy to a conference that enthusiastically accepts support from some of the largest entities harming our relatives to the north and south. If it takes these entities' donations in order for the conference to exist, in my opinion, I'd rather it not. We can do so much better for ourselves, our peoples, and our ancestors. It's time we start.
+This is what I could find with a simple search. There are many more examples out there from a historical perspective and with other sponsors. Don't get me wrong, I would love to spend time at the AISES National Conference and talk face-to-face with other Native technologists and scientists. But knowing what I know now, I can't in good conscience contribute my time and energy to a conference that enthusiastically accepts support from some of the largest entities harming our relatives to the north and south. If it takes these entities' donations in order for the conference to exist, in my opinion, I'd rather it not. We can do so much better for ourselves, our peoples, and our ancestors. It's time we start.
 
 
 
