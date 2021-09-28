@@ -1,7 +1,7 @@
 ---
 title: Re-thinking attending AISES National Conference
 publishDate: "2021-09-28"
-description: "Doing good for our people means reconsidering who we let in or circle"
+description: "Doing good for our people means reconsidering who we let in our circle"
 layout: ../../layouts/BlogPost.astro
 ---
 
