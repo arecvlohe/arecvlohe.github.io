@@ -1,6 +1,6 @@
 ---
 title: Re-thinking attending AISES National Conference
-publishDate: "2021-09-27"
+publishDate: "2021-09-28"
 description: "The case against attending a conference funded by Big Oil"
 layout: ../../layouts/BlogPost.astro
 ---
