@@ -15,5 +15,8 @@ export default /** @type {import('astro').AstroUserConfig} */ ({
     buildOptions: {
       site: "https://arecvlohe.github.io",
     },
+    build: {
+      outDir: process.env.BUILD_GITLAB ? "public" : undefined,
+    },
   },
 });
