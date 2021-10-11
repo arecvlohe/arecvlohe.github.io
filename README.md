@@ -4,7 +4,7 @@
 
 - [x] Create a home page that includes blog posts list (simple introduction)
 - [x] Move to gh-pages
-- [x] Move domain (adamrecvlohe.com) over to gh-pages
+- [x] Move domain (adamrecvlohe.com) over to gitlab pages
 - [ ] Clean up articles and any links that look off
 - [ ] Improve code format/render syntax highlighting if possible
 - [ ] Come up with design of pages
