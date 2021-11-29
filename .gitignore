@@ -19,3 +19,7 @@ yarn-error.log*
 
 *.xml
 
+# drafts
+
+src/pages/posts/draft*
+
