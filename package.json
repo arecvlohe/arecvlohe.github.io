@@ -10,9 +10,9 @@
     "deploy": "git push gitlab latest && yarn build && touch ./dist/.nojekyll && gh-pages -d dist -t true"
   },
   "devDependencies": {
-    "@astrojs/renderer-preact": "0.3.1",
-    "astro": "0.21.11",
+    "@astrojs/renderer-preact": "0.4.0",
+    "astro": "0.22.14",
     "gh-pages": "3.2.3",
-    "tailwindcss": "2.2.19"
+    "tailwindcss": "3.0.15"
   }
 }
