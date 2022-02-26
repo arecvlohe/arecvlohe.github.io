@@ -1,5 +1,5 @@
 ---
-title: "It's all in the seasoning (& ingredients)"
+title: It's all in the seasoning (& ingredients)
 publishDate: "2012-12-29"
 layout: ../../layouts/BlogPost.astro
 ---

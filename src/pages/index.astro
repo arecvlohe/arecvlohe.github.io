@@ -3,11 +3,12 @@
 import BaseHead from '../components/BaseHead.astro';
 import BlogHeader from '../components/BlogHeader.astro';
 import BlogPostPreview from '../components/BlogPostPreview.astro';
+import * as H from '../helpers';
 
 let title = 'Likepvsce!';
 let description = 'Heresce! My name is Adam Recvlohe (Spotted Arrow). I am a member of Tvlvhase Wvkokaye Tribal Town and son of Bear Clan. I am citizen of Muscogee Nation, United States, and Canada. I am an advocate for Natives in Tech, a nonprofit cultivating a tech ecosystem for Native technologists. I am a supporter of the Muscogee Language Foundation which works to keep Muscogee a living language.';
 let permalink: string = 'https://adamrecvlohe.com';
-let allPosts = Astro.fetchContent('./posts/*.md');
+let allPosts: Array<H.FrontMatter> = Astro.fetchContent('./posts/*.md');
 allPosts = allPosts.sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate));
 ---
 <html lang="en">
