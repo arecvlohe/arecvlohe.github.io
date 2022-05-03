@@ -5,7 +5,7 @@ description: Blatant cultural appropriation from Big Nonprofit
 layout: ../../layouts/BlogPost.astro
 ---
 
-## Update
+_**Update 2022-05-03**_
 
 I opened a pull request to bring more attention to this issue in a sarcastic way on the ASF website repository: [https://github.com/apache/www-site/pull/142](https://github.com/apache/www-site/pull/142). They marked as spam as closed conversation to contributors. When it comes to DEI, we underestimate how groomed society is in the degrading of other cultures and peoples, especially those who are the most marginalized. It's easy to ignore, easy to forget, and easy to mark as spam and wipe their hands clean. To be fair, probably not the type of issue to reply to. But I can only imagine what they are thinking, probably distorted in all the colonial and appropriative ways one can think.
 
