@@ -5,6 +5,12 @@ description: Blatant cultural appropriation from Big Nonprofit
 layout: ../../layouts/BlogPost.astro
 ---
 
+## Update
+
+I opened a pull request to bring more attention to this issue in a sarcastic way on the ASF website repository: https://[https://github.com/apache/www-site/pull/142](github.com/apache/www-site/pull/142). They marked as spam as closed conversation to contributors. When it comes to DEI, we underestimate how groomed society is in the degrading of other cultures and peoples, especially those who are the most marginalized. It's easy to ignore, easy to forget, and easy to mark as spam and wipe their hands clean. To be fair, probably not the type of issue to reply to. But I can only imagine what they are thinking, probably distorted in all the colonial and appropriative ways one can think.
+
+<hr />
+
 It is not uncommon to learn about non-Indigenous entities appropriating Indigenous culture but none of them are as large, prestigious, or well-known as The Apache® Software Foundation is in software circles. They are known for the Apache® Software License, an open-source software license, and the Apache® HTTP Server, which is used nearly everywhere to proxy requests to incoming servers. The nonprofit entity was established in 1999. One of the founders, Brian Behlendorf, describes how he came about choosing the name Apache in the documentary ["Trillions and Trillions Served"](https://www.youtube.com/watch?v=JUt2nb0mgwg&t=249s):
 
 ```I suggested the name Apache partly because the web technologies at the time that were launching were being called cyber this or spider that or something on those themes and I was like we need something a little more interesting, a little more romantic, not to be a cultural appropriator or anything like that, I had just seen a documentary about Geronimo and the last days of a Native American tribe called the Apaches, right, who succumbed to the invasion from the West, from the United States, and they were the last tribe to give up their territory and for me that almost romantically represented what I felt we were doing with this web-server project...```
