@@ -1,3 +1,4 @@
+import preact from "@astrojs/preact";
 // Full Astro Configuration API Documentation:
 // https://docs.astro.build/reference/configuration-reference
 
@@ -9,14 +10,7 @@
 // @ts-check
 export default /** @type {import('astro').AstroUserConfig} */ ({
   // Enable the Preact renderer to support Preact JSX components.
-  renderers: ["@astrojs/renderer-preact"],
-  devOptions: {
-    tailwindConfig: "./tailwind.config.js",
-    buildOptions: {
-      site: process.env.BUILD_GITLAB ? "https://arecvlohe.gitlab.com" : "https://arecvlohe.github.io",
-    },
-    build: {
-      outDir: process.env.BUILD_GITLAB ? "public" : undefined,
-    },
-  },
+  integrations: [preact()],
+  site: process.env.BUILD_GITLAB ? "https://arecvlohe.gitlab.com" : "https://arecvlohe.github.io",
+  outDir: process.env.BUILD_GITLAB ? "public" : undefined,
 });

@@ -1,19 +1,25 @@
 ---
 // Component Imports
-import BaseHead from '../components/BaseHead.astro';
-import BlogHeader from '../components/BlogHeader.astro';
-import BlogPostPreview from '../components/BlogPostPreview.astro';
+import { MarkdownInstance } from "astro";
+import BaseHead from "../components/BaseHead.astro";
+import BlogHeader from "../components/BlogHeader.astro";
+import BlogPostPreview from "../components/BlogPostPreview.astro";
 
-let title = 'Likepvsce!';
-let description = 'Heresce! My name is Adam Recvlohe (Spotted Arrow). I am a member of Tvlvhase Wvkokaye Tribal Town and son of Bear Clan. I am citizen of Muscogee Nation, United States, and Canada. I am an advocate for Natives in Tech, a nonprofit cultivating a tech ecosystem for Native technologists. I am a supporter of the Muscogee Language Foundation which works to keep Muscogee a living language.';
-let permalink: string = 'https://adamrecvlohe.com';
-let allPosts = await Astro.fetchContent('./posts/*.md');
-allPosts = allPosts.sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate));
+let title = "Likepvsce!";
+let description =
+  "Heresce! My name is Adam Recvlohe (Spotted Arrow). I am a member of Tvlvhase Wvkokaye Tribal Town and son of Bear Clan. I am citizen of Muscogee Nation, United States, and Canada. I am an advocate for Natives in Tech, a nonprofit cultivating a tech ecosystem for Native technologists. I am a supporter of the Muscogee Language Foundation which works to keep Muscogee a living language.";
+let permalink: string = "https://adamrecvlohe.com";
+let allPosts = await Astro.glob("./posts/*.md");
+allPosts = allPosts.sort(
+  (a, b) =>
+    new Date(b.frontmatter.publishDate) - new Date(a.frontmatter.publishDate)
+);
 ---
+
 <html lang="en">
   <head>
     <BaseHead title={title} description={description} permalink={permalink} />
-    <link rel="stylesheet" href={Astro.resolve("../styles/global.css")}>
+    <link rel="stylesheet" href="/global.css" />
     <link rel="stylesheet" href="/blog.css" />
 
     <style>
@@ -69,7 +75,7 @@ allPosts = allPosts.sort((a, b) => new Date(b.publishDate) - new Date(a.publishD
           <p>{description}</p>
         </section>
         <section>
-          {allPosts.map(p => <BlogPostPreview post={p} />)}
+          {allPosts.map((p) => <BlogPostPreview post={p} />)}
         </section>
       </article>
     </div>
