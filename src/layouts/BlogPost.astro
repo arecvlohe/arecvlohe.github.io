@@ -1,25 +1,26 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import BlogHeader from '../components/BlogHeader.astro';
-import BlogPost from '../components/BlogPost.astro';
+import type { Post } from "../../types";
+import BaseHead from "../components/BaseHead.astro";
+import BlogHeader from "../components/BlogHeader.astro";
+import BlogPost from "../components/BlogPost.astro";
 
-const { content } = Astro.props;
-const { title, description, publishDate, author, heroImage, permalink, alt } = content;
+type Props = Post;
+const {
+  frontmatter: { title, description, publishDate },
+  url,
+}: Props = Astro.props;
+const permalink = `https://adamrecvlohe.com/${url}`;
 ---
 
-<html lang={ content.lang || 'en' }>
-
+<html lang="en">
   <head>
     <BaseHead title={title} description={description} permalink={permalink} />
-    <link rel="stylesheet" href="/global.css" />
-    <link rel="stylesheet" href="/blog.css" />
   </head>
 
   <body>
     <BlogHeader />
-    <BlogPost title={title} author={author} heroImage={heroImage} publishDate={publishDate} alt={alt}>
+    <BlogPost title={title} publishDate={publishDate}>
       <slot />
     </BlogPost>
   </body>
-
 </html>

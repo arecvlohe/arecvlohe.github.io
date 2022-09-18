@@ -1,77 +1,31 @@
 ---
-// Component Imports
-import { MarkdownInstance } from "astro";
 import BaseHead from "../components/BaseHead.astro";
 import BlogHeader from "../components/BlogHeader.astro";
 import BlogPostPreview from "../components/BlogPostPreview.astro";
+import type { Frontmatter } from "../../types";
 
 let title = "Likepvsce!";
 let description =
   "Heresce! My name is Adam Recvlohe (Spotted Arrow). I am a member of Tvlvhase Wvkokaye Tribal Town and son of Bear Clan. I am citizen of Muscogee Nation, United States, and Canada. I am an advocate for Natives in Tech, a nonprofit cultivating a tech ecosystem for Native technologists. I am a supporter of the Muscogee Language Foundation which works to keep Muscogee a living language.";
 let permalink: string = "https://adamrecvlohe.com";
-let allPosts = await Astro.glob("./posts/*.md");
+let allPosts = await Astro.glob<Frontmatter>("./posts/*.md");
 allPosts = allPosts.sort(
   (a, b) =>
-    new Date(b.frontmatter.publishDate) - new Date(a.frontmatter.publishDate)
-);
+    new Date(b.frontmatter['publishDate']).getTime() - new Date(a.frontmatter['publishDate']).getTime());
 ---
 
 <html lang="en">
   <head>
     <BaseHead title={title} description={description} permalink={permalink} />
-    <link rel="stylesheet" href="/global.css" />
-    <link rel="stylesheet" href="/blog.css" />
-
-    <style>
-      body {
-        width: 100%;
-        display: grid;
-        grid-template-rows: 3.5rem 1fr;
-        --gutter: 0.5rem;
-        --doc-padding: 2rem;
-      }
-
-      header {
-        width: 100%;
-        height: 100%;
-        background-color: var(--theme-bg-offset);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .content {
-        margin-top: 4rem;
-        margin-bottom: 8rem;
-      }
-
-      .content :global(main > * + *) {
-        margin-top: 1rem;
-      }
-
-      .intro {
-        padding-bottom: 4rem;
-        margin-bottom: 2rem;
-        border-bottom: 4px solid var(--theme-divider);
-      }
-
-      .intro > * {
-        margin: 0;
-      }
-
-      .latest {
-        font-size: 2.5rem;
-        font-weight: 700;
-      }
-    </style>
   </head>
 
   <body>
+    <main class="max-w-2xl flex flex-col mx-auto">
     <BlogHeader />
-    <div class="layout">
-      <article class="content">
-        <section class="intro">
-          <h1 class="latest">{title}</h1>
+    <div class="">
+      <article>
+        <section>
+          <h1 class="">{title}</h1>
           <p>{description}</p>
         </section>
         <section>
@@ -79,5 +33,6 @@ allPosts = allPosts.sort(
         </section>
       </article>
     </div>
+    </main>
   </body>
 </html>
