@@ -1,15 +1,15 @@
 ---
 title: "Diversity in Tech Part 2"
 description: "A while back, about 2 years ago, I wrote an article on LinkedIn about Diversity in Tech. My take was that if you wanted to be part of a…"
-publishDate: '2017-11-19'
+publishDate: "2017-11-19"
 layout: ../../layouts/BlogPost.astro
 ---
 
 A while back, about 2 years ago, I wrote an article on LinkedIn about [Diversity in Tech](https://www.linkedin.com/pulse/diversity-tech-adam-e-recvlohe/). My take was that if you wanted to be part of a diverse company you could achieve this in two ways. One, you build the company yourself. Or two, you join a company where diversity is an important part of their organizational model. Now after having a bit more experience in the tech field I have more tidbits to offer.
 
-*   It takes maturity for any company to reflect on its culture and come to realize diversity offers value.
-*   It takes even more maturity for those in a position to hire to see their ineptitude at connecting with diverse applicants.
-*   It take an even greater maturity for the company and the hiring managers to proactively change this behavior.
+- It takes maturity for any company to reflect on its culture and come to realize diversity offers value.
+- It takes even more maturity for those in a position to hire to see their ineptitude at connecting with diverse applicants.
+- It take an even greater maturity for the company and the hiring managers to proactively change this behavior.
 
 All these realizations have to come about for diversity to occur within a company. As I said before, I won’t hold my breath and wait for this to happen. At one company I worked for, it was entirely white males from the engineering team to the CEO, with few exceptions. I never got the impression that diversity was important. Although they proclaimed to want to hire the best, the only hires I saw were white males. And as someone who has a diverse background it was uninteresting. But they are who they are and they have the right to hire who they want.
 

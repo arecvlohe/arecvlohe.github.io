@@ -3,13 +3,15 @@ import type { Post } from "../../types";
 import BaseHead from "../components/BaseHead.astro";
 import BlogHeader from "../components/BlogHeader.astro";
 import BlogPost from "../components/BlogPost.astro";
+import { base } from "../../const";
 
 type Props = Post;
 const {
   frontmatter: { title, description, publishDate },
   url,
 }: Props = Astro.props;
-const permalink = `https://adamrecvlohe.com/${url}`;
+
+const permalink = `${base}/${url}`;
 ---
 
 <html lang="en">

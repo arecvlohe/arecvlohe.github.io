@@ -1,6 +1,6 @@
 type FrontMatter = {
-  description: string
-  layout: string
-  publishDate: string
-  title: string
-}
+  description: string;
+  layout: string;
+  publishDate: string;
+  title: string;
+};

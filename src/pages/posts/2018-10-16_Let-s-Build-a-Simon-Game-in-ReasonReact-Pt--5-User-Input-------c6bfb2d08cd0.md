@@ -1,7 +1,7 @@
 ---
 title: "Let’s Build a Simon Game in ReasonReact Pt. 5 User Input"
 description: "The Business of Business Logic"
-publishDate: '2018-10-16'
+publishDate: "2018-10-16"
 layout: ../../layouts/BlogPost.astro
 ---
 
@@ -11,11 +11,11 @@ The way the Simon Game works is that after clicking `Start` the sequence will pl
 
 Let’s step through how the game will function using good ole’ bullet points.
 
-*   User clicks start button and the initial sequence plays
-*   The user repeats this by clicking on the corresponding box
-*   If the user clicks on the wrong box, they will hear an error and the sequence will start over
-*   If the user clicks on the right box, the will hear the sound of the box
-*   If the user clicks on all the right boxes, the user will graduate to the next level
+- User clicks start button and the initial sequence plays
+- The user repeats this by clicking on the corresponding box
+- If the user clicks on the wrong box, they will hear an error and the sequence will start over
+- If the user clicks on the right box, the will hear the sound of the box
+- If the user clicks on all the right boxes, the user will graduate to the next level
 
 Let’s make this into code!
 
@@ -93,7 +93,7 @@ I am adding a new `color` to `input` by adding to the head and spreading out the
 Inside of `CheckInput`, pluck off the head element to begin. This will give us the latest user input that needs to be tested against the sequence.
 
 ```javascript
-let {level, input, sequence} = self.state;
+let { level, input, sequence } = self.state;
 let currentUserColor = Belt.List.headExn(input);
 ```
 
@@ -114,7 +114,7 @@ let currentSequenceColor = Belt.List.getExn(sequence, inputLength - 1);
 Again, I am using `Belt.List.getExn`, impure but I am okay with it here. The whole enchilada.
 
 ```javascript
-let {level, input, sequence} = self.state;
+let { level, input, sequence } = self.state;
 let currentUserColor = Belt.List.headExn(input);
 let inputLength = Belt.List.length(input);
 let currentSequenceColor = Belt.List.getExn(sequence, inputLength - 1);

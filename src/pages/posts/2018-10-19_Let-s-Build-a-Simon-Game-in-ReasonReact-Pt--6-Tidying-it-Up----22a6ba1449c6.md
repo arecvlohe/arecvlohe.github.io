@@ -1,19 +1,19 @@
 ---
 title: "Let’s Build a Simon Game in ReasonReact Pt. 6 Tidying it Up"
 description: "Making it Look Good"
-publishDate: '2018-10-19'
+publishDate: "2018-10-19"
 layout: ../../layouts/BlogPost.astro
 ---
 
 In this article, you are going to tidy up the application and make it behave in a more optimal way. At least from my perspective. Here is a list of the things that are going to be improved.
 
-*   Add a header
-*   Update global font family to make fonts look nicer
-*   Add a Reset button to reset the game back to `level` 1
-*   Add a strict checkbox to set the strictness level. When strict is checked then whenever a user clicks on the wrong button in the sequence they are sent back to `level` 1
-*   Disabling the `Start`, `Reset`, and `Box` buttons when the game is playing back a sequence. Boxes are `div`’s now but will be converted to `button`’s
-*   Add an alert for when the user wins the game
-*   Update some CSS and styles of course
+- Add a header
+- Update global font family to make fonts look nicer
+- Add a Reset button to reset the game back to `level` 1
+- Add a strict checkbox to set the strictness level. When strict is checked then whenever a user clicks on the wrong button in the sequence they are sent back to `level` 1
+- Disabling the `Start`, `Reset`, and `Box` buttons when the game is playing back a sequence. Boxes are `div`’s now but will be converted to `button`’s
+- Add an alert for when the user wins the game
+- Update some CSS and styles of course
 
 ### Header 💂‍♀️
 
@@ -71,10 +71,10 @@ Next, add the button to the markup section.
 
 ```javascript
 <div>
-  <button onClick={_e => self.send(PlaySequence)}>
+  <button onClick={(_e) => self.send(PlaySequence)}>
     {"Start" |> ReasonReact.string}
   </button>
-  <button onClick={_e => self.send(Reset)}>
+  <button onClick={(_e) => self.send(Reset)}>
     "Reset"->ReasonReact.string
   </button>
 </div>
@@ -315,7 +315,7 @@ That should be all. If you now play around with the game while a sequence is goi
 To notify the user they have won you will use a simple alert. You could do this by using plain ole’ JS inside of Reason but I think it’s better to use a type-safe library. Here you will use the current web api library that’s ported over the DOM to Reason.
 
 [**reasonml-community/bs-webapi-incubator**
-_BuckleScript bindings to the DOM and other Web APIs - reasonml-community/bs-webapi-incubator_github.com](https://github.com/reasonml-community/bs-webapi-incubator "https://github.com/reasonml-community/bs-webapi-incubator")[](https://github.com/reasonml-community/bs-webapi-incubator)
+\_BuckleScript bindings to the DOM and other Web APIs - reasonml-community/bs-webapi-incubator_github.com](https://github.com/reasonml-community/bs-webapi-incubator "https://github.com/reasonml-community/bs-webapi-incubator")[](https://github.com/reasonml-community/bs-webapi-incubator)
 
 After adding `bs-webapi` to the project open the module up in the `App.re` file.
 

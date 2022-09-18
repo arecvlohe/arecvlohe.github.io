@@ -4,7 +4,7 @@ publishDate: "2015-11-10"
 layout: ../../layouts/BlogPost.astro
 ---
 
-I haven't been in the tech field very long, but since I started learning to program I've observed from a distance the furor around the lack of diversity in the industry. Particularly at the top companies such as Google, Facebook, Yahoo, Twitter, and LinkedIn. 
+I haven't been in the tech field very long, but since I started learning to program I've observed from a distance the furor around the lack of diversity in the industry. Particularly at the top companies such as Google, Facebook, Yahoo, Twitter, and LinkedIn.
 
 I've heard two arguments. On the one end, there is a belief that tech companies aren't doing enough to bring in diverse candidates. That they only search for talent from the top universities and through referrals from those that already work within the company. These candidates and referrals tend to be white, Asian-American, and male.
 

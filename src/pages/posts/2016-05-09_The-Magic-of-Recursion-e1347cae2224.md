@@ -1,6 +1,6 @@
 ---
 title: "The Magic of Recursion"
-publishDate: '2016-05-09'
+publishDate: "2016-05-09"
 layout: ../../layouts/BlogPost.astro
 ---
 

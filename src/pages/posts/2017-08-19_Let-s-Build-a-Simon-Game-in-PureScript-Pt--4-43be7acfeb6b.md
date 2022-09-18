@@ -1,7 +1,7 @@
 ---
 title: "Let’s Build a Simon Game in PureScript Pt. 4"
 description: "Functional Programming the Front End with PureScript and Pux"
-publishDate: '2017-08-19'
+publishDate: "2017-08-19"
 layout: ../../layouts/BlogPost.astro
 ---
 
@@ -224,14 +224,13 @@ Great, it works as expected!
 
 In this post you learned:
 
-*   How to style views using PureScript
-*   How to create a delay effect using the `Aff` monad
-*   How to destructure values in a function
-*   What the `$>` operator is
+- How to style views using PureScript
+- How to create a delay effect using the `Aff` monad
+- How to destructure values in a function
+- What the `$>` operator is
 
 I recommend looking at the book [PureScript by Example](https://leanpub.com/purescript/read) as well as the [PureScript Documentation](https://github.com/purescript/documentation) to get some background if you haven’t done so already. Also, check out all the library document on [Pursuit](https://pursuit.purescript.org/). If you have any questions check out the [Slack](https://fpchat-invite.herokuapp.com/) or [Gitter](https://gitter.im/purescript/purescript) channels. Until next time, keep hacking!
 
 Part 4 of this project is tagged and can be found on Github here:
 
 - [PureScript Simong Game Part 4](https://github.com/arecvlohe/ps-medium-simon-game/blob/part_4/src/App/Update.purs)
-

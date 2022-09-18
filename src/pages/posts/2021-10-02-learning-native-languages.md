@@ -30,9 +30,3 @@ In the beginning of learning your language, translation will be a crutch, but it
 ## Finding a Good Teacher
 
 Not every speaker makes a good teacher. You sometimes learn this the hard way or you might not have any other choice, but consider working with speakers who are willing to speak/teach you in a way that you feel comfortable with. I spent many years working with a speaker that knew a ton but wasn't always willing to speak with me in the language. I remain forever grateful for what he taught me, I just also needed a mentor that would further my growth. Work with speakers as best you can, gift them if you can for their time, their knowledge is invaluable. However, recognize if the relationship is not a good fit for your growth. It's not so much about not learning from them, of course you can still dedicate time, it's more so about finding the right mentor and you never know, there might be someone out there that is a better fit for your language development.
-
-
-
-
-
-

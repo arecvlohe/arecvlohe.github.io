@@ -1,26 +1,26 @@
 ---
 title: "Let’s Build a Local Weather App in Elm"
-publishDate: '2017-04-29'
+publishDate: "2017-04-29"
 layout: ../../layouts/BlogPost.astro
 ---
 
 ### Objectives
 
-*   Learn about and implement the Elm architecture focusing on how to make it interoperable with JavaScript through ports and subscriptions.
-*   Go over how to split up your Elm project into modules.
-*   Utilize Json.Decoder to transform JSON into Elm.
-*   Integrate Elm Github libraries into your project.
-*   Create a simple local weather app with the help of the Navigator API.
+- Learn about and implement the Elm architecture focusing on how to make it interoperable with JavaScript through ports and subscriptions.
+- Go over how to split up your Elm project into modules.
+- Utilize Json.Decoder to transform JSON into Elm.
+- Integrate Elm Github libraries into your project.
+- Create a simple local weather app with the help of the Navigator API.
 
 ### Editor
 
-*   VSCode
+- VSCode
 
 ### Resources
 
-*   [Elm Docs and Packages](http://package.elm-lang.org/)
-*   [Elm-Jsonp](https://github.com/paramanders/elm-jsonp)
-*   [Elm Ops Tooling](https://github.com/NoRedInk/elm-ops-tooling)
+- [Elm Docs and Packages](http://package.elm-lang.org/)
+- [Elm-Jsonp](https://github.com/paramanders/elm-jsonp)
+- [Elm Ops Tooling](https://github.com/NoRedInk/elm-ops-tooling)
 
 ### PART 1
 
@@ -37,18 +37,18 @@ I highly recommend using [elm-format](https://github.com/avh4/elm-format) with V
 To start I will first dive into the folder structure of the app. The final outcome will look a little something like this:
 
 dist/
-  index.html
-  main.js
+index.html
+main.js
 elm-stuff/
-node\_modules/
+node_modules/
 scripts/
-  elm-ops-tooling/
+elm-ops-tooling/
 src/
-  Main.elm
-  Ports.elm
-  Types.elm
+Main.elm
+Ports.elm
+Types.elm
 vendor/
-  elm-jsonp
+elm-jsonp
 .gitignore
 elm-package.json
 package.json
@@ -66,25 +66,24 @@ In this lesson, I won’t be showing any error handling but I will provide the m
   <div id="main"></div>
   <script src="main.js"></script>
   <script>
-    var node = document.getElementById('main')
-    var app = Elm.Main.embed(node)
+    var node = document.getElementById("main");
+    var app = Elm.Main.embed(node);
 
     if (window.navigator.geolocation) {
-      window.navigator.geolocation.
-        getCurrentPosition(success,failure)
+      window.navigator.geolocation.getCurrentPosition(success, failure);
     }
 
     function success(position) {
-      const coords = position.coords
-      const latitude = coords.latitude
-      const longitude = coords.longitude
-      app.ports.position.send({ latitude, longitude })
+      const coords = position.coords;
+      const latitude = coords.latitude;
+      const longitude = coords.longitude;
+      app.ports.position.send({ latitude, longitude });
     }
 
     function failure(error) {
-      const code = error.code
-      const message = error.message
-      app.ports.error.send({ code, message })
+      const code = error.code;
+      const message = error.message;
+      app.ports.error.send({ code, message });
     }
   </script>
 </body>
@@ -232,7 +231,7 @@ To set the foundation for this second part I need to pull in a couple projects f
 
 If you haven’t already, head on over to darksky.net and create a developer account by clicking on the `Developers` tab at the top of the screen. Once you sign up, you will be redirected to your `console` where you will find your API key and a sample request. A sample request to the API will look like this:
 
-[https://api.darksky.net/forecast/YOUR\_API\_KEY/37.8267,-122.4233](https://api.darksky.net/forecast/464271a84e193070f9a5d159c9574296/37.8267,-122.4233)
+[https://api.darksky.net/forecast/YOUR_API_KEY/37.8267,-122.4233](https://api.darksky.net/forecast/464271a84e193070f9a5d159c9574296/37.8267,-122.4233)
 
 Darksky enforces strict CORS so I won’t be able to make this request from my browser. That is why I need to use `elm-jsonp` to make the request instead. I also will need to run a script to unpack `elm-jsonp` into my `elm-stuff` directory. For that, I will use `elm-ops-tooling`. I will now create two directories, `scripts` and `vendor`. `Scripts` will house `elm-ops-tooling` and `vendor` will house `elm-jsonp`. Head on over to Github and clone those repositories into their respective directories.
 

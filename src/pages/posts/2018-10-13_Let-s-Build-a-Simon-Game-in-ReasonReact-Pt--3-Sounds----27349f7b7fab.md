@@ -1,7 +1,7 @@
 ---
 title: "Let’s Build a Simon Game in ReasonReact Pt. 3 Sounds"
 description: "Go FFI Yourself!"
-publishDate: '2018-10-13'
+publishDate: "2018-10-13"
 layout: ../../layouts/BlogPost.astro
 ---
 
@@ -22,11 +22,11 @@ _Reference:_ [_https://bucklescript.github.io/docs/en/bind-to-global-values_](ht
 
 Here is what is going, or at least how I understand it:
 
-*   `[@bs.val]` declares a binding
-*   `external` declares the bound value exists outside of the file
-*   `clearTimeout: float => unit` the definition of the internal function name (how the function is called within Reason), it accepts a `float` and returns nothing, referred to as `unit`
-*   `= "clearTimeout"` the name of the function it’s binding to that exists outside the file
-*   `= “”` in some instances you will see this as an empty string, this means the internal name and external name are the same, although this is discouraged now
+- `[@bs.val]` declares a binding
+- `external` declares the bound value exists outside of the file
+- `clearTimeout: float => unit` the definition of the internal function name (how the function is called within Reason), it accepts a `float` and returns nothing, referred to as `unit`
+- `= "clearTimeout"` the name of the function it’s binding to that exists outside the file
+- `= “”` in some instances you will see this as an empty string, this means the internal name and external name are the same, although this is discouraged now
 
 ### Web Audio API 🔊
 
@@ -115,37 +115,50 @@ The `[@bs.send]` directive works with JS objects to add functions to an instance
 With the `Audio` constructor now bound correctly to be used within Reason, create a `Sound.re` file in order to create audio instances for each sound in the game.
 
 ```javascript
-/\* Sound.re \*/
-let green =
-  Audio.make("[https://s3.amazonaws.com/freecodecamp/simonSound1.mp3](https://s3.amazonaws.com/freecodecamp/simonSound1.mp3)");
+/\* Sound.re \*/;
+let green = Audio.make(
+  "[https://s3.amazonaws.com/freecodecamp/simonSound1.mp3](https://s3.amazonaws.com/freecodecamp/simonSound1.mp3)"
+);
 
-let red =
-  Audio.make("[https://s3.amazonaws.com/freecodecamp/simonSound2.mp3](https://s3.amazonaws.com/freecodecamp/simonSound2.mp3)");
+let red = Audio.make(
+  "[https://s3.amazonaws.com/freecodecamp/simonSound2.mp3](https://s3.amazonaws.com/freecodecamp/simonSound2.mp3)"
+);
 
-let blue =
-  Audio.make("[https://s3.amazonaws.com/freecodecamp/simonSound3.mp3](https://s3.amazonaws.com/freecodecamp/simonSound3.mp3)");
+let blue = Audio.make(
+  "[https://s3.amazonaws.com/freecodecamp/simonSound3.mp3](https://s3.amazonaws.com/freecodecamp/simonSound3.mp3)"
+);
 
-let yellow =
-  Audio.make("[https://s3.amazonaws.com/freecodecamp/simonSound4.mp3](https://s3.amazonaws.com/freecodecamp/simonSound4.mp3)");
+let yellow = Audio.make(
+  "[https://s3.amazonaws.com/freecodecamp/simonSound4.mp3](https://s3.amazonaws.com/freecodecamp/simonSound4.mp3)"
+);
 
-let error =
-  Audio.make(
-    "[https://s3.amazonaws.com/adam-recvlohe-sounds/error.wav](https://s3.amazonaws.com/adam-recvlohe-sounds/error.wav)",
-  );
+let error = Audio.make(
+  "[https://s3.amazonaws.com/adam-recvlohe-sounds/error.wav](https://s3.amazonaws.com/adam-recvlohe-sounds/error.wav)"
+);
 ```
 
 Just so you see can see the side-by-side, the generated BuckleScript output looks like this:
 
 ```javascript
-var green = new Audio("[https://s3.amazonaws.com/freecodecamp/simonSound1.mp3](https://s3.amazonaws.com/freecodecamp/simonSound1.mp3)");
+var green = new Audio(
+  "[https://s3.amazonaws.com/freecodecamp/simonSound1.mp3](https://s3.amazonaws.com/freecodecamp/simonSound1.mp3)"
+);
 
-var red = new Audio("[https://s3.amazonaws.com/freecodecamp/simonSound2.mp3](https://s3.amazonaws.com/freecodecamp/simonSound2.mp3)");
+var red = new Audio(
+  "[https://s3.amazonaws.com/freecodecamp/simonSound2.mp3](https://s3.amazonaws.com/freecodecamp/simonSound2.mp3)"
+);
 
-var blue = new Audio("[https://s3.amazonaws.com/freecodecamp/simonSound3.mp3](https://s3.amazonaws.com/freecodecamp/simonSound3.mp3)");
+var blue = new Audio(
+  "[https://s3.amazonaws.com/freecodecamp/simonSound3.mp3](https://s3.amazonaws.com/freecodecamp/simonSound3.mp3)"
+);
 
-var yellow = new Audio("[https://s3.amazonaws.com/freecodecamp/simonSound4.mp3](https://s3.amazonaws.com/freecodecamp/simonSound4.mp3)");
+var yellow = new Audio(
+  "[https://s3.amazonaws.com/freecodecamp/simonSound4.mp3](https://s3.amazonaws.com/freecodecamp/simonSound4.mp3)"
+);
 
-var error = new Audio("[https://s3.amazonaws.com/adam-recvlohe-sounds/error.wav](https://s3.amazonaws.com/adam-recvlohe-sounds/error.wav)");
+var error = new Audio(
+  "[https://s3.amazonaws.com/adam-recvlohe-sounds/error.wav](https://s3.amazonaws.com/adam-recvlohe-sounds/error.wav)"
+);
 ```
 
 This is just what you need. Each value now has a `play` method which you can call within ReasonReact.

@@ -4,9 +4,7 @@ publishDate: "2013-02-10"
 layout: ../../layouts/BlogPost.astro
 ---
 
-_This article was written after the passing of Henry "k'asA" Washburn for the_ Euchee Sun _newsletter_. _He was a great friend, relative, and person that I owe a lot to._ 
-
-
+_This article was written after the passing of Henry "k'asA" Washburn for the_ Euchee Sun _newsletter_. _He was a great friend, relative, and person that I owe a lot to._
 
 style="padding-bottom:140.32257080078125%;" class=" image-block-wrapper
 

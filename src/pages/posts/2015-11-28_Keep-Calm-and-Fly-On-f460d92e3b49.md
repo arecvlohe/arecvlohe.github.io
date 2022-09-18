@@ -1,13 +1,13 @@
 ---
 title: "Keep Calm and Fly On"
 description: "You have heard me talk about mediation before. Let me talk about it again. This time, as it relates to riding on a plane. You see, I am not…"
-publishDate: '2015-11-28'
+publishDate: "2015-11-28"
 layout: ../../layouts/BlogPost.astro
 ---
 
 You have heard me talk about mediation before. Let me talk about it again. This time, as it relates to riding on a plane. You see, I am not always cool and collected, even though it seems that way. I get anxiety just like anybody else. The last time I had severe anxiety was on my last plane ride from Canada. I am not that fond of heights and planes even more so. Combine that with the fact that I watch ‘[Why Planes Crash](http://www.weather.com/tv/shows/why-planes-crash)’ on the Weather Channel and I should have known I was revving up my anxiety for my next plane trip. And I certainly did!
 
-> Get these m&\*%$#f&\*!%$# thoughts out of my m&\*%$#f&\*!%$# mind!” — _Adam on a Plane_
+> Get these m&\*%$#f&\*!%$# thoughts out of my m&\*%$#f&\*!%$# mind!” — *Adam on a Plane*
 
 On that plane ride from Canada, several things were going on inside my head so I will discuss what my mindset was and then discuss the core reason for my slight panic attack.
 

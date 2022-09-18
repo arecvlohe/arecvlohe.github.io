@@ -1,7 +1,7 @@
 ---
 title: "Create a FAC Component in ReasonReact"
 description: "Funk as Child"
-publishDate: '2018-08-23'
+publishDate: "2018-08-23"
 layout: ../../layouts/BlogPost.astro
 ---
 
@@ -77,22 +77,20 @@ A function that takes a mouse event and returns nothing, also known as unit.
 type childProps = {
   count: int,
   increment: func,
-  decrement: func
+  decrement: func,
 };
 ```
 
 The definition of the `childProps` you are passing to the child function.
 
 ```javascript
-type action =
-  | Increment
-  | Decrement;
+type action = Increment | Decrement;
 ```
 
 The actions you are listening for.
 
 ```javascript
-type state = {count: int};
+type state = { count: int };
 ```
 
 The state type which is a record with count as an integer type.

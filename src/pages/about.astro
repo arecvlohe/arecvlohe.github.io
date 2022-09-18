@@ -1,8 +1,22 @@
 ---
+import BaseHead from "../components/BaseHead.astro";
+import { title, description, base } from "../../const";
 
+const permalink = `${base}/about`;
 ---
+
 <html lang="en">
-  <div>
-    Stuff
-  </div>
+  <head>
+    <BaseHead title={title} description={description} permalink={permalink} />
+  </head>
+  <body>
+    <main>
+      Heresce! My name is Adam Recvlohe (Spotted Arrow). I am a citizen of
+      Tvlvhase Wvkokaye Tribal Town and son of Bear Clan. I am citizen of
+      Muscogee Nation, United States, and Canada. I am an advocate for Natives
+      in Tech, a nonprofit cultivating a tech ecosystem for Native
+      technologists. I am a supporter of the Muscogee Language Foundation which
+      works to keep Muscogee a living language.
+    </main>
+  </body>
 </html>

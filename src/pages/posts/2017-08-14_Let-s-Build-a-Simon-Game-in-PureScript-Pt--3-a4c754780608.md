@@ -1,7 +1,7 @@
 ---
 title: "Let’s Build a Simon Game in PureScript Pt. 3"
 description: "Functional Programming the Front End with PureScript and Pux"
-publishDate: '2017-08-14'
+publishDate: "2017-08-14"
 layout: ../../layouts/BlogPost.astro
 ---
 
@@ -204,23 +204,23 @@ If you run `pulp server` you should see two buttons and a count. In the console 
 
 In this post you learned:
 
-*   How to setup the Pux architecture
-*   How Pux is similar to Elm (`View` and `View`, `Signals`)
-*   How PureScript is different from Elm (`type` vs `type alias`, `data` vs `type`)
-*   How to attach an event handler to an element using smolder
-*   How to update state and add effects to `foldp`
-*   How to write a `tagged union` and `type` constructor
-*   Pattern matching in PureScript
-*   What `*>` is
-*   How to import/export `tagged unions` and `types`
+- How to setup the Pux architecture
+- How Pux is similar to Elm (`View` and `View`, `Signals`)
+- How PureScript is different from Elm (`type` vs `type alias`, `data` vs `type`)
+- How to attach an event handler to an element using smolder
+- How to update state and add effects to `foldp`
+- How to write a `tagged union` and `type` constructor
+- Pattern matching in PureScript
+- What `*>` is
+- How to import/export `tagged unions` and `types`
 
 What you didn’t learn:
 
-*   What a `signal` is
-*   What `CoreEffects` does
-*   What is `app <- start`
-*   What are `inputs` really
-*   How my `bower_components` got so f-ed up
+- What a `signal` is
+- What `CoreEffects` does
+- What is `app <- start`
+- What are `inputs` really
+- How my `bower_components` got so f-ed up
 
 The things that I did not cover would be good for independent study. I recommend looking at the book [PureScript by Example](https://leanpub.com/purescript/read) as well as the [PureScript Documentation](https://github.com/purescript/documentation) to get some background if you haven’t done so already. Also, check out all the library document on [Pursuit](https://pursuit.purescript.org/). If you have any questions check out the [Slack](https://fpchat-invite.herokuapp.com/) or [Gitter](https://gitter.im/purescript/purescript) channels. Until next time, keep hacking!
 

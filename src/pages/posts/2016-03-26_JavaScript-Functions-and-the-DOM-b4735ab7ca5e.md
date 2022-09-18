@@ -1,7 +1,7 @@
 ---
 title: "JavaScript Functions and the DOM"
-description: ''
-publishDate: '2016-03-26'
+description: ""
+publishDate: "2016-03-26"
 layout: ../../layouts/BlogPost.astro
 ---
 
@@ -59,12 +59,12 @@ Here we are using the _document_ object’s _createElement_ method to create a p
 That was okay. Now let’s do something that’s a bit more interactive. This time, we will get the x and y coordinates of the mouse when it hovers over the DOM.
 
 ```javascript
-document.body.style.height = '100vh';
+document.body.style.height = "100vh";
 
-document.body.addEventListener("mousemove", function(event) {
+document.body.addEventListener("mousemove", function (event) {
   var x = event.clientX;
   var y = event.clientY;
-  document.body.innerHTML = x + ', ' + y;
+  document.body.innerHTML = x + ", " + y;
 });
 ```
 
@@ -110,7 +110,7 @@ Next, let’s make a function that creates a color based on the time we get from
 
 ```javascript
 function getColor(time) {
-  var color = '#' + time;
+  var color = "#" + time;
   document.body.style.backgroundColor = color;
 }
 ```
@@ -122,7 +122,7 @@ Now all we have to do is wire this up so that the background changes each second
 #### setInterval Function
 
 ```javascript
-setInterval(function() {
+setInterval(function () {
   return getColor(getTimeOfDay());
 }, 1000);
 ```
@@ -200,12 +200,12 @@ What do you think we can do next? You think we can make a drawing app with every
 First, let’s create the canvas element.
 
 ```javascript
-var canvasEl = document.createElement('CANVAS');
-canvasEl.id = 'canvas';
+var canvasEl = document.createElement("CANVAS");
+canvasEl.id = "canvas";
 document.body.appendChild(canvasEl);
 
-var canvas = document.querySelector('canvas');
-var context = canvas.getContext('2d');
+var canvas = document.querySelector("canvas");
+var context = canvas.getContext("2d");
 ```
 
 Now let’s add some event listeners to the body element so that we know when to begin drawing the line, when to stop drawing the line, and when to resize the canvas.

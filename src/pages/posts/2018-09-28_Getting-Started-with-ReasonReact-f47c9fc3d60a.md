@@ -1,7 +1,7 @@
 ---
 title: "Getting Started with ReasonReact"
 description: "Using bs-platform and webpack to build a development environment"
-publishDate: '2018-09-28'
+publishDate: "2018-09-28"
 layout: ../../layouts/BlogPost.astro
 ---
 
@@ -19,11 +19,11 @@ ReasonReact is still in its early days and with that comes a lot of instability 
 
 ### Specifications 📚
 
-*   node@11.15.0
-*   react@16.8.5
-*   @babel/core@7.7.5
-*   bs-platform@7.0.1
-*   reason-react@0.7.0
+- node@11.15.0
+- react@16.8.5
+- @babel/core@7.7.5
+- bs-platform@7.0.1
+- reason-react@0.7.0
 
 ### Dependencies 👶
 

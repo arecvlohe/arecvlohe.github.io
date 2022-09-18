@@ -1,7 +1,7 @@
 ---
 title: "Less Redux Boilerplate with Union Types"
 description: "Making the Impossible…Possible? An Attempt at Least"
-publishDate: '2017-09-02'
+publishDate: "2017-09-02"
 layout: ../../layouts/BlogPost.astro
 ---
 
@@ -64,7 +64,7 @@ In the typical Elm way, let’s describe the model, in this case the `state`.
 
 ```javascript
 const initialState = {
-  count: 0
+  count: 0,
 };
 ```
 
@@ -136,7 +136,7 @@ import React from "react";
 import { add, subtract, count } from "./store";
 import { connect } from "react-redux";
 
-const mapStateToProps = state => ({ count: count(state) });
+const mapStateToProps = (state) => ({ count: count(state) });
 
 export default connect(mapStateToProps)(({ count }) => {
   return (

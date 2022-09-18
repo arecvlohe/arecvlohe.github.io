@@ -1,6 +1,6 @@
 ---
 title: "JavaScript Functions and HTML5 Canvas"
-publishDate: '2016-03-25'
+publishDate: "2016-03-25"
 layout: ../../layouts/BlogPost.astro
 ---
 
@@ -71,7 +71,7 @@ Now that we got the boring stuff out the way, let’s draw on some canvas. The w
 First, we need to create the canvas to be able to draw on it. In your HTML create a canvas tag.
 
 ```html
-<canvas id=“canvas”></canvas>
+<canvas id="“canvas”"></canvas>
 ```
 
 Now it’s JavaScript from here on!
@@ -113,7 +113,7 @@ function draw() {
   canvas.width = 800;
   canvas.height = 800;
   var context = canvas.getContext("2d");
-  context.fillRect(10,10, 100, 200);
+  context.fillRect(10, 10, 100, 200);
 }
 ```
 
@@ -127,7 +127,7 @@ function draw() {
   canvas.width = 800;
   canvas.height = 800;
   var context = canvas.getContext("2d");
-  context.fillRect(10,10, 100, 200);
+  context.fillRect(10, 10, 100, 200);
 }
 
 window.onload = draw;
@@ -136,9 +136,9 @@ window.onload = draw;
 You might be wondering why the draw function was executed even though we didn’t execute it with parens _( )._ That’s because _window.onload_ is a function. That’s the same as saying:
 
 ```javascript
-window.onload = function() {
-// Do stuff here like what we put in draw();
-}
+window.onload = function () {
+  // Do stuff here like what we put in draw();
+};
 ```
 
 That means _window.onload_ executes a function when the window is loaded, so what ends up happening is _window.onload_ with its magical powers puts invisible parens around draw, thus executing it. A lot of magic is involved. But now you know the hocus pocus.
@@ -152,7 +152,7 @@ function draw() {
   canvas.height = 800;
   var context = canvas.getContext("2d");
   context.fillStyle = "blue";
-  context.fillRect(10,10, 100, 200);
+  context.fillRect(10, 10, 100, 200);
 }
 
 window.onload = draw;
@@ -321,6 +321,7 @@ window.onload = smileyFaceEmoji;
 ```
 
 Now let’s draw our face.
+
 ```javascript
 context.beginPath();
 context.arc(250, 250, 100,0,Math.PI\*2, true);

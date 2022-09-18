@@ -3,36 +3,29 @@ import BaseHead from "../components/BaseHead.astro";
 import BlogHeader from "../components/BlogHeader.astro";
 import BlogPostPreview from "../components/BlogPostPreview.astro";
 import type { Frontmatter } from "../../types";
+import { title, description, base } from "../../const";
 
-let title = "Likepvsce!";
-let description =
-  "Heresce! My name is Adam Recvlohe (Spotted Arrow). I am a member of Tvlvhase Wvkokaye Tribal Town and son of Bear Clan. I am citizen of Muscogee Nation, United States, and Canada. I am an advocate for Natives in Tech, a nonprofit cultivating a tech ecosystem for Native technologists. I am a supporter of the Muscogee Language Foundation which works to keep Muscogee a living language.";
-let permalink: string = "https://adamrecvlohe.com";
-let allPosts = await Astro.glob<Frontmatter>("./posts/*.md");
-allPosts = allPosts.sort(
+const allPosts = await Astro.glob<Frontmatter>("./posts/*.md");
+allPosts.sort(
   (a, b) =>
-    new Date(b.frontmatter['publishDate']).getTime() - new Date(a.frontmatter['publishDate']).getTime());
+    new Date(b.frontmatter["publishDate"]).getTime() -
+    new Date(a.frontmatter["publishDate"]).getTime()
+);
 ---
 
 <html lang="en">
   <head>
-    <BaseHead title={title} description={description} permalink={permalink} />
+    <BaseHead title={title} description={description} permalink={base} />
   </head>
 
   <body>
     <main class="max-w-2xl flex flex-col mx-auto">
-    <BlogHeader />
-    <div class="">
+      <BlogHeader />
       <article>
-        <section>
-          <h1 class="">{title}</h1>
-          <p>{description}</p>
-        </section>
         <section>
           {allPosts.map((p) => <BlogPostPreview post={p} />)}
         </section>
       </article>
-    </div>
     </main>
   </body>
 </html>

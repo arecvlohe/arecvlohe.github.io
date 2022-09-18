@@ -1,7 +1,7 @@
 ---
 title: "Let’s Build a Simon Game in ReasonReact Pt. 2 Typed CSS"
 description: "Typed CSS FTW"
-publishDate: '2018-10-12'
+publishDate: "2018-10-12"
 layout: ../../layouts/BlogPost.astro
 ---
 
@@ -140,11 +140,7 @@ I am not satisfied with this solution, though. Instead of passing a reference to
 First, declare the tagged union type outside of the `Styles` module. Chances are you will need this tagged union later.
 
 ```javascript
-type bgColor =
-  | Green
-  | Red
-  | Blue
-  | Yellow;
+type bgColor = Green | Red | Blue | Yellow;
 ```
 
 Then you can update the `box` style to accept a `bgColor` type and change the `backgroundColor` based on the type provided. Remember to return a `style` at the end.

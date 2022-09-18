@@ -13,7 +13,7 @@ I opened a pull request to bring more attention to this issue in a sarcastic way
 
 It is not uncommon to learn about non-Indigenous entities appropriating Indigenous culture but none of them are as large, prestigious, or well-known as The Apache® Software Foundation is in software circles. They are known for the Apache® Software License, an open-source software license, and the Apache® HTTP Server, which is used nearly everywhere to proxy requests to incoming servers. The nonprofit entity was established in 1999. One of the founders, Brian Behlendorf, describes how he came about choosing the name Apache in the documentary ["Trillions and Trillions Served"](https://www.youtube.com/watch?v=JUt2nb0mgwg&t=249s):
 
-```I suggested the name Apache partly because the web technologies at the time that were launching were being called cyber this or spider that or something on those themes and I was like we need something a little more interesting, a little more romantic, not to be a cultural appropriator or anything like that, I had just seen a documentary about Geronimo and the last days of a Native American tribe called the Apaches, right, who succumbed to the invasion from the West, from the United States, and they were the last tribe to give up their territory and for me that almost romantically represented what I felt we were doing with this web-server project...```
+`I suggested the name Apache partly because the web technologies at the time that were launching were being called cyber this or spider that or something on those themes and I was like we need something a little more interesting, a little more romantic, not to be a cultural appropriator or anything like that, I had just seen a documentary about Geronimo and the last days of a Native American tribe called the Apaches, right, who succumbed to the invasion from the West, from the United States, and they were the last tribe to give up their territory and for me that almost romantically represented what I felt we were doing with this web-server project...`
 
 ## Indigenous Erasure
 
@@ -40,15 +40,15 @@ Romanticizing Indigenous cultures is a way of framing them as static rather than
 
 Additional information about the name can be found on the foundation's [website](https://apache.org/). The foundation describes how they do things as "The Apache® Way," their logo is a feather, and even went so far as to trademark the name Apache®. When reading the [About Our Name](https://www.apache.org/apache-name/) page, they say:
 
-```The name “Apache” was chosen out of reverence and appreciation for the people and tribes who refer to themselves as “Apache”```
+`The name “Apache” was chosen out of reverence and appreciation for the people and tribes who refer to themselves as “Apache”`
 
 By not enumerating the Apache nations, they fail to acknowledge and respect the name's provenance and origin, sidestepping any accountability the foundation should have towards them.
 
-```On occasion, we have been asked about claims about use of the “Apache” name by the Apache Native American communities. During its twenty-five years of use of “Apache” as part of its name, the ASF has never been involved in any legal dispute with Native American communities or any other party in relation to the use of the “Apache” name.```
+`On occasion, we have been asked about claims about use of the “Apache” name by the Apache Native American communities. During its twenty-five years of use of “Apache” as part of its name, the ASF has never been involved in any legal dispute with Native American communities or any other party in relation to the use of the “Apache” name.`
 
 This assumes any one of the 8 Apache nations wants to give any legitimacy to The Apache® Software Foundation's trademark claim. Least of all, in a court system that has historically ruled against the sovereignty of Indigenous peoples. Imagining the impact of such a court ruling on the culture, one can understand how risky it would be to dispute it.
 
-```We are honored that both The Apache Software Foundation and Apache Incubator logos are listed on the official website of the Apache Nation Chamber of Commerce.```
+`We are honored that both The Apache Software Foundation and Apache Incubator logos are listed on the official website of the Apache Nation Chamber of Commerce.`
 
 A foundation the size of Apache®'s should be able to demonstrate support beyond one page of a single website. Any indifference towards this fact demonstrates a distorted view of the foundation's relationship with historically marginalized people.
 
@@ -59,4 +59,3 @@ Issues of appropriation are nothing new for Indigenous folks in the US and the w
 If others want to help find possible replacements for the Apache® name, check out the article below and send some ideas to their [GitHub repository](https://github.com/apache).
 
 - [Sports officials unable to find non-Indigenous team names, despite entire universe](https://walkingeaglenews.com/2017/12/14/sports-officials-unable-to-find-non-indigenous-team-names-despite-entire-universe/)
-

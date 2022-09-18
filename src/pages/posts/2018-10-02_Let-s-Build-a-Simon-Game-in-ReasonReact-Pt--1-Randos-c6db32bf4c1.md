@@ -1,7 +1,7 @@
 ---
 title: "Let’s Build a Simon Game in ReasonReact Pt. 1 Randos"
 description: "Functional Programming the Front-End with Reason and ReasonReact"
-publishDate: '2018-10-02'
+publishDate: "2018-10-02"
 layout: ../../layouts/BlogPost.astro
 ---
 
@@ -32,7 +32,7 @@ With the help of `reason-react-update`, you will be able to update state in the 
 #### Helpful Resource
 
 [**bloodyowl/reason-react-update**
-_useReducer with updates and side effects! $ yarn add reason-react-update or $ npm install --save reason-react-update…_github.com](https://github.com/bloodyowl/reason-react-update "https://github.com/bloodyowl/reason-react-update")[](https://github.com/bloodyowl/reason-react-update)
+\_useReducer with updates and side effects! $ yarn add reason-react-update or $ npm install --save reason-react-update…\_github.com](https://github.com/bloodyowl/reason-react-update "https://github.com/bloodyowl/reason-react-update")[](https://github.com/bloodyowl/reason-react-update)
 
 Above your component declaration will be your state types. There will just be one property on state and it will be called `sequence`. First, you’ll declare what a sequence is:
 

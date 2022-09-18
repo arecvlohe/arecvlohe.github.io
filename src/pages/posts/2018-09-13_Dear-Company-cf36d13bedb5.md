@@ -1,7 +1,7 @@
 ---
 title: "Dear Company"
 description: "Let Me Tell You Who I am and What I am About"
-publishDate: '2018-09-13'
+publishDate: "2018-09-13"
 layout: ../../layouts/BlogPost.astro
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "How to use React’s higher-order components"
 description: "When React first hit the scene, it brought with it a new way of developing front-end architectures. It was regarded as the “View” in…"
-publishDate: '2016-11-09'
+publishDate: "2016-11-09"
 layout: ../../layouts/BlogPost.astro
 ---
 
@@ -13,9 +13,9 @@ In this post, you’ll learn more about the container/presentational pattern and
 
 Before I go any further, let’s clarify some of the jargon:
 
-*   A container is a component that fetches and/or transforms data.
-*   A presentational component presents/displays the data it’s passed through its props. Nothing else.
-*   A container acts as a higher-order component. Composing higher-order components together allows you to separate those two layers. This prevents you from mudding your presentational layer with unnecessary logic.
+- A container is a component that fetches and/or transforms data.
+- A presentational component presents/displays the data it’s passed through its props. Nothing else.
+- A container acts as a higher-order component. Composing higher-order components together allows you to separate those two layers. This prevents you from mudding your presentational layer with unnecessary logic.
 
 If you want, you can follow along using ESNextbin.
 
@@ -42,7 +42,7 @@ import { render } from ‘react-dom’
 Now let’s create a stateless functional component that renders ‘Hello, world!’
 
 ```javascript
-const Presentational = () => <div>Hello, world!</div>
+const Presentational = () => <div>Hello, world!</div>;
 ```
 
 After, you just need to mount that component to the DOM using _render_.
@@ -104,15 +104,13 @@ At the top, you have the state that is an empty array. You are using a lifecycle
 When the response returns you then update the state with the data. The data is then passed as a prop to the presentational component. This means you will need to update your presentational component as well.
 
 ```javascript
-const Presentational = ({ data }) =>
-  <div>{JSON.stringify(data)}</div>
+const Presentational = ({ data }) => <div>{JSON.stringify(data)}</div>;
 ```
 
 Here I am using destructuring to pluck **data** off the props object. Otherwise it would look like this:
 
 ```javascript
-const Presentational = props =>
-  <div>{JSON.stringify(props.data)}</div>
+const Presentational = (props) => <div>{JSON.stringify(props.data)}</div>;
 ```
 
 These changes force you to update which component gets mounted. You now need to render the container component.
@@ -150,7 +148,7 @@ const container = Presentational =>
 Nothing too different here. There is, however, one extra step you have to perform. You need to compose this container and presentational component together. I am just calling container with the presentational component as an argument. This is added just below your presentational component.
 
 ```javascript
-const HigherOrderComponent = container(Presentational)
+const HigherOrderComponent = container(Presentational);
 ```
 
 Now all you have to do is render the higher-order component.
@@ -166,23 +164,22 @@ Let’s take this one step further though. Let’s call another function that te
 The new container will look something like this:
 
 ```javascript
-const container = endpoint => Presentational =>
- class extends Component {
+const container = (endpoint) => (Presentational) =>
+  class extends Component {
+    state = {
+      data: [],
+    };
 
- state = {
-   data: []
- }
+    componentDidMount() {
+      fetch(endpoint)
+        .then((response) => response.json())
+        .then((data) => this.setState({ data }));
+    }
 
- componentDidMount() {
-   fetch(endpoint)
-     .then(response => response.json())
-     .then(data => this.setState({ data }))
- }
-
- render() {
-   return <Presentational data={this.state.data} />
- }
-}
+    render() {
+      return <Presentational data={this.state.data} />;
+    }
+  };
 ```
 
 Now you will need to update the higher-order component to handle the new call to the endpoint.
@@ -291,14 +288,13 @@ This has finally allowed you to create components that are versatile and flexibl
 For kicks, Let’s update the presentational component to render a list of items instead of a big blob of data.
 
 ```javascript
-const Presentational = ({ data }) =>
- <ul>
-  {data.map((v, k) =>
-    <li key={k}>
-      {v.username}
-    </li>
-  )}
-</ul>
+const Presentational = ({ data }) => (
+  <ul>
+    {data.map((v, k) => (
+      <li key={k}>{v.username}</li>
+    ))}
+  </ul>
+);
 ```
 
 Whew! That was a lot. If you want to see the finished product take a look at the gist I created [here](https://gist.github.com/arecvlohe/c5005643ea4fcb9637ccd9f60b98d305).
@@ -306,4 +302,4 @@ Whew! That was a lot. If you want to see the finished product take a look at the
 For more information visit Andrew Clark’s great React utility library called _recompose_ to learn more!
 
 [**acdlite/recompose**
-_recompose - A React utility belt for function components and higher-order components._github.com](https://github.com/acdlite/recompose "https://github.com/acdlite/recompose")[](https://github.com/acdlite/recompose)
+\_recompose - A React utility belt for function components and higher-order components.\_github.com](https://github.com/acdlite/recompose "https://github.com/acdlite/recompose")[](https://github.com/acdlite/recompose)

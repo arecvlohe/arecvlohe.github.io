@@ -1,7 +1,7 @@
 ---
-title: 'Functional Programming in JS with Ramda: Arrays and Objects'
+title: "Functional Programming in JS with Ramda: Arrays and Objects"
 description: "If you don’t know already arrays and objects in JS are mutable. That means that you can change the values of those objects without having…"
-publishDate: '2017-04-09'
+publishDate: "2017-04-09"
 layout: ../../layouts/BlogPost.astro
 ---
 
@@ -27,16 +27,16 @@ Now let’s take a look at an `{}` example.
 
 ```javascript
 // Object example
-import assoc from 'ramda/src/assoc'
+import assoc from "ramda/src/assoc";
 
-const object = { name: 'Adam' }
+const object = { name: "Adam" };
 const replaceNameValue = assoc(
-  'name', // The property I want to change
-  'Mada'  // The new value I want the property to have
-)
+  "name", // The property I want to change
+  "Mada" // The new value I want the property to have
+);
 
-const result = replaceNameValue(object)
-console.log(result) //= { name: 'Mada' } - this object is new!
+const result = replaceNameValue(object);
+console.log(result); //= { name: 'Mada' } - this object is new!
 ```
 
 That was a nice warm up. Let’s now update the values more dynamically. For an `[]`, let’s take a value we want to change and make it into an `{}` of that value instead. You will see what I mean.
@@ -59,18 +59,18 @@ Let’s look at an `{}` example for good measure!
 
 ```javascript
 // Dynamic object example
-import evolve from 'ramda/src/evolve'
-import toUpper from 'ramda/src/toUpper'
+import evolve from "ramda/src/evolve";
+import toUpper from "ramda/src/toUpper";
 
-const object = { name: 'Adam' }
+const object = { name: "Adam" };
 const makeNameValueAllUppers = evolve(
-  { name: toUpper }, // The transformation object
+  { name: toUpper } // The transformation object
   // This consists of the property name and a function to call
   // on the property value
-)
+);
 
-const result = makeNameValueAllUppers(object)
-console.log(result) //= { name: 'ADAM' }
+const result = makeNameValueAllUppers(object);
+console.log(result); //= { name: 'ADAM' }
 ```
 
 That’s pretty cool, right? And each time any change is made you get a new array or object returned. Immutable all the things!
@@ -78,31 +78,29 @@ That’s pretty cool, right? And each time any change is made you get a new arra
 This also comes in pretty ✋ with react components as well. Let’s say you have an input component whose field value you are holding is in react’s component state. If you were to strictly use react, you would probably do something like this.
 
 ```javascript
-onChangeInput = event => {
-  this.setState({ input: event.target.value })
-}
+onChangeInput = (event) => {
+  this.setState({ input: event.target.value });
+};
 ```
 
 That is a perfectly good way to do it. But for the sake of learning let’s see how we would use Ramda helpers to spruce it up a little.
 
 ```javascript
-import assoc from 'ramda/src/assoc'
+import assoc from "ramda/src/assoc";
 
-onChangeInput = e => {
-  this.setState(assoc('input', e.target.value))
-}
+onChangeInput = (e) => {
+  this.setState(assoc("input", e.target.value));
+};
 ```
 
 See what I did there? If you didn’t know already, `setState` is a function that takes the previous state as an argument. What I wrote above can also be written as:
 
 ```javascript
-import assoc from 'ramda/src/assoc'
+import assoc from "ramda/src/assoc";
 
-onChangeInput = e => {
-  this.setState(prevState =>
-    assoc('input', e.target.value, prevState)
-  )
-}
+onChangeInput = (e) => {
+  this.setState((prevState) => assoc("input", e.target.value, prevState));
+};
 ```
 
 The `assoc` helper updates the value for the specified property but also makes a copy of state so we don’t have to specify which part we are actually changing as you saw in the previous example without `assoc`.

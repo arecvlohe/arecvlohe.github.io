@@ -1,7 +1,7 @@
 ---
 title: "Functional Programming in JS with Ramda"
 description: "Functional programming, or FP, is all the rage now in JavasScript. And for good reason. One of the main benefits of using an FP style is…"
-publishDate: '2017-04-08'
+publishDate: "2017-04-08"
 layout: ../../layouts/BlogPost.astro
 ---
 
@@ -12,10 +12,7 @@ One of the main libraries I use is Ramda. I work mostly in React and these two l
 One of the main pain points of working with front in code is the dreaded ampersand️ stairway to hell 👹. You have probably seen one in the wild. Let me show you an example:
 
 ```javascript
-response &&
-response.body &&
-response.body.data &&
-response.body.data.name
+response && response.body && response.body.data && response.body.data.name;
 ```
 
 This is known as [short-circuit evaluation](https://en.wikipedia.org/wiki/Short-circuit_evaluation). Once one of those paths resolves to null then the entire expression is false and the program moves on to whatever it needs to do next. That comes in handy because at run-time this value will not exist until the browser has requested the information from the server. The request sent and the response received happens pretty fast but when the browser first loads it knows nothing about `_response.body.data.name_` and so will return you something to the effect of `Cannot read property body of undefined`. 😱
@@ -36,7 +33,7 @@ All functions in Ramda are curried. That means that the data is passed in last. 
 
 But let’s say you needed to do a bit more than just pluck the `name` from the `response` object. What if you needed to transform that value and make it uppercase for example.
 
-Now we are getting into composition. Composition is similar to chaining, except that with ⛓_ing_ you can’t pass the data in last. Let’s look at a contrived example.
+Now we are getting into composition. Composition is similar to chaining, except that with ⛓*ing* you can’t pass the data in last. Let’s look at a contrived example.
 
 ```javascript
 const arr = \[1,2,3,4,5\]

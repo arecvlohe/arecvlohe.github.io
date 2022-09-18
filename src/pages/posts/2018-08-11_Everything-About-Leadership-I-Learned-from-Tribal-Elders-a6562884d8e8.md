@@ -1,7 +1,7 @@
 ---
 title: "Everything About Leadership I Learned from Tribal Elders"
 description: "Sharing What I Learned… And What I am Still Learning"
-publishDate: '2018-08-11'
+publishDate: "2018-08-11"
 layout: ../../layouts/BlogPost.astro
 ---
 

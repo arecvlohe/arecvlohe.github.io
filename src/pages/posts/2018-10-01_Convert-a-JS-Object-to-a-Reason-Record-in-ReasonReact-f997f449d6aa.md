@@ -1,7 +1,7 @@
 ---
 title: "Convert a JS Object to a Reason Record in ReasonReact"
 description: "Using BuckleScript…duh"
-publishDate: '2018-10-01'
+publishDate: "2018-10-01"
 layout: ../../layouts/BlogPost.astro
 ---
 
@@ -35,7 +35,7 @@ import App from "../lib/es6_global/src/App";
 const data = {
   name: "Adam Recvlohe",
   age: 31,
-  profession: "developer"
+  profession: "developer",
 };
 
 ReactDOM.render(<App data={data} />, document.querySelector("#root"));

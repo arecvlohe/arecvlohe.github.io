@@ -1,6 +1,6 @@
 ---
 title: "JavaScript Libraries and APIs"
-publishDate: '2016-04-07'
+publishDate: "2016-04-07"
 layout: ../../layouts/BlogPost.astro
 ---
 
@@ -23,6 +23,7 @@ It works and gets the job done, which is all we really need. But now let’s tak
 ```javascript
 $(‘#red’).css(‘background-color’, ‘red’);
 ```
+
 Wow, that’s pretty! It’s everything programmers strive for: a terse and concise solution.
 
 Now you clearly see the benefits of jQuery. It’s intended to make programming in JavaScript easier.
@@ -72,7 +73,7 @@ Afterward, a response is sent back to the user with the contents of the website:
 
 Now, instead of requesting eyeluvkats.com, we will put in a request to the Giphy API that will return a data object. That request will be:
 
-[http://api.giphy.com/v1/gifs/random?api\_key=dc6zaTOxFJmzC&tag=cat](http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=cat)
+[http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=cat](http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=cat)
 
 Your first API call! Woohoo!
 
@@ -160,7 +161,7 @@ With your pen open, we need to do a couple things first to set the scene. We nee
 When do we want to execute this call to the Giphy API? Well, by convention this is usually done when the document is ready. You probably would never have guessed that we will use the _ready_ method in jQuery. It looks a little something like this:
 
 ```javascript
-$(document).ready(function() {})
+$(document).ready(function () {});
 ```
 
 In JavaScript, there are a few different stages in regards to content loading. There are _interactive_, _complete_, and a few others. All this is saying is that when the DOM is ready this function will be executed.
@@ -180,10 +181,10 @@ _At the bottom of your codepen window you should see the word_ **_console._** _C
 jQuery comes with a lot of other handy functions. The next one we will need is the _getJSON_ method. What this will do is return a response to us in JSON and give us a callback function to then do something with that data. That probably sounds a little arbitrary. Let me give you a concrete example.
 
 ```javascript
-$(document).ready(function() {
-  var url = 'http://api.giphy.com/v1/gifs/random?api\_key=dc6zaTOxFJmzC&tag=cat';
+$(document).ready(function () {
+  var url = "http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=cat";
 
-  $.getJSON(url, function(object) {
+  $.getJSON(url, function (object) {
     console.log(object);
   });
 });
@@ -225,20 +226,20 @@ We can add a bit more functionality to this. Instead of getting only a random ca
 Before we can do this we will need an input field. The input field will take your search term and add it as a parameter to the request that is sent to the Giphy API. In your HTML add an input field.
 
 ```html
-<input type=‘text’ />
+<input type="‘text’" />
 ```
 
 Up to this point, we have been making calls to the “random” API. This time, we want to search. I wonder what API that is? Oh I see, it’s called ‘search’. On Giphy’s home page we have a nice example URL:
 
-[http://api.giphy.com/v1/gifs/search?q=funny+cat&api\_key=dc6zaTOxFJmzC](http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC)
+[http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC](http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC)
 
 That’s a litter box worth of data! By default Giphy will return 25 results. As you can see in the URL the way these items are searched is using the _q_ parameter, which in this case equals _funny+cats_. If we want to search for some other set of terms then all we would have to do is capture the input from the user and when they hit enter a new request is sent to the API. Let’s do that now.
 
 To capture the input from the user we need to use the jQuery _val_ method on the input.
 
 ```javascript
-$(document).ready(function() {
-  var value = $('input').val();
+$(document).ready(function () {
+  var value = $("input").val();
 });
 ```
 
@@ -298,10 +299,10 @@ _The JSON response object will be quite large and you won’t be able to see it 
 Now if you type in some words in the input you should get back a hairball size of an object with an array of 25 objects. Okay, we have our data but it still is not displaying on the screen. What we need to do is iterate over the array, get every image URL and then create an _img_ tag for each of them and append each one to the DOM. Pretty easy huh? Okay, let’s walk through it.
 
 ```javascript
-object.data.forEach(function(gif) {
+object.data.forEach(function (gif) {
   var url = gif.images.original.url;
-  var image = $('<img src=' + url + ' />');
-  image.appendTo($('body'));
+  var image = $("<img src=" + url + " />");
+  image.appendTo($("body"));
 });
 ```
 

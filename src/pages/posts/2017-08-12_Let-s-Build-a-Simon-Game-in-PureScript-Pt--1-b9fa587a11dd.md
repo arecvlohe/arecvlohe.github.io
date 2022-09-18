@@ -1,7 +1,7 @@
 ---
 title: "Let’s Build a Simon Game in PureScript Pt. 1"
 description: "Functional Programming the Front End with PureScript and Pux"
-publishDate: '2017-08-12'
+publishDate: "2017-08-12"
 layout: ../../layouts/BlogPost.astro
 ---
 
@@ -21,14 +21,14 @@ So what does a Simon Game entail? User stories to the rescue!
 
 **As a user:**
 
-*   I am presented with a random series of button presses
-*   Each time I input a series of button presses correctly, I see the same series of button presses but with an additional step
-*   I hear a sound that corresponds to each button when I click the button and when the series of buttons plays
-*   If I press the wrong button, I am notified I have done so and the series of button presses start over
-*   I can see how many steps are in the current series
-*   If I want to restart, I can hit a button to do so, and I return to a single step
-*   I can play strict mode where if I get a button press wrong, the game notifies me and the game restarts the current random series from one
-*   I can win the game by getting a series of 20 steps correct. I am notified of my victory and I restart with a new random series of buttons presses
+- I am presented with a random series of button presses
+- Each time I input a series of button presses correctly, I see the same series of button presses but with an additional step
+- I hear a sound that corresponds to each button when I click the button and when the series of buttons plays
+- If I press the wrong button, I am notified I have done so and the series of button presses start over
+- I can see how many steps are in the current series
+- If I want to restart, I can hit a button to do so, and I return to a single step
+- I can play strict mode where if I get a button press wrong, the game notifies me and the game restarts the current random series from one
+- I can win the game by getting a series of 20 steps correct. I am notified of my victory and I restart with a new random series of buttons presses
 
 Sound like something you’re into? Well, if you are, come along further down this page and I can show you a world…where you make a Simon Game 😄.
 
@@ -56,7 +56,7 @@ At the core of this game is a random sequence of 20 things. That is where we wil
 
 To satisfy the user story, _I am presented with a random series of button presses_, you will create a function called `generateRandoSequence`. The definition for this function will be:
 
-`generateRandoSequence :: ∀ eff. Eff (random :: RANDOM | eff) (List Int)`
+`generateRandoSequence :: ∀ eff. Eff (random :: RANDOM | eff) (List Int)`
 
 Oh lord! What are you doing to me, Adam? And why is the first letter of your name upside-down? The `∀` is the forall symbol in Maths. There is no easy way to explain up above, I am sorry. But basically what it’s saying is, hey, for each random effect, and any other effect (eff), this function will return a `List` of `Int`. A `List` is a linked list, which works a bit differently and in some cases are more performant than Arrays. An `Int`, behaves like an actual `Int` in PureScript, whereas in JavaScript all numbers are floats even if they look like an `Int`.
 
@@ -64,7 +64,7 @@ The actual function will make use of the `replicateA` and the `randomInt` functi
 
 generateRandoSequence :: ∀ e. Eff (random :: RANDOM | e) (List Int)
 generateRandoSequence =
-  replicateA 20 (randomInt 1 4)
+replicateA 20 (randomInt 1 4)
 
 We are missing a few libraries to kick this off so let’s get those.
 
@@ -83,8 +83,8 @@ Let’s test run our new function to see what we get when we log it out.
 
 main :: ∀ e. Eff (console :: CONSOLE, random :: RANDOM | e) Unit
 main = do
-  result <- generateRandoSequence
-  logShow $ result
+result <- generateRandoSequence
+logShow $ result
 
 If you’re lucky, when you run `pulp run` you should see a “random” list sequence in your terminal. You can also run `pulp psci` then type `import Main` and call the function `generateRandoSequence` and you should see the same thing. Cool, right?!
 
@@ -94,22 +94,22 @@ Well, this concludes part 1 where you generated a random list of 20 integers. �
 
 In this post you learned quite a few things:
 
-*   What a monad is (kinda)
-*   What an applicative is (sorta)
-*   What side-effects are and how they are handled
-*   How to use `pulp`
-*   How to install dependencies from `bower`
-*   How to import modules
-*   How to write a function and its signature
-*   How to generate a random integer list
-*   How to run a program and use the PureScript REPL
+- What a monad is (kinda)
+- What an applicative is (sorta)
+- What side-effects are and how they are handled
+- How to use `pulp`
+- How to install dependencies from `bower`
+- How to import modules
+- How to write a function and its signature
+- How to generate a random integer list
+- How to run a program and use the PureScript REPL
 
 What you didn’t learn:
 
-*   What is `$`
-*   What is `<-` in a `do` block
-*   What is `|` in a function signature
-*   What the f is `Eff`
+- What is `$`
+- What is `<-` in a `do` block
+- What is `|` in a function signature
+- What the f is `Eff`
 
 The things that I did not cover would be good for independent study. I recommend looking at the book [PureScript by Example](https://leanpub.com/purescript/read) as well as the [PureScript Documentation](https://github.com/purescript/documentation) to get some background if you haven’t done so already. Until next time, keep hacking!
 

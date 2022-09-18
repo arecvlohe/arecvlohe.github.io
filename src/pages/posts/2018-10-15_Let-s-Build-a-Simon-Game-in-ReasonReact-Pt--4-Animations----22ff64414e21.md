@@ -1,7 +1,7 @@
 ---
 title: "Let’s Build a Simon Game in ReasonReact Pt. 4 Animations"
 description: "The Most Interesting Part of This Series"
-publishDate: '2018-10-15'
+publishDate: "2018-10-15"
 layout: ../../layouts/BlogPost.astro
 ---
 
@@ -341,7 +341,7 @@ Unlike in JavaScript, in Reason, you have the ability to label your arguments. T
 How am I using `~active` that way? Well, I destructured it above.
 
 ```javascript
-let {level, active} = self.state;
+let { level, active } = self.state;
 ```
 
 That allows me to write `~active` which is shorthand for `~active=active`.

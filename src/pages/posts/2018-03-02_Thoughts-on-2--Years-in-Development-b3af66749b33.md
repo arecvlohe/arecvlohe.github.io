@@ -1,7 +1,7 @@
 ---
 title: "Thoughts on 2+ Years in Development"
 description: "Ramblings on Being a Developer"
-publishDate: '2018-03-02'
+publishDate: "2018-03-02"
 layout: ../../layouts/BlogPost.astro
 ---
 

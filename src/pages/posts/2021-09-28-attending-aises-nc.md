@@ -10,18 +10,21 @@ I didn't attend the 2021 [AISES](https://www.aises.org/)' (American Indian Scien
 A few examples of AISES' sponsors working against Native communities:
 
 ### Exxon
-  - [DAPL Investments](https://wallstreetwatchdogs.com/2021/04/05/exxon-sues-energy-transfer/)
-  - [Alaskan Oil Spills](https://www.ran.org/the-understory/extreme_energy_injustice/)
-  - [Ex-employee Heads Enbridge Development](https://gizmodo.com/amazons-former-security-chief-is-now-guarding-the-line-1847724615)
+
+- [DAPL Investments](https://wallstreetwatchdogs.com/2021/04/05/exxon-sues-energy-transfer/)
+- [Alaskan Oil Spills](https://www.ran.org/the-understory/extreme_energy_injustice/)
+- [Ex-employee Heads Enbridge Development](https://gizmodo.com/amazons-former-security-chief-is-now-guarding-the-line-1847724615)
+
 ### Wells Fargo
-  - [Enbridge and DAPL pipelines](https://www.sierraclub.org/compass/2017/12/wells-fargo-has-choice-make-keystone-xl-tar-sands-double-down-or-divest)
+
+- [Enbridge and DAPL pipelines](https://www.sierraclub.org/compass/2017/12/wells-fargo-has-choice-make-keystone-xl-tar-sands-double-down-or-divest)
+
 ### Chevron
-  - [Tar Sands](https://www.reuters.com/article/us-chevron-divestiture-canada-idUSKBN17F1S7)
+
+- [Tar Sands](https://www.reuters.com/article/us-chevron-divestiture-canada-idUSKBN17F1S7)
+
 ### NSA
-  - [Regime change in Bolivia](https://fpif.org/ending-regime-change-in-bolivia-and-the-world/)
+
+- [Regime change in Bolivia](https://fpif.org/ending-regime-change-in-bolivia-and-the-world/)
 
 This is what I could find with a simple search. There are many more examples out there from a historical perspective and with other sponsors. Don't get me wrong, I would love to spend time at the AISES National Conference and talk face-to-face with other Native technologists and scientists. But knowing what I know now, I can't in good conscience contribute my time and energy to a conference that enthusiastically accepts support from some of the largest entities harming our relatives to the north and south. If it takes these entities' donations in order for the conference to exist, in my opinion, I'd rather it not. We can do so much better for ourselves, our peoples, and our ancestors. It's time we start.
-
-
-
-

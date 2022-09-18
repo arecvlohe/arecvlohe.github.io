@@ -5,14 +5,13 @@ export interface Props {
   permalink: string;
 }
 const { title, description, permalink } = Astro.props;
-const logoUrl = '/assets/logo.jpg'
+const logoUrl = "/assets/logo.jpg";
 ---
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width" />
 <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>
@@ -32,4 +31,3 @@ const logoUrl = '/assets/logo.jpg'
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={logoUrl} />
-

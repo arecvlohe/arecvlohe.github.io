@@ -1,7 +1,7 @@
 ---
 title: "Let’s Build a Random Quote Generator in Reason"
 description: "Code Snippets to Help You Learn ReasonML and ReasonReact"
-publishDate: '2018-01-15'
+publishDate: "2018-01-15"
 layout: ../../layouts/BlogPost.astro
 ---
 
@@ -9,11 +9,11 @@ I finally caved and tried out ReasonML over the weekend. Not because I wanted to
 
 ### What You Will Need/Want
 
-*   [Reason](https://reasonml.github.io/docs/en/global-installation.html)\*
-*   [Editor Plugin](https://reasonml.github.io/docs/en/editor-plugins.html)
-*   [Reason React](https://reasonml.github.io/reason-react/docs/en/installation.html)\*\*
-*   [Community Support](https://discordapp.com/invite/reasonml)
-*   [Developer UX](https://reasonml.github.io/docs/en/extra-goodies.html)
+- [Reason](https://reasonml.github.io/docs/en/global-installation.html)\*
+- [Editor Plugin](https://reasonml.github.io/docs/en/editor-plugins.html)
+- [Reason React](https://reasonml.github.io/reason-react/docs/en/installation.html)\*\*
+- [Community Support](https://discordapp.com/invite/reasonml)
+- [Developer UX](https://reasonml.github.io/docs/en/extra-goodies.html)
 
 \*I used OPAM
 \*\*I used Reason Scripts
@@ -265,7 +265,6 @@ didMount: (self) => {
 ```
 
 I knew I couldn’t get anything passed you! If all works as expected you should see a new random quote in your browser on each refresh.
-
 
 ### Step 6 Update Quote on User Click Event
 

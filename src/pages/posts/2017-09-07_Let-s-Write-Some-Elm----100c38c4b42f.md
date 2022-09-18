@@ -1,7 +1,7 @@
 ---
 title: "Let’s Write Some Elm"
-description: 'Compiler Driven Development. Yeah, it’s a thing!'
-publishDate: '2017-09-07'
+description: "Compiler Driven Development. Yeah, it’s a thing!"
+publishDate: "2017-09-07"
 layout: ../../layouts/BlogPost.astro
 ---
 

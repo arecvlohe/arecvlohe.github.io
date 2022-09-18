@@ -1,7 +1,7 @@
 ---
 title: "Let’s Build a Simon Game in PureScript Pt . 5 The Final Installment"
 description: "Functional Programming the Front End with PureScript and Pux"
-publishDate: '2017-08-25'
+publishDate: "2017-08-25"
 layout: ../../layouts/BlogPost.astro
 ---
 
@@ -260,14 +260,14 @@ Below is what you have accomplished so far and what needs to be added. I am depe
 
 User Stories:
 
-*   ̶I̶ ̶a̶m̶ ̶p̶r̶e̶s̶e̶n̶t̶e̶d̶ ̶w̶i̶t̶h̶ ̶a̶ ̶r̶a̶n̶d̶o̶m̶ ̶s̶e̶r̶i̶e̶s̶ ̶o̶f̶ ̶b̶u̶t̶t̶o̶n̶ ̶p̶r̶e̶s̶s̶e̶s̶
-*   ̶E̶a̶c̶h̶ ̶t̶i̶m̶e̶ ̶I̶ ̶i̶n̶p̶u̶t̶ ̶a̶ ̶s̶e̶r̶i̶e̶s̶ ̶o̶f̶ ̶b̶u̶t̶t̶o̶n̶ ̶p̶r̶e̶s̶s̶e̶s̶ ̶c̶o̶r̶r̶e̶c̶t̶l̶y̶,̶ ̶I̶ ̶s̶e̶e̶ ̶t̶h̶e̶ ̶s̶a̶m̶e̶ ̶s̶e̶r̶i̶e̶s̶ ̶o̶f̶ ̶b̶u̶t̶t̶o̶n̶ ̶p̶r̶e̶s̶s̶e̶s̶ ̶b̶u̶t̶ ̶w̶i̶t̶h̶ ̶a̶n̶ ̶a̶d̶d̶i̶t̶i̶o̶n̶a̶l̶ ̶s̶t̶e̶p̶
-*   I hear a sound that corresponds to each button when I click the button and when the series of buttons plays
-*   If I press the wrong button, I am notified I have done so and ̶t̶h̶e̶ ̶s̶e̶r̶i̶e̶s̶ ̶o̶f̶ ̶b̶u̶t̶t̶o̶n̶ ̶p̶r̶e̶s̶s̶e̶s̶ ̶s̶t̶a̶r̶t̶ ̶o̶v̶e̶r̶
-*   I can see how many steps are in the current series
-*   If I want to restart, I can hit a button to do so, and I return to a single step
-*   I can play strict mode where if I get a button press wrong, the game notifies me and the game restarts the current random series from one
-*   I can win the game by getting a series of 20 steps correct. I am notified of my victory and I restart with a new random series of buttons presses
+- ̶I̶ ̶a̶m̶ ̶p̶r̶e̶s̶e̶n̶t̶e̶d̶ ̶w̶i̶t̶h̶ ̶a̶ ̶r̶a̶n̶d̶o̶m̶ ̶s̶e̶r̶i̶e̶s̶ ̶o̶f̶ ̶b̶u̶t̶t̶o̶n̶ ̶p̶r̶e̶s̶s̶e̶s̶
+- ̶E̶a̶c̶h̶ ̶t̶i̶m̶e̶ ̶I̶ ̶i̶n̶p̶u̶t̶ ̶a̶ ̶s̶e̶r̶i̶e̶s̶ ̶o̶f̶ ̶b̶u̶t̶t̶o̶n̶ ̶p̶r̶e̶s̶s̶e̶s̶ ̶c̶o̶r̶r̶e̶c̶t̶l̶y̶,̶ ̶I̶ ̶s̶e̶e̶ ̶t̶h̶e̶ ̶s̶a̶m̶e̶ ̶s̶e̶r̶i̶e̶s̶ ̶o̶f̶ ̶b̶u̶t̶t̶o̶n̶ ̶p̶r̶e̶s̶s̶e̶s̶ ̶b̶u̶t̶ ̶w̶i̶t̶h̶ ̶a̶n̶ ̶a̶d̶d̶i̶t̶i̶o̶n̶a̶l̶ ̶s̶t̶e̶p̶
+- I hear a sound that corresponds to each button when I click the button and when the series of buttons plays
+- If I press the wrong button, I am notified I have done so and ̶t̶h̶e̶ ̶s̶e̶r̶i̶e̶s̶ ̶o̶f̶ ̶b̶u̶t̶t̶o̶n̶ ̶p̶r̶e̶s̶s̶e̶s̶ ̶s̶t̶a̶r̶t̶ ̶o̶v̶e̶r̶
+- I can see how many steps are in the current series
+- If I want to restart, I can hit a button to do so, and I return to a single step
+- I can play strict mode where if I get a button press wrong, the game notifies me and the game restarts the current random series from one
+- I can win the game by getting a series of 20 steps correct. I am notified of my victory and I restart with a new random series of buttons presses
 
 As I have said repeatedly, I recommend looking at the book [PureScript by Example](https://leanpub.com/purescript/read) as well as the [PureScript Documentation](https://github.com/purescript/documentation) to get some background if you haven’t done so already. Also, check out all the library document on [Pursuit](https://pursuit.purescript.org/). If you have any questions check out the [Slack](https://fpchat-invite.herokuapp.com/) or [Gitter](https://gitter.im/purescript/purescript) channels. Until next time, keep hacking!
 

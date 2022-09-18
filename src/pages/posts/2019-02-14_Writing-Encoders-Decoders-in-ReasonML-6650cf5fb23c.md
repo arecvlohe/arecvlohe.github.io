@@ -1,7 +1,7 @@
 ---
 title: "Writing Encoders/Decoders in ReasonML"
 description: "Buckle Up 💺"
-publishDate: '2019-02-14'
+publishDate: "2019-02-14"
 layout: ../../layouts/BlogPost.astro
 ---
 
@@ -13,10 +13,10 @@ In JavaScript, JSON works just fine in the browser environment. For example, whe
 
 ```javascript
 fetch("[https://aws.random.cat/meow](https://aws.random.cat/meow)")
-  .then(response => response.json())
-  .then(data => {
+  .then((response) => response.json())
+  .then((data) => {
     console.log("file:", data.file); // This is fine!
-  })
+  });
 ```
 
 _Reference:_ [_https://developer.mozilla.org/en-US/docs/Web/API/Body/json_](https://developer.mozilla.org/en-US/docs/Web/API/Body/json)

@@ -1,7 +1,7 @@
 ---
 title: "Write React Components in PureScript with Pux"
 description: "React Interop with PureScript and Pux"
-publishDate: '2017-08-28'
+publishDate: "2017-08-28"
 layout: ../../layouts/BlogPost.astro
 ---
 
@@ -97,7 +97,7 @@ import PSCounter from "./PureScript/output/Counter";
 
 class App extends Component {
   render() {
-    const Counter = PSCounter.toReact({count: this.props.count})();
+    const Counter = PSCounter.toReact({ count: this.props.count })();
     return (
       <div className="App">
         <Counter />

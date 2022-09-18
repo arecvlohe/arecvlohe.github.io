@@ -1,7 +1,7 @@
 ---
 title: "Let’s Build a Simon Game in PureScript Pt. 2"
 description: "Functional Programming the Front End with PureScript and Pux"
-publishDate: '2017-08-14'
+publishDate: "2017-08-14"
 layout: ../../layouts/BlogPost.astro
 ---
 
@@ -14,46 +14,46 @@ In this post, you will build on that knowledge and work on the view layer to the
 Before I move forward I want you to put a finishing touch on the function you created last time. The `generateRandoSequence` does nothing more than generate a random sequence of integers. Although this is nice, it doesn’t really help further along the app you are building. Instead, what is needed is a random list of strings: red, green, blue, yellow. These are same colors the actual Simon Game uses. To do this I will map the random list of numbers to their corresponding color inside a simple `case` statement.
 
 generateRandoSequence ::
-  ∀ eff. Eff (random :: RANDOM | eff) (List String)
+∀ eff. Eff (random :: RANDOM | eff) (List String)
 generateRandoSequence = do
-  result <- replicateA 20 (randomInt 1 4)
-  pure $ map (\\v ->
-    case v of
-      1 -> "red"
-      2 -> "yellow"
-      3 -> "green"
-      4 -> "blue"
-      \_ -> "Oh nose 👃"
-  ) result
+result <- replicateA 20 (randomInt 1 4)
+pure $ map (\\v ->
+case v of
+1 -> "red"
+2 -> "yellow"
+3 -> "green"
+4 -> "blue"
+\_ -> "Oh nose 👃"
+) result
 
 This may look familiar to you with just a few small changes. The `<-` represents assignment inside of a `do` block. The function `pure` represents the return of a computation that has side-effects, such as `result` above it. The `$` in this context represents the [apply](https://pursuit.purescript.org/packages/purescript-prelude/3.1.0/docs/Control.Apply#t:Apply) function. You handle each integer in the `case` expression and just-in-case you don’t get a value between 1 and 4, you will return “Oh nose 👃.” This can be cleaned up a little and maybe, just maybe, more readable. How does this look:
 
 generateRandoSequence ::
-  ∀ eff. Eff (random :: RANDOM | eff) (List String)
+∀ eff. Eff (random :: RANDOM | eff) (List String)
 generateRandoSequence =
-  map (\\v ->
-    case v of
-      1 -> "red"
-      2 -> "yellow"
-      3 -> "green"
-      4 -> "blue"
-      \_ -> "Oh nose"
-  ) <$> replicateA 20 (randomInt 1 4)
+map (\\v ->
+case v of
+1 -> "red"
+2 -> "yellow"
+3 -> "green"
+4 -> "blue"
+\_ -> "Oh nose"
+) <$> replicateA 20 (randomInt 1 4)
 
 The `do` block was removed and `<$>` was added. In this instance, the `<$>` represents the [map](https://pursuit.purescript.org/packages/purescript-prelude/3.1.0/docs/Data.Functor#v:%28%3C$%3E%29) function. But in this particular case, you are applying a function to a higher-kinded type, the Eff monad. What gets returned is `List Int` which has its own [map](https://pursuit.purescript.org/packages/purescript-prelude/3.1.0/docs/Data.Functor#t:Functor) function, for mapping over a list of values. How about one more?
 
 generateRandoSequence ::
-  ∀ eff. Eff (random :: RANDOM | eff) (List String)
+∀ eff. Eff (random :: RANDOM | eff) (List String)
 generateRandoSequence =
-  replicateA 20 (randomInt 1 4) <#>
-  map (\\v ->
-    case v of
-      1 -> "red"
-      2 -> "yellow"
-      3 -> "green"
-      4 -> "blue"
-      \_ -> "Oh nose"
-  )
+replicateA 20 (randomInt 1 4) <#>
+map (\\v ->
+case v of
+1 -> "red"
+2 -> "yellow"
+3 -> "green"
+4 -> "blue"
+\_ -> "Oh nose"
+)
 
 In this case, I removed the `<$>` and added `<#>` which is the opposite of `<$>`. I think this is the most readable type but you may differ. That is perfectly fine. The reason for showing three examples was: (1) to show the flexibility and expressiveness of the language, and (2) introduce you to the plethora of operators at your disposal. I didn’t want to hold back just because you might be new 😉. When you run `pulp run` you should see a random list of strings in the terminal 🎉.
 
@@ -68,8 +68,8 @@ bower install --save purescript-smolder
 Also, create a directory inside `src` that will house all the applications features. Call it `App` to be original. Then inside of `App` create a file called `View.purs`. At the top of each file is where you declare your module as well as any other imports you need.
 
 module App.View
-  ( view
-  ) where
+( view
+) where
 
 import Prelude hiding (div)
 
@@ -80,8 +80,8 @@ It’s common practice to: (1) name functions you are exporting from a module, i
 
 view :: ∀ e. Markup e
 view =
-  div
-    $ text "Hello, PureScript!"
+div
+$ text "Hello, PureScript!"
 
 In this function, there is a `div` with `text`. Simple enough, right? Now that the function is created, let’s run it inside of our main function and `render` our markup to the DOM.
 
@@ -127,9 +127,9 @@ A new operator and function 🙌! Because `element` is of type `Maybe Element` y
 
 main :: forall e. Eff (console :: CONSOLE, random :: RANDOM, dom :: DOM | e) Unit
 main = do
-  documentType <- document =<< window
-  element <- getElementById (ElementId "app") $ htmlDocumentToNonElementParentNode documentType
-  for\_ element (render <@> view)
+documentType <- document =<< window
+element <- getElementById (ElementId "app") $ htmlDocumentToNonElementParentNode documentType
+for\_ element (render <@> view)
 
 If you run `pulp server`, when you navigate to `localhost:1337` in the browser you should see `Hello, PureScript!`. Awesome sauce!
 
@@ -139,28 +139,28 @@ If you run `pulp server`, when you navigate to `localhost:1337` in the browser y
 
 In this lesson you learned:
 
-*   What the bind `=<<` operator is
-*   What the flap`<$>` operator does
-*   How to interact with the DOM
-*   How to create markup using smolder
-*   How to create a module and expose functions
-*   How to hide a function
-*   How to map over a list
+- What the bind `=<<` operator is
+- What the flap`<$>` operator does
+- How to interact with the DOM
+- How to create markup using smolder
+- How to create a module and expose functions
+- How to hide a function
+- How to map over a list
 
 What you didn’t learn
 
-*   What the `Markup` type is
-*   Why does `htmlDocumentToNonElementParentNode` exist
-*   What is the`ElementId` type instance
-*   What is all this applicative functor mumbo jumbo
-*   What is the `DOM` effect type and what does it do
+- What the `Markup` type is
+- Why does `htmlDocumentToNonElementParentNode` exist
+- What is the`ElementId` type instance
+- What is all this applicative functor mumbo jumbo
+- What is the `DOM` effect type and what does it do
 
 The things that I did not cover would be good for independent study. I recommend looking at the book [PureScript by Example](https://leanpub.com/purescript/read) as well as the [PureScript Documentation](https://github.com/purescript/documentation) to get some background if you haven’t done so already. Also, check out all the library document on [Pursuit](https://pursuit.purescript.org/). If you have any questions check out the [Slack](https://fpchat-invite.herokuapp.com/) or [Gitter](https://gitter.im/purescript/purescript) channels. Until next time, keep hacking!
 
 Part 2 of this project is tagged and can be found on Github here:
 
 [**arecvlohe/ps-medium-simon-game**
-_Contribute to ps-medium-simon-game development by creating an account on GitHub._github.com](https://github.com/arecvlohe/ps-medium-simon-game/tree/part_2 "https://github.com/arecvlohe/ps-medium-simon-game/tree/part_2")[](https://github.com/arecvlohe/ps-medium-simon-game/tree/part_2)
+\_Contribute to ps-medium-simon-game development by creating an account on GitHub.\_github.com](https://github.com/arecvlohe/ps-medium-simon-game/tree/part_2 "https://github.com/arecvlohe/ps-medium-simon-game/tree/part_2")[](https://github.com/arecvlohe/ps-medium-simon-game/tree/part_2)
 
 > Full Disclosure: I got a lot of help and support from the community to write this post. I strongly encourage any and all who have questions to join the Slack or Gitter channels as the community is very welcoming.
 

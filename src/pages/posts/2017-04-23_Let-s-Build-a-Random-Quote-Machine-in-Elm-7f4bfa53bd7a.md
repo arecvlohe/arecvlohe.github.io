@@ -1,22 +1,22 @@
 ---
 title: "Let’s Build a Random Quote Machine in Elm"
-publishDate: '2017-04-23'
+publishDate: "2017-04-23"
 layout: ../../layouts/BlogPost.astro
 ---
 
 ### Objectives
 
-*   Learn about and implement the Elm architecture using messages, command messages, types, type aliases, and other related concepts.
-*   Demonstrate how to utilize Elm community packages.
-*   Create a simple Random Quote Machine using Ellie, the friendly Elm editor.
+- Learn about and implement the Elm architecture using messages, command messages, types, type aliases, and other related concepts.
+- Demonstrate how to utilize Elm community packages.
+- Create a simple Random Quote Machine using Ellie, the friendly Elm editor.
 
 ### Editor
 
-*   [Ellie](https://ellie-app.com/new)
+- [Ellie](https://ellie-app.com/new)
 
 ### Resources
 
-*   [Elm Docs](http://package.elm-lang.org/)
+- [Elm Docs](http://package.elm-lang.org/)
 
 Elm is a functional programming language that compiles down to JavaScript. From my very little experience in using it thus far, it is a real joy, especially once you grasp the way data flows throughout the program. In this lesson, we will create a simple Random Quote Machine while highlighting the core concepts of the Elm architecture.
 

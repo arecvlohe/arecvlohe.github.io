@@ -1,10 +1,9 @@
 ---
 title: "Why I Eat Plant-Based"
 description: "You don’t know much about me and my lifestyle. This article aims to teach you a bit about who I am as a person and also to provide exposure…"
-publishDate: '2017-11-19'
+publishDate: "2017-11-19"
 layout: ../../layouts/BlogPost.astro
 ---
-
 
 You don’t know much about me and my lifestyle. This article aims to teach you a bit about who I am as a person and also to provide exposure to the vegan diet.
 

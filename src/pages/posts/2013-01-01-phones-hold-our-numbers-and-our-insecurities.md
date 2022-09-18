@@ -14,6 +14,6 @@ To truly accept faith and trust it you have to be founded in two basic premises.
 
 I can list more experiences but it's not a matter of how many experiences I have that prove my faith. Faith cannot be proved. It involves acting blindly from what the Creator tells you. Trusting in that faith and the message he gives you even when it goes against what you think or believe. I have been proven wrong time and time again, only to realize that Creator knows and He is someone I can trust. What does this have to do with insecurities? We are looking down at our phones when we should be looking up. In the heavens is where my insecurities lie. Where are yours?
 
-* * *
+---
 
 <iframe width="640" height="360" src="http://www.youtube.com/embed/t7Xr3AsBEK4?feature=oembed&amp;wmode=opaque&amp;enablejsapi=1" frameborder="0" allowfullscreen></iframe>

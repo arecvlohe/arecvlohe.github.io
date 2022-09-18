@@ -1,10 +1,9 @@
 ---
 title: "How to Map an Array (A Poem)"
 description: "How to map you say,There are more than just three ways to map an array, But from just one language is not okay,Instead we will look at…"
-publishDate: '2017-04-11'
+publishDate: "2017-04-11"
 layout: ../../layouts/BlogPost.astro
 ---
-
 
 How to map you say,
 There are more than just three ways to map an array, 
