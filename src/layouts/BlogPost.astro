@@ -1,9 +1,9 @@
 ---
-import type { Post } from "../../types";
 import BaseHead from "../components/BaseHead.astro";
 import BlogHeader from "../components/BlogHeader.astro";
 import BlogPost from "../components/BlogPost.astro";
-import { base } from "../../const";
+import { base } from "../../utils/const";
+import type { Post } from "../../utils/types";
 
 type Props = Post;
 const {

@@ -2,8 +2,8 @@
 import BaseHead from "../components/BaseHead.astro";
 import BlogHeader from "../components/BlogHeader.astro";
 import BlogPostPreview from "../components/BlogPostPreview.astro";
-import type { Frontmatter } from "../../types";
-import { title, description, base } from "../../const";
+import type { Frontmatter } from "../../utils/types";
+import { title, description, base } from "../../utils/const";
 
 const allPosts = await Astro.glob<Frontmatter>("./posts/*.md");
 allPosts.sort(
