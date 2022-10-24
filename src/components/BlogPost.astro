@@ -6,12 +6,10 @@ type Props = BlogPost;
 const { publishDate, title }: Props = Astro.props;
 ---
 
-<section>
-  <div>
+<main>
+  <article>
     <p>{publishDate}</p>
     <h1>{title}</h1>
-  </div>
-  <main>
     <slot />
-  </main>
-</section>
+  </article>
+</main>

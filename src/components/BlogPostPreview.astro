@@ -5,15 +5,16 @@ type Props = PostPreview;
 const { post }: Props = Astro.props;
 ---
 
-<section>
-  <div>
-    <h3>{post.frontmatter.publishDate}</h3>
-    <a href={post.url}>
-      <h1>{post.frontmatter.title}</h1>
-    </a>
-  </div>
-  <div>
-    <p>{post.frontmatter.description}</p>
-    <a href={post.url}>Read more</a>
-  </div>
-</section>
+<style>
+  h3 {
+    border-bottom: none;
+  }
+</style>
+
+<article>
+  <p>{post.frontmatter.publishDate}</p>
+  <h3>{post.frontmatter.title}</h3>
+  <p>{post.frontmatter.description}</p>
+  <a href={post.url}>Read more</a>
+</article>
+<hr />
