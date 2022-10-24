@@ -21,11 +21,7 @@ allPosts.sort(
   <body>
     <BlogHeader />
     <main>
-      <article>
-        <section>
-          {allPosts.map((p) => <BlogPostPreview post={p} />)}
-        </section>
-      </article>
+      {allPosts.map((p) => <BlogPostPreview post={p} />)}
     </main>
   </body>
 </html>

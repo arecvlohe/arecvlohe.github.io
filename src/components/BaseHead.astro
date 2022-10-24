@@ -7,13 +7,11 @@ export interface Props {
   permalink: string;
 }
 const { title, description, permalink } = Astro.props;
-const logoUrl = "/static/assets/logo.jpg";
 ---
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width" />
-<link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>
@@ -25,11 +23,9 @@ const logoUrl = "/static/assets/logo.jpg";
 <meta property="og:url" content={permalink} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={logoUrl} />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={permalink} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={logoUrl} />

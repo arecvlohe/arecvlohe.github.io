@@ -1,5 +1,7 @@
 # Adam Recvlohe's Blog
 
+An archive of my personal blog
+
 ## TODOs
 
 - [x] Create a home page that includes blog posts list (simple introduction)
@@ -7,10 +9,6 @@
 - [x] Move domain (adamrecvlohe.com) over to gitlab pages
 - [x] Create an about page
 - [x] Use new.css (auto theme)
-- [ ] Clean up articles and any links that look off
-- [ ] Improve code format/render syntax highlighting if possible
+- [ ] Fix missing links
 - [ ] Make canonical urls to squarespace and medium point to my site
-- [ ] SEO-ify
-- [ ] Make contact form
-- [ ] Come up with logo (Re cvlahe - speckled/spotted arrow)
-- [ ] Make work offline
+
