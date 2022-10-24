@@ -8,4 +8,5 @@ export default defineConfig({
     ? "https://adamrecvlohe.com"
     : "https://arecvlohe.github.io",
   outDir: process.env.BUILD_GITLAB ? "public" : undefined,
+  publicDir: process.env.BUILD_GITLAB ? "static" : undefined,
 });

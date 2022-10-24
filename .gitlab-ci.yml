@@ -1,14 +1,19 @@
-image: node:16.13.0
+image: node:14
+
 pages:
   cache:
     paths:
       - node_modules/
   script:
-    - npm install
-    - BUILD_GITLAB=true npm run build
-    - rm -rf ./public/* && cp -r ./dist/* ./public
+    # Specify the steps involved to build your app here
+    - yarn install
+    - yarn build
+
   artifacts:
     paths:
       - public
+
   only:
+    # Trigger a new build and deploy only when there is a push to the
+    # branch(es) below
     - latest
