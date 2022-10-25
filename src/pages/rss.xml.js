@@ -7,11 +7,15 @@ export const get = () =>
   rss({
     title: "Adam Recvlohe’s Blog",
     description: "An archive of Adam's personal blog.",
-    site: import.meta.env.SITE,
+    site: process.env.BUILD_GITLAB
+      ? "https://adamrecvlohe.com"
+      : "https://arecvlohe.github.io",
     items: posts.map((post) => ({
       link: post.url,
       title: post.frontmatter.title,
       pubDate: post.frontmatter.publishDate,
     })),
-    stylesheet: "/rss/pretty-feed-v3.xsl",
+    ...(process.env.BUILD_GITLAB
+      ? { stylesheet: "/rss/pretty-feed-v3.xsl" }
+      : {}),
   });
