@@ -1,7 +1,31 @@
+---
+import { Icon } from "astro-icon";
+---
+
+<style lang="css">
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+  }
+
+  [astro-icon] {
+    height: 20px;
+  }
+</style>
+
 <header>
   <h2>Spotted Arrow</h2>
   <nav>
     <a href="/">Home</a> /
-    <a href="/about">About</a>
+    <a href="/about">About</a> /
+    <a rel="me" href="https://mastodon.social/@adamrecvlohe">
+      <Icon name="mdi:mastodon" />
+    </a>
   </nav>
 </header>
