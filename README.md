@@ -4,6 +4,7 @@ An archive of my personal blog
 
 ## TODOs
 
-- [] Fix missing links in some articles
+- [x] Fix missing links in some articles
+- [] Convert .md to .mdx and embed GH gists
 
 

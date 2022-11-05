@@ -6,16 +6,6 @@ layout: ../../layouts/BlogPost.astro
 
 _This article was written after the passing of Henry "k'asA" Washburn for the_ Euchee Sun _newsletter_. _He was a great friend, relative, and person that I owe a lot to._
 
-style="padding-bottom:140.32257080078125%;" class=" image-block-wrapper
-
-" data-animation-role="image"
-
-data-animation-override
-
-\>
-
-<img src="https://images.squarespace-cdn.com/content/v1/50ddb226e4b015296cd9cac2/1389302794124-YUZGSBE877Y03UQ7G2RN/Picture+1.png" alt="Picture 1.png" />
-
 ![Picture 1.png](https://images.squarespace-cdn.com/content/v1/50ddb226e4b015296cd9cac2/1389302794124-YUZGSBE877Y03UQ7G2RN/Picture+1.png)
 
 What can I say about Henry Washburn. He was mean. He was the first to point out if I had gained weight, quick to show my Euchee was wrong, and questioned my driving ability anytime I drove him somewhere. k'asA though was something different. k'asA always had food prepared in the evening and was willing to share anything he had with me. He gave me a roof over my head when I had no where else to go. He taught me how to garden and embodied the characteristics of the old time Indian: tough, kind, and deeply rooted in his beliefs. Henry Washburn made my life miserable. k'asA taught me who I am and what it means to be Euchee.

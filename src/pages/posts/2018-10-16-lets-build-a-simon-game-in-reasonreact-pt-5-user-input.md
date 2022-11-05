@@ -195,3 +195,5 @@ Oh yeah, let's see this thing go!
 ### Summary 📝
 
 In this article, if you didn’t just scroll to the bottom, you learned how to handle business logic pretty seamlessly using pattern matching. That was fun. In the next lesson, you will tidy up the application more by adding a reset button, a strictness option, and some more niceties.
+
+- - [React Reason Simon Game Part 5](https://github.com/arecvlohe/reason-react-simon-game/tree/part_5)

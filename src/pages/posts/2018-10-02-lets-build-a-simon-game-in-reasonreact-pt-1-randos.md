@@ -214,3 +214,5 @@ React.useEffect0(() => {
 ### Summary 📚
 
 In this lesson you learned how to generate random numbers, declare types, and update state in `reason-react`. This is a pretty good start if I do say so myself. In the next lesson, you will learn how to play the sequence and have the user interact with the game on the screen.
+
+- [React Reason Simon Game Part 1](https://github.com/arecvlohe/reason-react-simon-game/tree/part_1)

@@ -163,5 +163,3 @@ Part 2 of this project is tagged and can be found on Github here:
 \_Contribute to ps-medium-simon-game development by creating an account on GitHub.\_github.com](https://github.com/arecvlohe/ps-medium-simon-game/tree/part_2 "https://github.com/arecvlohe/ps-medium-simon-game/tree/part_2")[](https://github.com/arecvlohe/ps-medium-simon-game/tree/part_2)
 
 > Full Disclosure: I got a lot of help and support from the community to write this post. I strongly encourage any and all who have questions to join the Slack or Gitter channels as the community is very welcoming.
-
-#### [Continue on to Part 3](https://medium.com/@arecvlohe/lets-build-a-simon-game-in-purescript-pt-3-a4c754780608)

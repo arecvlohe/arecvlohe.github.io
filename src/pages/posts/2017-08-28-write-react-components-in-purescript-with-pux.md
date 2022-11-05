@@ -121,4 +121,4 @@ If you haven’t done so already, I recommend looking at the book [PureScript by
 
 You can find the above code in this repo below:
 
-- []()
+- [https://github.com/arecvlohe/purescript-in-react-example](https://github.com/arecvlohe/purescript-in-react-example)

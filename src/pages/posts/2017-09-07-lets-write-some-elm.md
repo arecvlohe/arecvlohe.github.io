@@ -239,3 +239,6 @@ In this lesson you learned about Elm, the typed functional language that compile
 Check out the complete code snippet below:
 
 In Gist form:
+- [https://gist.github.com/anonymous/50828520c0664e6ab9b47c65e8002387#file-elm-package-json](https://gist.github.com/anonymous/50828520c0664e6ab9b47c65e8002387#file-elm-package-json)
+- [https://gist.github.com/anonymous/50828520c0664e6ab9b47c65e8002387#file-index-html](https://gist.github.com/anonymous/50828520c0664e6ab9b47c65e8002387#file-index-html)
+- [https://gist.github.com/anonymous/50828520c0664e6ab9b47c65e8002387#file-main-elm](https://gist.github.com/anonymous/50828520c0664e6ab9b47c65e8002387#file-main-elm)

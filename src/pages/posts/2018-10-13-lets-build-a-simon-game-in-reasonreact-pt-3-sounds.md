@@ -182,3 +182,5 @@ Yay! 🙌 Do this for each box. Start your application using `yarn start` and he
 ### Summary 📝
 
 In this article, you learned about Reason’s FFI and you bound one function from the Web Audio API. Awesome work! There is still much to learn here but hopefully binding to DOM API’s isn’t so scary anymore 👹.
+
+- [React Reason Simon Game Part 3](https://github.com/arecvlohe/reason-react-simon-game/tree/part_3)

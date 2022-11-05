@@ -406,3 +406,5 @@ I realize this may not be the best way to handle these actions. I am not clearin
 ### Summary 📝
 
 If you have stuck it out this far then you deserve a slow clap 👏. In this article, you learned how to create dynamic actions in ReasonReact. That was pretty fun if I do say so myself. In the next lesson, you will handle user input. That’s all I have for now.
+
+- [React Reason Simon Game Part 4](https://github.com/arecvlohe/reason-react-simon-game/tree/part_4)

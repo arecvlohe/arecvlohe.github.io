@@ -175,3 +175,5 @@ This doesn’t change a whole hell of a lot, maybe it makes the code harder to m
 ### Summary 📝
 
 In this article, you learned how to write type-safe CSS in ReasonReact using bs-css. I think it’s a really awesome experience to write type-safe CSS and see errors at compile time instead of at run-time. It’s also great to get editor intelligence to see what values are valid instead of depending on your memory. RIP `visibility: show` ✌️. If you liked what I wrote consider buying me a coffee.
+
+- [React Reason Simon Game Part 2](https://github.com/arecvlohe/reason-react-simon-game/tree/part_2)
