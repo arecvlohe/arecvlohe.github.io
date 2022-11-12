@@ -1,0 +1,19 @@
+---
+import type { Article } from "../../utils/types";
+
+type Props = Article;
+
+const { publishDate, title, url }: Props = Astro.props;
+---
+
+<main>
+  <article>
+    <a
+      rel="noopener noreferrer"
+      href={`/${url.includes("posts") ? "posts" : "tutorials"}`}>Back</a
+    >
+    <p>{publishDate}</p>
+    <h1>{title}</h1>
+    <slot />
+  </article>
+</main>

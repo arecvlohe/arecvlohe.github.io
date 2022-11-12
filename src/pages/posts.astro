@@ -1,0 +1,32 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import ArticlePreview from "../components/ArticlePreview.astro";
+import type { Frontmatter } from "../../utils/types";
+import { title, description, base } from "../../utils/const";
+import Footer from "../components/Footer.astro";
+
+const posts = await Astro.glob<Frontmatter>("./posts/*.mdx");
+posts.sort(
+  (a, b) =>
+    new Date(b.frontmatter["publishDate"]).getTime() -
+    new Date(a.frontmatter["publishDate"]).getTime()
+);
+---
+
+<style>
+  h1 {
+    margin-bottom: 20px;
+  }
+</style>
+
+<BaseHead title={title} description={description} permalink={base} />
+
+<body>
+  <Header />
+  <main>
+    <h1>Posts</h1>
+    <section>{posts.map((p) => <ArticlePreview post={p} />)}</section>
+  </main>
+  <Footer />
+</body>

@@ -1,11 +1,14 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
-import BlogHeader from "../components/BlogHeader.astro";
-import BlogPostPreview from "../components/BlogPostPreview.astro";
+import Header from "../components/Header.astro";
 import type { Frontmatter } from "../../utils/types";
 import { title, description, base } from "../../utils/const";
+import Footer from "../components/Footer.astro";
 
-const allPosts = await Astro.glob<Frontmatter>("./posts/*.mdx");
+const posts = await Astro.glob<Frontmatter>("./posts/*.mdx");
+const tutorials = await Astro.glob<Frontmatter>("./tutorials/*.mdx");
+const allPosts = posts.concat(tutorials);
+
 allPosts.sort(
   (a, b) =>
     new Date(b.frontmatter["publishDate"]).getTime() -
@@ -14,14 +17,123 @@ allPosts.sort(
 ---
 
 <html lang="en">
-  <head>
-    <BaseHead title={title} description={description} permalink={base} />
-  </head>
+  <style>
+    .intro {
+      display: flex;
+      gap: 16px;
+    }
+
+    img {
+      width: 300px;
+      height: 240px;
+      border-radius: 4px;
+    }
+
+    @media screen and (max-width: 768px) {
+      .intro {
+        flex-direction: column;
+      }
+    }
+  </style>
+
+  <BaseHead title={title} description={description} permalink={base} />
 
   <body>
-    <BlogHeader />
+    <Header />
     <main>
-      <section>{allPosts.map((p) => <BlogPostPreview post={p} />)}</section>
+      <section class="intro">
+        <img src="/static/assets/photo.jpg" />
+        <p>
+          Heresce! My name is Adam Recvlohe (Spotted Arrow). I am a citizen of
+          Tvlvhase Wvkokaye Tribal Town, Muscogee Nation, United States, Canada,
+          and son of Nokosvlke. I am an advocate for <a
+            rel="noopener noreferrer"
+            href="https://nativesintech.org">Natives in Tech</a
+          >, a group of Native technologists cultivating a tech ecosystem for
+          the next 7 generations. I am working to keep Muscogee and Yuchi living
+          languages.
+        </p>
+      </section>
+      <section>
+        <ul style="list-style: none; padding-left: 0;">
+          <li>
+            <h2>💻 Find Me On</h2>
+            <ul>
+              <li>
+                <a
+                  rel="me noopener noreferrer"
+                  href="https://mastodon.social/@adamrecvlohe"
+                >
+                  Mastodon</a
+                >
+              </li>
+              <li>
+                <a rel="noopener noreferrer" href="https://github.com/arecvlohe"
+                  >GitHub</a
+                >
+              </li>
+              <li>
+                <a
+                  rel="noopener noreferrer"
+                  href="https://matrix.to/#/@adamrecvlohe:matrix.org">Matrix</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li>
+            <h2>🌎 Origins</h2>
+            <p>
+              I was born and raised in St. Petersburg, FL. In my neighborhood, I
+              spent time going to my friends' houses and playing football and
+              other sports in the street. Growing up, I always knew I was Native
+              but I didn't learn or know anything about it. After I graduated
+              High School I went to college at the University of Florida. It was
+              there I decided to try to reconnect. I started going out to
+              Oklahoma during the summers when I wasn't in classes. I met
+              relatives on my Yuchi side and made friends with those on my
+              Mvskoke side. I began participating in ceremony. After college, I
+              moved to Oklahoma and went through several jobs: Yuchi Language
+              Instructor, Mvskoke Food Soveriengty Community Outreach
+              Coordinator, Glenpool High School Mvskoke Studies Teacher, Yuchi
+              Tribe of Indians Admin Assistant. Things weren't working out and I
+              was trying to figure myself out too. I moved back to St.
+              Petersburg, FL and got a few more jobs in education. I wasn't
+              happy with my prospects. I started to learn technology through
+              FreeCodeCamp. In a few months I had a job. I knew around that time
+              I wanted to move back to Oklahoma, just needed to find a remote
+              job. I found one and my way back to Oklahoma where I currently
+              reside in Tulsa.
+            </p>
+          </li>
+          <li>
+            <h2>📝 Writing</h2>
+            <p>
+              I sometimes like to <a rel="noopener noreferrer" href="/posts"
+                >write my thoughts down</a
+              > or
+              <a rel="noopener noreferrer" href="/tutorials"
+                >learn a new technology</a
+              >. I hope you find them helpful. They are a mix of fun and
+              seriousness.
+            </p>
+          </li>
+          <li>
+            <h2>✍️ Recent Posts</h2>
+            <ul>
+              {
+                allPosts.slice(0, 4).map((p) => (
+                  <li>
+                    <a rel="noopener noreferrer" href={p.url}>
+                      {p.frontmatter.title}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </li>
+        </ul>
+      </section>
     </main>
+    <Footer />
   </body>
 </html>

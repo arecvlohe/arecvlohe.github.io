@@ -7,10 +7,11 @@ export interface Frontmatter {
   layout: string;
 }
 
-export interface PostPreview {
+export interface ArticlePreview {
   post: MarkdownInstance<Frontmatter>;
 }
 
-export type Post = MarkdownInstance<Frontmatter>;
+export type Markdown = MarkdownInstance<Frontmatter>;
 
-export type BlogPost = Pick<Post["frontmatter"], "title" | "publishDate">;
+export type Article = Pick<Markdown["frontmatter"], "title" | "publishDate"> &
+  Pick<Markdown, "url">;

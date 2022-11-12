@@ -1,0 +1,56 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import { title, description, base } from "../../utils/const";
+import Footer from "../components/Footer.astro";
+---
+
+<style>
+  h1 {
+    margin-bottom: 20px;
+  }
+</style>
+
+<BaseHead title={title} description={description} permalink={base} />
+
+<body>
+  <Header />
+  <main>
+    <h1>PGP Keys</h1>
+    <p>
+      <a href="/static/assets/adamrecvlohe.asc">Public Key File</a>
+    </p>
+    <pre>-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+mQENBFq87JsBCADKjOLMh1dP1ZwQ0hwOwB20V89YD6DlVMlZo9SgmiAJjlBYhAhx
+8BkWeLpW9/fmqNGGdtnArbfPxNiVXTjSq05UUmMLpfpoQmSVoxTUlpvjErkwXshs
+WvfY5E47ypAGaohGpnsKqs9nSgoK4pA7pQD4MHOEG6OEqrLRzVjAM5zxA/MznGej
+mrTT7GGyIxTnVXaD/tTFnzWM0OwzLfH0E6/Dg8iU0p1mkA6WV/G8w7PsuoB8lUYl
+f/iGS+NdLie/cJM1giKaRm6pvLn63G3p/6pQFaLtesQ8/5EA3jt+TxaJJxmJJOC7
+3+jEsxJHd4tKEDJcK8p5ZJ8ho+YL39SIv/GJABEBAAG0KWFkYW0ucmVjdmxvaGVA
+cG0ubWUgPGFkYW0ucmVjdmxvaGVAcG0ubWU+iQE/BBABCAApBQJavOybBgsJBwgD
+AgkQhrI1PFK4DcsEFQgKAgMWAgECGQECGwMCHgEACgkQhrI1PFK4DcsH9Af/YjFV
+cpMxG2J1jF6AZVMTYBkzLCaGfk4TsXX118AF89jRXf1cpFdpOkZ2HM/BCzO+AsMd
+AZ6hqslbFcJMb5CfX5pvtwxGy9hFEovGjZY24KX5q72gFVAvAj9aUOimNKSjJmso
+ZaAWvalRfKG2oqgq1L7AfgTriTp+xRTVpDBw6pSd9L9W1jVMeKzpYcbgcNkYF0K4
+PTmZioN33ZKWkYOLYKPzzloA8CFl1jJ68hYSI6UpmXHpz7XRr1AtWPLLRlORlgbl
+nH1BrrYNkVq+LmcaKQadabHKbF4y+j4aGgc/Plj6TLu3Z2tlPh6THvN57PlAsShY
+LX5x9dyi/7Qaf0nrnLkBDQRavOybAQgAt2SaXlfWUnrnp1/x0nazNmkT2VWCaMyb
+9I1zY82GP2VPe6g4r3QRxktz8gY20DQQGTlkk2MUU65I0Zrat0h8QR0c+ohyFYZm
+I1BsxdYlesNqafJDMEyVcnkxnOfmLOkYDg7Fzbh8v63b+kZWSeaPvw0vdgt1t7W0
+tSbZ5txkYkoMPg49QpA645kYkg+xgXy2MUhj2Le03ALXkNBBBiLAuoHa+Rpn7aTm
+CdlM/O/jKK4W7JaPY85jv3U5Wh03QBLED9Fynq2pD3IxxScr1KMJQ0sIjH/wxNl1
+M1zKnRmgv5TkWqO0NENPuuHE7SWlhT98CPbDc7XVRNDSqcVN1a2UkQARAQABiQEp
+BBgBCAATBQJavOycCRCGsjU8UrgNywIbDAAKCRCGsjU8UrgNy2QSCAC2QyxlUvRY
+a4bqnQFyzM4Fnda5bh4t2YEgsfmUO6SoJgUcZSMqRrt/GSX6MfkF8FIHWvloVLo3
+CSOF3n2equKzTZKE2Umoyw/Kby988rx50xcFhmGJI9FW2rUAhZf5r2VHzGwPhKt9
+k0LSZJfmMNvA9KAhjwLmK8yuSSdL19KlTb25+MBSx6RSyk/1N0r0o6BVM/1Wytut
+kpgI+yYdj0Yk49tMbNA9aQt0Xt8LtDGPhWe8YUF1tP2W1psvGp/oxH4RsQfEz6/X
+mMlMCYrnywL8o6PV/a5GLPofl+dERjxMvDRk1DCoPC9ySHAhn72SRSQLM9BdNNM6
+dauPfKWc8JnN
+=krgg
+
+-----END PGP PUBLIC KEY BLOCK-----</pre>
+  </main>
+  <Footer />
+</body>
