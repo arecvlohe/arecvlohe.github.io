@@ -12,7 +12,7 @@ The other day I wrote some encoders/decoders in Reason and would like to documen
 In JavaScript, JSON works just fine in the browser environment. For example, when you make a fetch call, you can use the `Fetch` API's `Body.json` function to convert a completed response stream into JSON. You can copy/pasta the code below into your browser console.
 
 ```javascript
-fetch("[https://aws.random.cat/meow](https://aws.random.cat/meow)")
+fetch("https://aws.random.cat/meow")
   .then((response) => response.json())
   .then((data) => {
     console.log("file:", data.file); // This is fine!
