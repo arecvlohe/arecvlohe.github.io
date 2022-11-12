@@ -5,7 +5,7 @@ import BlogPostPreview from "../components/BlogPostPreview.astro";
 import type { Frontmatter } from "../../utils/types";
 import { title, description, base } from "../../utils/const";
 
-const allPosts = await Astro.glob<Frontmatter>("./posts/*.md");
+const allPosts = await Astro.glob<Frontmatter>("./posts/*.mdx");
 allPosts.sort(
   (a, b) =>
     new Date(b.frontmatter["publishDate"]).getTime() -

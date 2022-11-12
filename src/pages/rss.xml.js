@@ -5,7 +5,7 @@ const posts = Object.values(postImportResult);
 
 export const get = () =>
   rss({
-    title: "Adam Recvlohe’s Blog",
+    title: "Adam Recvlohe's Blog",
     description: "An archive of Adam's personal blog.",
     site: process.env.BUILD_GITLAB
       ? "https://adamrecvlohe.com"

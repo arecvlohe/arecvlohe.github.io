@@ -1,0 +1,124 @@
+---
+title: "Write React Components in PureScript with Pux"
+description: "React Interop with PureScript and Pux"
+publishDate: "2017-08-28"
+layout: ../../layouts/BlogPost.astro
+---
+
+I am still on the PureScript bend after writing about how you can port over your Elm code into PureScript with Pux. I really enjoyed writing about that topic and it got me thinking about how I can start using PureScript right now. This is a bit optimistic, though. Even with the knowledge I now have of creating React components using Pux, I would still say it's a bit of a stretch to think I could pull in PureScript into a project at work, but a man can dream can't he?! 😂
+
+### Getting Started with React 🚀
+
+To get started create a new React application. You will need webpack, babel, ES2015+, babel-core, babel-loader, and the kitchen sink. No, I will not torture you with creating you own `webpack.config.js`. Instead, to quickly get up and running, use `create-react-app`.
+
+```bash
+npm i -g create-react-app # Install it globally
+create-react-app ps-and-react # cd into some dir and create a dir
+cd ps-and-react && yarn install && yarn start
+```
+
+Once you run the commands above you should see a fully functional application running in your browser at `localhost:3000`.
+
+### Finishing it Off with PureScript and Pux
+
+Inside of the `src` directory create a PureScript project scaffold with `pulp`.
+
+```bash
+mkdir PureScript
+cd PureScript
+pulp init
+```
+
+Once the project is scaffolded out you will just need to install Pux and React.
+
+```bash
+bower install --save purescript-pux purescript-react
+```
+
+Create a file called `Counter.purs` and copy pasta this code which basically mimics Pux's example counter tutorial.
+
+```haskell
+module Counter where
+
+import Prelude hiding (div)
+
+import Control.Monad.Eff (Eff)
+import Pux (CoreEffects, EffModel, start)
+import React (ReactClass)
+import Pux.DOM.Events (onClick)
+import Pux.DOM.HTML (HTML)
+import Pux.Renderer.React (renderToReact)
+import Text.Smolder.HTML (button, div, span)
+import Text.Smolder.Markup (text, (#!))
+
+type State = {
+  count :: Int
+}
+
+data Event = Increment | Decrement
+
+foldp :: ∀ fx. Event -> State -> EffModel State Event fx
+foldp Increment state = { state: state { count = state.count + 1 }, effects: \[\] }
+foldp Decrement state = { state: state { count = state.count - 1 }, effects: \[\] }
+
+view :: State -> HTML Event
+view state =
+  div do
+    button #! onClick (const Increment) $ text "Increment"
+    span $ text (show state.count)
+    button #! onClick (const Decrement) $ text "Decrement"
+
+toReact :: ∀ props fx. State -> Eff (CoreEffects fx) (ReactClass props)
+toReact state = do
+  app <- start
+    { initialState: state
+    , view
+    , foldp
+    , inputs: \[\]
+    }
+
+renderToReact app.markup app.input
+```
+
+You will notice there is one thing that is different here. Here you have a function `toReact` that returns a `ReactClass` given props. Usually this type of setup is reserved for the `main` function. But in this case you want to export this setup in the function itself.
+
+Make sure to compile before moving to the next step.
+
+```bash
+pulp build
+```
+
+Now head on over to `App.js` at the root of the React `src` folder and pull in the `Counter` from PureScript.
+
+```javascript
+import React, { Component } from "react";
+
+import PSCounter from "./PureScript/output/Counter";
+
+class App extends Component {
+  render() {
+    const Counter = PSCounter.toReact({ count: this.props.count })();
+    return (
+      <div className="App">
+        <Counter />
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+Next, pass in the `count` prop to `App` in `index.js`.
+
+```javascript
+ReactDOM.render(<App count={1} />, document.getElementById("root"));
+```
+
+When you run `yarn start` again you should see a fully functional React component made with PureScript and Pux!
+
+If you haven't done so already, I recommend looking at the book [PureScript by Example](https://leanpub.com/purescript/read) as well as the [PureScript Documentation](https://github.com/purescript/documentation) to get some more background. Also, check out all the library document on [Pursuit](https://pursuit.purescript.org/). If you have any questions check out the [Slack](https://fpchat-invite.herokuapp.com/) or [Gitter](https://gitter.im/purescript/purescript) channels. Until next time, keep hacking!
+
+You can find the above code in this repo below:
+
+- [https://github.com/arecvlohe/purescript-in-react-example](https://github.com/arecvlohe/purescript-in-react-example)

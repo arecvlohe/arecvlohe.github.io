@@ -1,0 +1,367 @@
+---
+title: "JavaScript Functions and HTML5 Canvas"
+publishDate: "2016-03-25"
+layout: ../../layouts/BlogPost.astro
+---
+
+#### Before the Emoji, some background…
+
+I started working in the web development field about 6 months ago after spending most of my career in education. The transition has been great and I am very thankful for the opportunity to work on real-world web applications.
+
+I very happy working in the industry but from my perspective, there is still plenty to learn. Therefore, from the day I started as a JavaScript Developer I have continued to spend time studying each evening to level up my skills.
+
+Along with studying, I recently began teaching an 'Intro to JavaScript Course' to Tampa Bay teenagers (at The Iron Yard in St.Pete, Florida). This has been a great experience for many reasons. First, it has challenged me to learn more about the intricacies and nuances of the JavaScript language.
+
+Second, I have gotten a chance to teach again, which is one of my passions. And third, I got to reexamine how I learned to program and how that differs drastically from beginners who aren't even sure if they like coding and in some cases couldn't care less about what I have to say.
+
+You see, the curriculum that I originally thought would be great for this class was JavaScript in three ways: JS in the DOM, JS on the server, and functional JS programming.
+
+After the first day, and a good talking to from my Teaching Assistants, I realized I was totally off base. These topics may interest me, but certainly don't entertain a youth who just wants to play add-sponsored games in the browser. I totally reevaluated what I would teach, and in the process began to have fun!
+
+Below is the first lesson I gave to the students where I start out discussing functions and end up creating a smiley face emoji. Enjoy!
+
+If you want to follow along as we talk about functions, open up a browser and go to [repl.it](http://repl.it) and under popular languages choose NodeJS. A REPL (Read Evaluate Print Loop) should open up for you and you can follow along with the code.
+
+### What are functions?
+
+To understand how we will use HTML5 canvas we have to understand a little bit about functions.
+
+"Functions are self-contained modules of code that accomplish a specific task. Functions usually "take in" data, process it, and "return" a result. Once a function is written, it can be used over and over again."
+
+Now let me give you a few examples of the type of functions we will be dealing with.
+
+### Function Types
+
+#### Regular Ole' Function
+
+We declare a basic function using the JavaScript keyword _function_.
+
+```javascript
+function sayHelloTo(name) {
+  return "Hello " + name;
+}
+
+sayHelloTo("Adam");
+```
+
+This function takes one parameter called _name_. It is a variable that is passed to the _sayHelloTo_ function. Therefore, when the program executes it will pass in what is provided. In my case it is _Adam_, so in the console you will see _Hello Adam_.
+
+#### Constructor Pattern
+
+We can also create a function using the constructor pattern.
+
+```javascript
+function Person(name) {
+  this.name = name;
+  this.sayHello = function () {
+    return "Hello, my name is " + this.name;
+  };
+}
+
+var me = new Person("Adam");
+me.sayHello();
+```
+
+The Javascript keyword _this_ refers to the function. What that means is when we pass in a variable like _name_, just as we did before, we can assign it to the function and any instance of that function. To create an instance we use the JavaScript keyword _new_. When this new instance of the function is created it also has as its properties a _this.name_ value and a _this.sayHello_ method. When we created the instance of the method we passed in our name: _var me = new Person('Adam')_. When you look at the _sayHello_ method, it uses that _name_, that is now part of that instance, to create a sentence. If you execute this code in the NodeJS REPL on repl.it you should see it output _Hello, my name is Adam_.
+
+Now that we got the boring stuff out the way, let's draw on some canvas. The way I taught this next section was using codepen.io. What I suggest is if you want to follow along, go to codepen.io, create an account, then create a new pen and you should be set. Be sure to activate you account if you want to save your work.
+
+### Let's Draw on Canvas
+
+First, we need to create the canvas to be able to draw on it. In your HTML create a canvas tag.
+
+```html
+<canvas id=""canvas""></canvas>
+```
+
+Now it's JavaScript from here on!
+
+We need to grab our canvas element from the DOM and declare it as a variable. This will allow us to set its context. We aren't that skilled with '3d' yet, so we will stick with a '2d' context.
+
+```javascript
+var canvas = document.getElementById("canvas");
+var context = canvas.getContext("2d");
+```
+
+We can also give the canvas its _width_ and _height_ properties.
+
+```javascript
+var canvas = document.getElementById("canvas");
+canvas.width = 800;
+canvas.height = 800;
+var context = canvas.getContext("2d");
+```
+
+I want to point out here that the _canvas_ is acting exactly like an object. It has properties and methods just like we saw from our constructor function above. Slightly different in how we declared it but functionally it operates very similar. So you see that it has _height_ and _width_ properties as well as a _getContext_ method.
+
+Now let's put all of that into a function so that you can get somewhat familiar with functional programming.
+
+```javascript
+function draw() {
+  var canvas = document.getElementById("canvas");
+  canvas.width = 800;
+  canvas.height = 800;
+  var context = canvas.getContext("2d");
+}
+```
+
+Nothing will show up on the screen just yet, we will use the _fillRect_ method to help us with that.
+
+```javascript
+function draw() {
+  var canvas = document.getElementById("canvas");
+  canvas.width = 800;
+  canvas.height = 800;
+  var context = canvas.getContext("2d");
+  context.fillRect(10, 10, 100, 200);
+}
+```
+
+If you haven't guessed it, the _fillRect_ method takes four parameters: x coordinate, y coordinate, width, and height. On canvas, the x-axis starts at 0 on the left and to infinity going right. The y-axis starts at 0 from the top and to infinity going down. So when we start at (10, 10) we are placing the imaginary cursor on point (x = 10, y = 10) and going 100 to the right and 200 down from that point.
+
+As you may have noticed, it still hasn't been added to the page yet. Add a simple _window.onload_ function and have it equal our finished draw function.
+
+```javascript
+function draw() {
+  var canvas = document.getElementById("canvas");
+  canvas.width = 800;
+  canvas.height = 800;
+  var context = canvas.getContext("2d");
+  context.fillRect(10, 10, 100, 200);
+}
+
+window.onload = draw;
+```
+
+You might be wondering why the draw function was executed even though we didn't execute it with parens _( )._ That's because _window.onload_ is a function. That's the same as saying:
+
+```javascript
+window.onload = function () {
+  // Do stuff here like what we put in draw();
+};
+```
+
+That means _window.onload_ executes a function when the window is loaded, so what ends up happening is _window.onload_ with its magical powers puts invisible parens around draw, thus executing it. A lot of magic is involved. But now you know the hocus pocus.
+
+Let's add some color for fun! Here we use the _fillStyle_ method for that. It needs to come before _fillRect_ or it won't show.
+
+```javascript
+function draw() {
+  var canvas = document.getElementById("canvas");
+  canvas.width = 800;
+  canvas.height = 800;
+  var context = canvas.getContext("2d");
+  context.fillStyle = "blue";
+  context.fillRect(10, 10, 100, 200);
+}
+
+window.onload = draw;
+```
+
+Here is a sample of that on codepen:
+
+### Let's draw some other shapes!
+
+That was pretty simple. Let's draw some other shapes now. Just as we did before we will create a function and instantiate our canvas with a _width_, _height_, and _context_.
+
+```javascript
+function triangle() {
+  var canvas = document.getElementById("canvas");
+  var context = canvas.getContext("2d");
+  canvas.width = 400;
+  canvas.height = 400;
+}
+```
+
+So we don't forget, change the _onload_ function to take the triangle function now.
+
+```javascript
+window.onload = triangle;
+```
+
+Now that we have our canvas, let's start to draw lines on the canvas to create our triangle.
+
+```javascript
+function triangle() {
+  var canvas = document.getElementById("canvas");
+  var context = canvas.getContext("2d");
+  canvas.width = 400;
+  canvas.height = 400;
+
+  context.beginPath();
+  context.moveTo(75, 50);
+}
+```
+
+Here we are starting our path and moving the cursor to point (x = 75, y = 50).
+
+Now let's go to town drawing some lines.
+
+```javascript
+function triangle() {
+  var canvas = document.getElementById("canvas");
+  var context = canvas.getContext("2d");
+  canvas.width = 400;
+  canvas.height = 400;
+
+  context.beginPath();
+  context.moveTo(75, 50);
+  context.lineTo(100, 75);
+  context.lineTo(100, 25);
+  context.stroke();
+}
+```
+
+This created the first two lines that we needed. To finish it off we go back to where we started.
+
+```javascript
+function triangle() {
+  var canvas = document.getElementById("canvas");
+  var context = canvas.getContext("2d");
+  canvas.width = 400;
+  canvas.height = 400;
+
+  context.beginPath();
+  context.moveTo(75, 50);
+  context.lineTo(100, 75);
+  context.lineTo(100, 25);
+  context.lineTo(75, 50); // Back to where we started
+  context.stroke();
+}
+```
+
+To fill in the triangle we can use the fill method.
+
+```javascript
+function triangle() {
+  var canvas = document.getElementById("canvas");
+  var context = canvas.getContext("2d");
+  canvas.width = 400;
+  canvas.height = 400;
+
+  context.beginPath();
+  context.moveTo(75, 50);
+  context.lineTo(100, 75);
+  context.lineTo(100, 25);
+  context.lineTo(75, 50);
+  context.stroke();
+  context.fill();
+}
+```
+
+Here is what that looks like in the wild:
+
+We can do the same thing now and easily create a giant pyramid.
+
+```javascript
+function pyramid() {
+  var canvas = document.getElementById("canvas");
+  var context = canvas.getContext("2d");
+  canvas.width = 400;
+  canvas.height = 400;
+}
+```
+
+Remember to change the _onload_ function to pyramid.
+
+```javascript
+window.onload = pyramid;
+```
+
+Let's now move the cursor to where we want it to be.
+
+```javascript
+function pyramid() {
+  var canvas = document.getElementById("canvas");
+  var context = canvas.getContext("2d");
+  canvas.width = 400;
+  canvas.height = 400;
+
+  context.beginPath();
+  context.moveTo(200, 0);
+}
+```
+
+I want my pyramid to take up as much space as possible, so I am starting out at the very top of my canvas and exactly in the middle of the x-axis.
+
+Now we can begin drawing our shape and filling it in.
+
+```javascript
+context.lineTo(0, 400);
+context.lineTo(400, 400);
+context.lineTo(200, 0);
+context.stroke();
+context.fillStyle = "orange";
+context.fill();
+```
+
+Done! You should now have a nice orange pyramid on your screen because of course you are part the Illuminati. Don't lie!
+
+Here is the finished product that you can play with:
+
+### Emojis!
+
+Now for what you came for: Emojis!
+
+Just as we did before we set up our canvas.
+
+```javascript
+function smileyFaceEmoji() {
+  var canvas = document.getElementById("canvas");
+  var context = canvas.getContext("2d");
+  canvas.width = 500;
+  canvas.height = 500;
+}
+```
+
+Remember to change _onload_ to this function.
+
+```javascript
+window.onload = smileyFaceEmoji;
+```
+
+Now let's draw our face.
+
+```javascript
+context.beginPath();
+context.arc(250, 250, 100,0,Math.PI\*2, true);
+context.stroke();
+```
+
+I kind of switched things up here using the _arc_ function. The _arc_ function takes quite a few arguments: x coordinate, y coordinate, radius, starting point in radians, ending point in radians, and whether it is drawn clockwise (we said true). As opposed to how a rectangle is made starting at one point and moving to the next, the point (x = 250, y = 250) is actually the middle of the circle and then extending out 100 pixels.
+
+Cool huh?! Next comes the eyes.
+
+```javascript
+context.moveTo(235, 225);
+context.arc(225, 225, 10, 0, Math.PI\*2, true);
+context.moveTo(285, 225);
+context.arc(275, 225, 10, 0, Math.PI\*2, true);
+context.stroke();
+```
+
+Then the mouth.
+
+```javascript
+context.moveTo(250, 275);
+context.arc(250, 275, 50, 0, Math.PI, false);
+// Why is this last value false? Why did you just use Math.PI?
+context.moveTo(250, 275);
+context.lineTo(200, 275);
+context.stroke();
+```
+
+Here is what the finished product looks like:
+
+You did it, you just made a smiley face emoji! Gosh darn it I am proud of you! If you want to take your canvas skills to the next level try out one of the exercises below.
+
+### Exercises
+
+1.  Draw a poop emoji.
+2.  Draw your initials in cursive.
+
+### In summary
+
+In this lesson you learned about functions: how to create functions, execute functions, and use functions to build small programs that draw lines on a canvas. We learned that functions take many forms and can be given properties and methods. I hope you enjoyed this lesson as it was my intention to show you the power of functions without bogging you down with jargon, instead using visual stimuli to bring them to life!
+
+If you want to see all the code for this lesson go to my codepen [here](http://codepen.io/arecvlohe/pen/QNGjBr/).

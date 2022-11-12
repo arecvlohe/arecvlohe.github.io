@@ -1,0 +1,468 @@
+---
+title: "Let's Build a Simon Game in ReasonReact Pt. 6 Tidying it Up"
+description: "Making it Look Good"
+publishDate: "2018-10-19"
+layout: ../../layouts/BlogPost.astro
+---
+
+In this article, you are going to tidy up the application and make it behave in a more optimal way. At least from my perspective. Here is a list of the things that are going to be improved.
+
+- Add a header
+- Update global font family to make fonts look nicer
+- Add a Reset button to reset the game back to `level` 1
+- Add a strict checkbox to set the strictness level. When strict is checked then whenever a user clicks on the wrong button in the sequence they are sent back to `level` 1
+- Disabling the `Start`, `Reset`, and `Box` buttons when the game is playing back a sequence. Boxes are `div`'s now but will be converted to `button`'s
+- Add an alert for when the user wins the game
+- Update some CSS and styles of course
+
+### Header 💂‍♀️
+
+I think adding a header makes the app feel more legitimate. The header I usually include for this series has the title of the game and the stack used to create it: Simon Game in ReasonReact.
+
+```javascript
+/* More stuff */
+<div className=Styles.container>
+  <h1> "Simon Game in ReasonReact"->ReasonReact.string </h1>
+/* More stuff */
+```
+
+I learned in the process of making this series that you can also use the [fast pipe](https://reasonml.github.io/docs/en/fast-pipe#docsNav) operator for creating strings in ReasonReact. The one benefit to using this is you don't have to surround the converted string in parenthesis or curly braces as you would with the pipe operator. I don't know why this is the case so don't ask me that 😅.
+
+### Fonts 📄
+
+I don't really like the browser default for the `font-family`. Let's change this to how many modern apps set the `font-family` which is by using system fonts. Thankfully, `bs-css` has a `global` function which allows us to set defaults on tags.
+
+```javascript
+open Css;
+  global(
+    "body",
+    [
+      fontFamily(
+        "-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen-Sans,Ubuntu,Cantarell,\"Helvetica Neue\",sans-serif",
+      ),
+    ],
+  );
+```
+
+This `font-family` is what Medium uses so I think it's fitting here. Make sure you to escape the internal font families which have quotes around them otherwise it won't compile.
+
+### Reset ⏪
+
+The user may want to reset the game. Let's add an action called `Reset` which takes no arguments and resets the `level` back to 1 and also clears the user's `input`.
+
+```javascript
+type action =
+  | SetSequence(sequence)
+  | PlaySequence
+  | PlaySound(Types.colors)
+  | ResetColor
+  | Input(Types.colors)
+  | CheckInput
+  | Reset; /* This is new */
+```
+
+Then add the action to the reducer.
+
+```javascript
+| Reset => ReasonReact.Update({...state, input: [], level: 1})
+```
+
+Next, add the button to the markup section.
+
+```javascript
+<div>
+  <button onClick={(_e) => self.send(PlaySequence)}>
+    {"Start" |> ReasonReact.string}
+  </button>
+  <button onClick={(_e) => self.send(Reset)}>
+    "Reset"->ReasonReact.string
+  </button>
+</div>
+```
+
+Reset is now ready to go!
+
+### Strict 😤
+
+The original Simon Game comes with a strictness option so that whenever the user clicks on the wrong box they are sent back to `level` 1. Let's also do that here. First, create a state field called `isStrict` which will be a boolean. Afterward, create an action which sets the strictness. It will not take an argument. Instead, it will take the previous state and have it be the opposite. Call this action `SetStrictness`.
+
+Now update state.
+
+```javascript
+type state = {
+  sequence,
+  level: int,
+  active: option(Types.colors),
+  input: list(Types.colors),
+  isStrict: bool, /* This is new */
+};
+```
+
+Then add the action type.
+
+```javascript
+type action =
+  | SetSequence(sequence)
+  | PlaySequence
+  | PlaySound(Types.colors)
+  | ResetColor
+  | Input(Types.colors)
+  | CheckInput
+  | Reset
+  | SetStrictness; /* This is new */
+```
+
+Now handle the action in the reducer.
+
+```javascript
+| SetStrictness =>
+    ReasonReact.Update({...state, isStrict: !state.isStrict})
+```
+
+Then add a checkbox, with some other stuff, to the markup with an `onChange` handler.
+
+```javascript
+<div>
+  <span> "Strict"->ReasonReact.string </span>
+  <input
+    type_="checkbox"
+    checked=isStrict
+    onChange={_e => self.send(SetStrictness)}
+  />
+</div>
+```
+
+Now that a strictness level is set you need to modify how you handle user input. When strictness is on and the user selects the wrong `box` they are sent back to `level` 1 and the `input` is cleared.
+
+```javascript
+let {level, input, sequence, isStrict} = state;
+
+/* More stuff here but not included */
+
+switch (
+        currentUserColor === currentSequenceColor,
+        inputLength === level,
+        isStrict,
+      ) {
+      | (false, _, false) =>
+        ReasonReact.UpdateWithSideEffects(
+          {...state, input: []},
+          (
+            self => {
+              Sounds.error##play();
+              self.send(PlaySequence);
+            }
+          ),
+        )
+      | (false, _, true) =>
+        ReasonReact.UpdateWithSideEffects(
+          {...state, input: [], level: 1},
+          (
+            self => {
+              Sounds.error##play();
+              self.send(PlaySequence);
+            }
+          ),
+        )
+      | (true, false, _) =>
+        ReasonReact.SideEffects(
+          (self => self.send(PlaySound(currentUserColor))),
+        )
+      | (true, true, _) =>
+        ReasonReact.UpdateWithSideEffects(
+          {...state, input: [], level: state.level + 1},
+          (
+            self => {
+              self.send(PlaySound(currentUserColor));
+              self.send(PlaySequence);
+            }
+          ),
+        )
+```
+
+Notice you still have to handle the case for the other patterns even though it doesn't matter to them. That's why I just pass an underscore. With that I think we are done here.
+
+### Disabling the Buttons 🚫
+
+It kind of messes up the gameplay when a user can click buttons whenever they want. For example, when the game is playing back a sequence and it's not finished a user could click a box and that is not good. It's not that it's bad, but it's not how the user should play the game.
+
+First, add a state field called `isPlaying`. Then add an action called `SetPlaying` which takes no arguments. Then in the reducer, specifically in the `PlaySequence` action, update `isPlaying` to true. Then, only after the entire sequence is done, set `isPlaying` to false.
+
+Updating state:
+
+```javascript
+type state = {
+  sequence,
+  level: int,
+  active: option(Types.colors),
+  input: list(Types.colors),
+  isStrict: bool,
+  isPlaying: bool, /* This is new */
+};
+```
+
+Updating actions:
+
+```javascript
+type action =
+  | SetSequence(sequence)
+  | PlaySequence
+  | PlaySound(Types.colors)
+  | ResetColor
+  | Input(Types.colors)
+  | CheckInput
+  | Reset
+  | SetStrictness
+  | SetPlaying; /* This is new */
+```
+
+Updating the reducer with an additional action:
+
+```javascript
+| SetPlaying =>
+    ReasonReact.Update({...state, isPlaying: !state.isPlaying})
+```
+
+Updating `PlaySequence` to update state when the sequence starts and ends:
+
+```javascript
+ReasonReact.UpdateWithSideEffects(
+        {...state, isPlaying: true}, /* This is new */
+        (
+          self => {
+            Belt.List.forEachWithIndex(
+              l,
+              (index, color) => {
+                let _id =
+                  Js.Global.setTimeout(
+                    () => self.send(PlaySound(color)),
+                    (index + 1) * 1000,
+                  );
+                ();
+              },
+            );
+
+            /* This here below is new */
+            let _id =
+              Js.Global.setTimeout(
+                () => self.send(SetPlaying),
+                (state.level * 1000) + 300,
+              );
+            ();
+          }
+        ),
+      );
+```
+
+Now update the buttons to be disabled whenever the sequence is playing.
+
+```javascript
+<div>
+  <button onClick={_e => self.send(PlaySequence)} disabled=isPlaying>
+    {"Start" |> ReasonReact.string}
+  </button>
+  <button onClick={_e => self.send(Reset)} disabled=isPlaying>
+    "Reset"->ReasonReact.string
+  </button>
+</div>
+```
+
+> The `isPlaying` value is destructured above: `let {level, active, isStrict, isPlaying} = self.state;`
+
+Also, update boxes to be buttons as well.
+
+```javascript
+<button
+  type_="button"
+  className={Styles.box(~bgColor=Green, ~active)}
+  onClick={_e => self.send(Input(Green))}
+  disabled=isPlaying
+/>
+<button
+  type_="button"
+  className={Styles.box(~bgColor=Red, ~active)}
+  onClick={_e => self.send(Input(Red))}
+  disabled=isPlaying
+/>
+<button
+  type_="button"
+  className={Styles.box(~bgColor=Blue, ~active)}
+  onClick={_e => self.send(Input(Blue))}
+  disabled=isPlaying
+/>
+<button
+  type_="button"
+  className={Styles.box(~bgColor=Yellow, ~active)}
+  onClick={_e => self.send(Input(Yellow))}
+  disabled=isPlaying
+/>
+```
+
+I like to declare a `button` as a `button` type just to be more semantic. This does add some funky looking borders to your boxes now though. Just remove all borders from the boxes to clean this up.
+
+```javascript
+let baseStyle = [
+  minHeight(px(250)),
+  minWidth(`px(250)),
+  border(`px(0), `none, `transparent),
+];
+```
+
+That should be all. If you now play around with the game while a sequence is going on you shouldn't be able to do a darn thing!
+
+### Alert User After Win 🚨
+
+To notify the user they have won you will use a simple alert. You could do this by using plain ole' JS inside of Reason but I think it's better to use a type-safe library. Here you will use the current web api library that's ported over the DOM to Reason.
+
+[**reasonml-community/bs-webapi-incubator**
+\_BuckleScript bindings to the DOM and other Web APIs - reasonml-community/bs-webapi-incubator_github.com](https://github.com/reasonml-community/bs-webapi-incubator "https://github.com/reasonml-community/bs-webapi-incubator")[](https://github.com/reasonml-community/bs-webapi-incubator)
+
+After adding `bs-webapi` to the project open the module up in the `App.re` file.
+
+```javascript
+/* Top of App.re file  */
+open Webapi.Dom;
+```
+
+The way this works is when the user has reached the end of the game and has answered all the questions correctly, the alert comes on, and a new game is created. A new game means making an entirely new `sequence`, clearing out any user `input`, and setting the `level` back to 1. This will require updating the logic inside of the `CheckInput` action. You will add an additional pattern to check for when the user has reached the end. Before doing this though, pull out the function in `onMount` that creates the random sequence into a function outside the component so it can be passed around.
+
+```javascript
+let makeSequence = (~len=5, ()) =>
+  Belt.List.makeBy(
+    len,
+    _i => {
+      open Types;
+      let num = Js.Math.floor(Js.Math.random() *. 4.0 +. 1.0);
+      switch (num) {
+      | 1 => Green
+      | 2 => Red
+      | 3 => Blue
+      | 4 => Yellow
+      | _ => Green
+      };
+    },
+  );
+```
+
+You might notice something peculiar. As you have seen in a previous post, the `~` signifies a [labeled argument](https://reasonml.github.io/docs/en/function#labeled-arguments). But what you haven't seen is the additional `()` that comes after the labeled argument. The reason there are extra parenthesis is because I gave a default value of `5` to the `len` argument. That means the labeled argument is optional. And because it's optional, you have to indicate to the compiler when you want to execute the function. This means, when you pass in an argument, `makeSequence(~len=20)`, the function has all it's arguments and can execute. And when you don't pass in an argument, `makeSequence(())` which converts to `makeSequence()`, it accepts the default value passed in and executes. This is quite different from the JS side of things where function arguments are given defaults and can be called like any other function. A little strange but such is the nature of labeled arguments. Now you can replace the function in `onMount`.
+
+```javascript
+let list = makeSequence();
+self.send(SetSequence(list));
+();
+```
+
+Next, let's update the logic inside of the `CheckInput` action. Like I said before, you need to check and see if the user is at the end. You can find this out by checking to see if the user input length is the same length as the sequence.
+
+```javascript
+let isEnd = inputLength === Belt.List.length(sequence);
+```
+
+Next, update the switch statement to check for this condition as well.
+
+```javascript
+switch (
+        currentUserColor === currentSequenceColor,
+        inputLength === level,
+        isStrict,
+        isEnd,
+      )
+```
+
+Now you need to walk through each pattern and add this match.
+
+```javascript
+{
+      | (false, _, false, _) =>
+        ReasonReact.UpdateWithSideEffects(
+          {...state, input: []},
+          (
+            self => {
+              Sounds.error##play();
+              self.send(PlaySequence);
+            }
+          ),
+        )
+      | (false, _, true, _) =>
+        ReasonReact.UpdateWithSideEffects(
+          {...state, input: [], level: 1},
+          (
+            self => {
+              Sounds.error##play();
+              self.send(PlaySequence);
+            }
+          ),
+        )
+      | (true, false, _, false) =>
+        ReasonReact.SideEffects(
+          (self => self.send(PlaySound(currentUserColor))),
+        )
+      | (true, true, _, false) =>
+        ReasonReact.UpdateWithSideEffects(
+          {...state, input: [], level: state.level + 1},
+          (
+            self => {
+              self.send(PlaySound(currentUserColor));
+              self.send(PlaySequence);
+            }
+          ),
+        )
+      | (true, _, _, true) =>
+        let list = makeSequence();
+        ReasonReact.UpdateWithSideEffects(
+          {...state, input: [], level: 1, sequence: list}
+          (
+            self => {
+              self.send(PlaySound(currentUserColor));
+              let _id =
+                Js.Global.setTimeout(
+                  () => Window.alert("You won!", window),
+                  400,
+                );
+              ();
+            }
+          ),
+        )
+      };
+```
+
+For the first two patterns, you don't really care if you reached the end. This is because the answer is wrong, which has its own path to follow. When you get to the last three, that's where the pattern is important. You handle the situation for when the user gets a correct answer, goes to another level, and for when the user has reached the last level.
+
+Try it out! You should win the game pretty easily 😄.
+
+### Styles 💅
+
+There are a few styles I want to update to make the app a little more presentable. Currently, the strict checkbox and buttons are not aligned. Let's fix that. Use `textAlign` to `center` the content inside the `controls` styles.
+
+```javascript
+let controls = style([marginTop(`px(10)), textAlign(`center)]);
+```
+
+Next, give a little spacing between the buttons, Start and Reset, and the level. To do this wrap, the buttons in a `buttons` `className`.
+
+```javascript
+<div className=Styles.buttons>
+  <button onClick={_e => self.send(PlaySequence)} disabled=isPlaying>
+    {"Start" |> ReasonReact.string}
+  </button>
+  <button onClick={_e => self.send(Reset)} disabled=isPlaying>
+    "Reset"->ReasonReact.string
+  </button>
+</div>
+```
+
+These styles don't exist yet so create them. When you do, add a `marginTop` of 10 pixels.
+
+```javascript
+let buttons = style([marginTop(`px(10))]);
+```
+
+Hmm. I think it's starting to look good now. I am satisfied. If you're not then keep working on it!
+
+That's all folks 🐷!
+
+### Summary 📝
+
+In this lesson, you learned how to clean up the app and make it bit more presentable. What a series it's been. Six freaking parts. It was fun though. Thanks for tagging along and I hope you are now not only more competent using Reason/ReasonReact but also excited to use it too. That's it, get outta here!
+
+- [React Reason Simon Game Part 6](https://github.com/arecvlohe/reason-react-simon-game/tree/part_6)

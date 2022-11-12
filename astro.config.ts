@@ -1,12 +1,14 @@
 import { defineConfig } from "astro/config";
 import preact from "@astrojs/preact";
 import sitemap from "@astrojs/sitemap";
+import mdx from "@astrojs/mdx";
 import { h } from "hastscript";
 
 /**
  * Anchor inspiration from:
  * https://github.com/withastro/docs/blob/7ca2ff41859bf82e050daa2d72d0e443acb195d9/astro.config.ts
  */
+
 const AnchorLinkIcon = h(
   "svg",
   {
@@ -23,8 +25,9 @@ const AnchorLinkIcon = h(
   })
 );
 
+// https://astro.build/config
 export default defineConfig({
-  integrations: [preact(), sitemap()],
+  integrations: [preact(), sitemap(), mdx()],
   site: process.env.BUILD_GITLAB
     ? "https://adamrecvlohe.com"
     : "https://arecvlohe.github.io",
