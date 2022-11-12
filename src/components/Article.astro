@@ -6,12 +6,20 @@ type Props = Article;
 const { publishDate, title, url }: Props = Astro.props;
 ---
 
+<style>
+  .link-wrapper {
+    padding-bottom: 20px;
+  }
+</style>
+
 <main>
   <article>
-    <a
-      rel="noopener noreferrer"
-      href={`/${url.includes("posts") ? "posts" : "tutorials"}`}>Back</a
-    >
+    <div class="link-wrapper">
+      <a
+        rel="noopener noreferrer"
+        href={`/${url.includes("posts") ? "posts" : "tutorials"}`}>Back</a
+      >
+    </div>
     <p>{publishDate}</p>
     <h1>{title}</h1>
     <slot />
