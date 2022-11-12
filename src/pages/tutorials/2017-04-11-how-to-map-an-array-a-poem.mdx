@@ -32,15 +32,16 @@ We can even make it yell!
 
 ```javascript
 // Make values yell based on index
-const loves = \["She loves me", "She loves me not", "She loves me"\]
+const loves = ["She loves me", "She loves me not", "She loves me"];
 const sheLovesMe = loves.map((value, index, self) => {
   if (index % 2 === 0) {
-    return value.toUpperCase() + '!'
+    return value.toUpperCase() + "!";
   }
-  return value + ' :('
-})
-console.log(sheLovesMe) //=
-  \["SHE LOVES ME!", "She loves me not :(", "SHE LOVES ME!"\]
+  return value + " :(";
+});
+console.log(sheLovesMe)[ //=
+  ("SHE LOVES ME!", "She loves me not :(", "SHE LOVES ME!")
+];
 ```
 
 Oh how interesting it is to see,
@@ -59,20 +60,20 @@ The outcome will be the same,
 But it still may twist up your brain.
 
 ```elixir
-loves = \["She loves me", "She loves me not", "She loves me"\]
+loves = ["She loves me", "She loves me not", "She loves me"]
 sheLovesMe =
   loves
-    |> Enum.with\_index
-    |> Enum.flat\_map(fn({value, index}) ->
+    |> Enum.with_index
+    |> Enum.flat_map(fn({value, index}) ->
          if rem(index, 2) == 0 do
-           \[String.upcase(value) <> "!"\]
+           [String.upcase(value) <> "!"]
          else
-           \[value <> " :("\]
+           [value <> " :("]
          end
        end
      )
 sheLovesMe //=
-    \["SHE LOVES ME!", "She loves me not :(", "SHE LOVES ME!"\]
+    ["SHE LOVES ME!", "She loves me not :(", "SHE LOVES ME!"]
 ```
 
 Oh my what does that say?
@@ -87,7 +88,7 @@ First you should know they are called lists, how cray cray!?
 
 ```elm
 loves =
-    \[ "She loves me", "She loves me not", "She loves me" \]
+    [ "She loves me", "She loves me not", "She loves me" ]
 
 sheLovesMe loves =
     let
@@ -100,7 +101,7 @@ sheLovesMe loves =
         List.indexedMap func loves
 
 sheLovesMe loves //=
-    \["SHE LOVES ME!","She loves me not!", "SHE LOVES ME!"\]
+    ["SHE LOVES ME!","She loves me not!", "SHE LOVES ME!"]
 ```
 
 What is that I see, a `let`,

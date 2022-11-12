@@ -16,7 +16,7 @@ The core of this game is a random series of button presses that users have to re
 ```haskell
 import Text.Smolder.HTML (div, button) -- Added button
 
-\-- The other divs are above
+-- The other divs are above
 button #! onClick (const StartGame ) $ text "Start"
 ```
 
@@ -32,10 +32,10 @@ Add a new `foldp` function and pattern match on the `StartGame` event.
 
 ```haskell
 foldp StartGame state = onlyEffects state
-  \[ do
+  [ do
       colors <- liftEff generateRandoSequence
       pure $ Just $ NextSequence colors
-  \]
+  ]
 ```
 
 Okay, you know that that `generateRandoSequence` creates a side-effect of `RANDOM`. So you will need to update `AppEffects` to be aware of that type.
@@ -96,7 +96,7 @@ import Control.Monad.Aff.Console (logShow) -- Added
 
 foldp (NextSequence colors ) state =
   { state: state { sequence = colors }
-  , effects: \[ logShow colors $> pure Nothing \]
+  , effects: [ logShow colors $> pure Nothing ]
   }
 ```
 
@@ -121,7 +121,7 @@ bower install --save purescript-arrays
 Then inside of `Update.purs`:
 
 ```haskell
-\-- Added imports
+-- Added imports
 import Data.Array (range, concatMap)
 import Data.List (fromMaybe, index)
 import Data.Int (toNumber)
@@ -129,12 +129,12 @@ import Data.Int (toNumber)
 generatePlaySequence :: forall e. Int -> List String -> Array (Aff e (Maybe Event))
 generatePlaySequence count sequence =
   range 0 (count - 1) #
-  concatMap (\\v ->
-    \[ do
-        delay $ Milliseconds ((toNumber v + 1.0) \* 1000.0)
+  concatMap (v ->
+    [ do
+        delay $ Milliseconds ((toNumber v + 1.0) * 1000.0)
         let color = fromMaybe "" $ index sequence v
         pure $ Just $ AnimateColor color
-    \]
+    ]
   )
 ```
 
@@ -156,7 +156,7 @@ This doesn't quite get you to animating a sequence, yet. Do you know why? Well, 
 ```haskell
 foldp (NextSequence colors ) state =
   { state: state { sequence = colors, count = state.count + 1 }
-  , effects: \[ pure $ Just $ PlaySequence \]
+  , effects: [ pure $ Just $ PlaySequence ]
   }
 ```
 
@@ -231,20 +231,20 @@ foldp (UserClick color) state =
     if allMatch && (length nextUserClicks) == state.count then
       { state: state { count = state.count + 1, userClicks = Nil }
       , effects:
-        \[ pure $ Just $ AnimateColor color
+        [ pure $ Just $ AnimateColor color
         , pure $ Just PlaySequence
-        \]
+        ]
       }
     else if allMatch then
       { state: state { userClicks = nextUserClicks }
-      , effects: \[ pure $ Just $ AnimateColor color \]
+      , effects: [ pure $ Just $ AnimateColor color ]
       }
     else
       { state: state
       , effects:
-        \[ pure $ Just $ AnimateColor color
+        [ pure $ Just $ AnimateColor color
         , pure $ Just PlaySequence
-        \]
+        ]
       }
 ```
 

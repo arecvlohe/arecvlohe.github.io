@@ -14,8 +14,8 @@ Today you will look at how to add sounds to your Simon Game. As I have said in p
 First I want to talk about FFI in the context of ReasonReact and the Web API. When you use ReasonReact you have access to the Web API because your code is being run in the context of the browser. You create a binding using the `[@bs.val]` directive and `external` keyword. A good example of this is binding to a set of functions on the `window` object called `setTimeout` and `clearTimeout`.
 
 ```javascript
-\[@bs.val\] external setTimeout : (unit => unit, int) => float = "setTimeout";
-\[@bs.val\] external clearTimeout : float => unit = "clearTimeout";
+[@bs.val] external setTimeout : (unit => unit, int) => float = "setTimeout";
+[@bs.val] external clearTimeout : float => unit = "clearTimeout";
 ```
 
 _Reference:_ [_https://bucklescript.github.io/docs/en/bind-to-global-values_](https://bucklescript.github.io/docs/en/bind-to-global-values)
@@ -34,7 +34,7 @@ With the knowledge above in hand let's create a binding for the `Audio` construc
 
 ```javascript
 type t;
-\[@bs.new\] external createDate : unit => t = "Date";
+[@bs.new] external createDate : unit => t = "Date";
 
 let date = createDate();
 ```
@@ -58,13 +58,13 @@ audio.pause();
 There are the `play` and `pause` methods. Just as before, thankfully you have an example of how to declare a constructor instance in Reason to interop with JavaScript.
 
 ```javascript
-class type \_rect =
-  \[@bs\]
+class type _rect =
+  [@bs]
   {
     pub draw: unit => unit
   };
 
-type rect = Js.t(\_rect);
+type rect = Js.t(_rect);
 ```
 
 _Reference:_ [_https://bucklescript.github.io/docs/en/class#bind-to-js-classes_](https://bucklescript.github.io/docs/en/class#bind-to-js-classes)
@@ -74,9 +74,9 @@ Here you are creating a `class` type. Just as before, you create a binding with 
 Let's start with creating the type class, which will be used to refer to the `Audio` instance.
 
 ```javascript
-/\* Audio.re \*/
+/* Audio.re */
 class type audioInstance =
-  \[[@bs](http://twitter.com/bs "Twitter profile for @bs")\]
+  [[@bs](http://twitter.com/bs "Twitter profile for @bs")]
   {
     pub play: unit => unit;
   };
@@ -87,15 +87,15 @@ For now, we only care about the `play` function. It is a function which takes no
 Now you can export this class type, or instance type, using `Js.t`.
 
 ```javascript
-/\* Audio.re \*/
+/* Audio.re */
 type t = Js.t(audioInstance);
 ```
 
 At this point, create a function that instantiates the external `Audio` constructor with the `new` keyword. Remember, you need to use the `[@bs.new]` directive.
 
 ```javascript
-/\* Audio.re \*/
-\[[@bs](http://twitter.com/bs "Twitter profile for @bs").new\] external make: string => t = "Audio";
+/* Audio.re */
+[[@bs](http://twitter.com/bs "Twitter profile for @bs").new] external make: string => t = "Audio";
 ```
 
 You are creating a binding to the `"Audio"` constructor that exists on the `window` to the internal function `make`. Just as `Audio` accepts a string to an audio resource when it is instantiated, so does `make`. It returns an audio instance type, known as `t`. The audio instance type has the method `play`. Did you catch all that? 😅
@@ -104,8 +104,8 @@ You are creating a binding to the `"Audio"` constructor that exists on the `wind
 
 ```javascript
 type t;
-\[[@bs](http://twitter.com/bs "Twitter profile for @bs").new\] external make: string => t = "Audio";
-\[[@bs](http://twitter.com/bs "Twitter profile for @bs").send\] external play: t => unit = "play";
+[[@bs](http://twitter.com/bs "Twitter profile for @bs").new] external make: string => t = "Audio";
+[[@bs](http://twitter.com/bs "Twitter profile for @bs").send] external play: t => unit = "play";
 ```
 
 The `[@bs.send]` directive works with JS objects to add functions to an instance of `self`. So instead of doing what I posted above, I think it's easier to do it this way.
@@ -115,8 +115,7 @@ The `[@bs.send]` directive works with JS objects to add functions to an instance
 With the `Audio` constructor now bound correctly to be used within Reason, create a `Sound.re` file in order to create audio instances for each sound in the game.
 
 ```javascript
-/\* Sound.re \*/;
-let green = Audio.make(
+/* Sound.re */ let green = Audio.make(
   "[https://s3.amazonaws.com/freecodecamp/simonSound1.mp3](https://s3.amazonaws.com/freecodecamp/simonSound1.mp3)"
 );
 
@@ -170,10 +169,10 @@ You don't need the `error` sound now but you will in the future. To be continued
 Now the important stuff. Let's actually play the sound! For now, let's just play the corresponding sound depending on which box the user clicks on.
 
 ```javascript
-/\*App.re\*/
+/*App.re*/
 <div
   className={Styles.box(Green)}
-  onClick={\_e => Sound.green->Audio.play)}
+  onClick={_e => Sound.green->Audio.play)}
 />
 ```
 

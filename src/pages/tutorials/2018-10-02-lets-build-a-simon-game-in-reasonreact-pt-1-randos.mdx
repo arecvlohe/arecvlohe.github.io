@@ -56,8 +56,8 @@ Now that you have all of that out of the way, next you will create your componen
 [@react.component]
 let make = () => {
   let (state, send) =
-    ReactUpdate.useReducer({sequence: \[||\]}, (action, \_state) =>
-      /\* Wait for it... \*/
+    ReactUpdate.useReducer({sequence: [||]}, (action, _state) =>
+      /* Wait for it... */
     );
 ```
 
@@ -65,7 +65,7 @@ Then you will define how your reducer will handle each action. There is only one
 
 ```javascript
 let (state, send) =
-    ReactUpdate.useReducer({sequence: \[||\]}, (action, \_state) =>
+    ReactUpdate.useReducer({sequence: [||]}, (action, _state) =>
       switch (action) {
       | SetSequence(array) => Update({sequence: array})
       }
@@ -80,7 +80,7 @@ For now, let's render the `sequence`, which in this case won't do a damn thing.
 [@react.component]
 let make = () => {
   let (state, send) =
-    ReactUpdate.useReducer({sequence: \[||\]}, (action, \_state) =>
+    ReactUpdate.useReducer({sequence: [||]}, (action, _state) =>
       switch (action) {
       | SetSequence(array) => Update({sequence: array})
       }
@@ -114,8 +114,8 @@ You now are at the point where you want to actually render some ish to the scree
 
 ```javascript
 let array =
-  Belt.Array.makeBy(20, \_i =>
-    Js.Math.floor(Js.Math.random() \*. 4.0 +. 1.0)
+  Belt.Array.makeBy(20, _i =>
+    Js.Math.floor(Js.Math.random() *. 4.0 +. 1.0)
   );
 ```
 
@@ -160,8 +160,8 @@ That wasn't too hard, was it? Here is the rest of the code for completeness.
 ```javascript
 React.useEffect0(() => {
     let array =
-      Belt.Array.makeBy(20, \_i =>
-        Js.Math.floor(Js.Math.random() \*. 4.0 +. 1.0)
+      Belt.Array.makeBy(20, _i =>
+        Js.Math.floor(Js.Math.random() *. 4.0 +. 1.0)
       );
     send(SetSequence(array));
     None;
@@ -184,7 +184,7 @@ type action =
 [@react.component]
 let make = () => {
   let (state, send) =
-    ReactUpdate.useReducer({sequence: \[||\]}, (action, \_state) =>
+    ReactUpdate.useReducer({sequence: [||]}, (action, _state) =>
       switch (action) {
       | SetSequence(array) => Update({sequence: array})
       }
@@ -192,7 +192,7 @@ let make = () => {
 
 React.useEffect0(() => {
     let array =
-      Belt.Array.makeBy(20, \_i =>
+      Belt.Array.makeBy(20, _i =>
         Js.Math.floor(Js.Math.random() *. 4.0 +. 1.0)
       );
     send(SetSequence(array));

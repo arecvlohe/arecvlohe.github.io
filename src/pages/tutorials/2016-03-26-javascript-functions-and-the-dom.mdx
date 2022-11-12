@@ -15,12 +15,12 @@ The DOM, or Document Object Model, represents the web page as a tree of elements
                Example DOM
 
           HTML
-  \_\_\_\_\_\_\_\_\_|\_\_\_\_\_\_\_\_\_
+  _________|_________
   |                 |
 HEAD               BODY———————— —————————
   |                 |          |         |
 TITLE            HEADER       MAIN     FOOTER
-  |            \_\_\_\_\_|\_\_\_\_\_
+  |            _____|_____
 My Site        |         |
               DIV       DIV
 ```
@@ -136,15 +136,15 @@ function getTimeOfDay() {
   var min = date.getMinutes();
   var sec = date.getSeconds();
   // — Add below
-  var array = \[hour, min, sec\];
-  var newArray = array.map(function(time) {
-      var newTime = time < 10 ? '0' + time : String(time);
-      return newTime;
+  var array = [hour, min, sec];
+  var newArray = array.map(function (time) {
+    var newTime = time < 10 ? "0" + time : String(time);
+    return newTime;
   });
 
-  hour = newArray\[0\];
-  min = newArray\[1\];
-  sec = newArray\[2\];
+  hour = newArray[0];
+  min = newArray[1];
+  sec = newArray[2];
   // — Add above
   document.body.innerHTML = hour + min + sec;
   return hour + min + sec;
@@ -161,20 +161,20 @@ function getTimeOfDay() {
   var hour = date.getHours();
   var min = date.getMinutes();
   var sec = date.getSeconds();
-  var array = \[hour, min, sec\];
-  var newArray = array.map(function(time) {
-      var newTime = time < 10 ? '0' + time : String(time);
-      return newTime;
+  var array = [hour, min, sec];
+  var newArray = array.map(function (time) {
+    var newTime = time < 10 ? "0" + time : String(time);
+    return newTime;
   });
-  hour = newArray\[0\];
-  min = newArray\[1\];
-  sec = newArray\[2\];
+  hour = newArray[0];
+  min = newArray[1];
+  sec = newArray[2];
   document.body.innerHTML = hour + min + sec;
   return hour + min + sec;
 }
 
 function getColor(time) {
-  var color = '#' + time;
+  var color = "#" + time;
   document.body.style.backgroundColor = color;
 }
 
@@ -183,7 +183,7 @@ function compose(f, g) {
 }
 
 function start() {
-  setInterval(function() {
+  setInterval(function () {
     compose(getColor, getTimeOfDay);
   }, 1000);
 }

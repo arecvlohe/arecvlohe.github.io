@@ -23,14 +23,14 @@ Hopefully, your editor will highlight some changes that you need to make to othe
 let list =
     Belt.List.makeBy(
       20,
-      \_i => {
-        let num = Js.Math.floor(Js.Math.random() \*. 4.0 +. 1.0);
+      _i => {
+        let num = Js.Math.floor(Js.Math.random() *. 4.0 +. 1.0);
         switch (num) {
         | 1 => Green
         | 2 => Red
         | 3 => Blue
         | 4 => Yellow
-        | \_ => Green
+        | _ => Green
         };
       },
     );
@@ -48,7 +48,7 @@ My understanding is that the closure, `Belt.List.makeBy`, is not aware of constr
 
 ```javascript
 open Types;
-let num = Js.Math.floor(Js.Math.random() \*. 4.0 +. 1.0);
+let num = Js.Math.floor(Js.Math.random() *. 4.0 +. 1.0);
 ```
 
 The last thing to do here is update initial state. Currently, the initial state for sequence is an empty array. Change this to an empty list.
@@ -228,7 +228,7 @@ let l =
               let _id =
                 Js.Global.setTimeout(
                   () => Js.log({j|$color|j}),
-                  index \* 1000,
+                  index * 1000,
                 );
               ();
             },
@@ -261,7 +261,7 @@ And apply this action inside of the `ReasonReact.SideEffects` handler.
   let _id =
     Js.Global.setTimeout(
       () => self.send(PlaySound(color)),
-      index \* 1000,
+      index * 1000,
     );
   ();
 },

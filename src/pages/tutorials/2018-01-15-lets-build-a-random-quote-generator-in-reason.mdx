@@ -52,7 +52,7 @@ Modules are not explicitly imported into files like they are in JavaScript. Inst
 A basic app component is already setup for you but it doesn't have everything you need to handle state like you expect in `react`. Instead you need what is called a `reducerComponent` along with some other boilerplate.
 
 ```javascript
-\[%bs.raw {|require('./app.css')|}\];
+[%bs.raw {|require('./app.css')|}];
 
 type state = { quote: string, author: string };
 
@@ -60,13 +60,13 @@ type action = NoOp;
 
 let component = ReasonReact.reducerComponent("App");
 
-let make = \_children => {
+let make = _children => {
   ...component,
   initialState: () => {
     quote: "Hello, world!",
     author: "Anonymous",
   },
-  reducer: (action, \_state) => {
+  reducer: (action, _state) => {
     switch action {
     | NoOp => ReasonReact.NoUpdate;
     }
@@ -90,13 +90,13 @@ yarn start
 Now it's about to get interesting. Next, you will fetch data. First, let's create a function that fetches the data. I will call this function `fetchQuote`.
 
 ```javascript
-let make = \_children => {
+let make = _children => {
 
 let fetchQuote = () => {
     Js.Promise.(
       Fetch.fetch("[https://randomquoteapi.glitch.me/funny](https://randomquoteapi.glitch.me/funny)")
-      |> then\_(Fetch.Response.text)
-      |> then\_(text => {
+      |> then_(Fetch.Response.text)
+      |> then_(text => {
           Js.log(text);
           Js.Promise.resolve();
         })
@@ -109,12 +109,12 @@ let fetchQuote = () => {
     quote: "Hello, world!",
     author: "Anonymous",
   },
-  reducer: (action, \_state) => {
+  reducer: (action, _state) => {
     switch action {
     | NoOp => ReasonReact.NoUpdate;
     }
   },
-  didMount: (\_self) => {
+  didMount: (_self) => {
     fetchQuote();
     ReasonReact.NoUpdate;
   },
@@ -133,8 +133,8 @@ Notice that I have another set of curly braces `{}` surrounding the function. Th
 let fetchQuote = () => {
     Js.Promise.(
       Fetch.fetch("[https://randomquoteapi.glitch.me/funny](https://randomquoteapi.glitch.me/funny)")
-      |> then\_(Fetch.Response.text)
-      |> then\_(text => {
+      |> then_(Fetch.Response.text)
+      |> then_(text => {
           Js.log(text);
           Js.Promise.resolve();
         })
@@ -147,7 +147,7 @@ I `log` the results to the console and `resolve` the `Promise`. Keep in mind tha
 The only other thing I added was a `didMount` lifecycle method, which is passed `self`.
 
 ```javascript
-didMount: (\_self) => {
+didMount: (_self) => {
   fetchQuote();
   ReasonReact.NoUpdate;
 },
@@ -182,13 +182,13 @@ let parseResponse = (json: Js.Json.t) : state =>
 
 let component = ReasonReact.reducerComponent("App");
 
-let make = \_children => {
+let make = _children => {
 
 let fetchQuote = (self) => {
     Js.Promise.(
       Fetch.fetch("[https://randomquoteapi.glitch.me/funny](https://randomquoteapi.glitch.me/funny)")
-      |> then\_(Fetch.Response.text)
-      |> then\_(text => {
+      |> then_(Fetch.Response.text)
+      |> then_(text => {
           let result = parseResponse(Js.Json.parseExn(text));
           self.ReasonReact.send(NextQuote(result));
           Js.Promise.resolve();
@@ -202,7 +202,7 @@ let fetchQuote = (self) => {
     quote: "Hello, world!",
     author: "Anonymous",
   },
-  reducer: (action, \_state) => {
+  reducer: (action, _state) => {
     switch action {
     | NextQuote(result) => ReasonReact.Update(result);
     | NoOp => ReasonReact.NoUpdate;
@@ -280,7 +280,7 @@ Next, add a button that sends a `Click` action to the `reducer`.
 <div className="App">
   <div>(ReasonReact.stringToElement(self.state.quote)) </div>
   <div>{ReasonReact.stringToElement(self.state.author)}</div>
-  <button onClick=(\_event => self.send(Click))>{ReasonReact.stringToElement("Fetch New Quote")}</button>
+  <button onClick=(_event => self.send(Click))>{ReasonReact.stringToElement("Fetch New Quote")}</button>
 </div>
 ```
 
@@ -315,13 +315,13 @@ let parseResponse = (json: Js.Json.t) : state =>
 
 let component = ReasonReact.reducerComponent("App");
 
-let make = \_children => {
+let make = _children => {
 
 let fetchQuote = (self) => {
     Js.Promise.(
       Fetch.fetch("[https://randomquoteapi.glitch.me/funny](https://randomquoteapi.glitch.me/funny)")
-      |> then\_(Fetch.Response.text)
-      |> then\_(text => {
+      |> then_(Fetch.Response.text)
+      |> then_(text => {
           let result = parseResponse(Js.Json.parseExn(text));
           self.ReasonReact.send(NextQuote(result));
           Js.Promise.resolve();
@@ -335,7 +335,7 @@ let fetchQuote = (self) => {
     quote: "Hello, world!",
     author: "Anonymous",
   },
-  reducer: (action, \_state) => {
+  reducer: (action, _state) => {
     switch action {
     | NextQuote(result) => ReasonReact.Update(result);
     | Click => ReasonReact.SideEffects(fetchQuote);
@@ -350,7 +350,7 @@ let fetchQuote = (self) => {
     <div className="App">
       <div>(ReasonReact.stringToElement(self.state.quote)) </div>
       <div>{ReasonReact.stringToElement(self.state.author)}</div>
-      <button onClick=(\_event => self.send(Click))>{ReasonReact.stringToElement("Fetch New Quote")}</button>
+      <button onClick=(_event => self.send(Click))>{ReasonReact.stringToElement("Fetch New Quote")}</button>
     </div>
   }
 };

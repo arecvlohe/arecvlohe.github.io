@@ -18,13 +18,13 @@ generateRandoSequence ::
 ∀ eff. Eff (random :: RANDOM | eff) (List String)
 generateRandoSequence = do
 result <- replicateA 20 (randomInt 1 4)
-pure $ map (\\v ->
+pure $ map (v ->
 case v of
 1 -> "red"
 2 -> "yellow"
 3 -> "green"
 4 -> "blue"
-\_ -> "Oh nose 👃"
+_ -> "Oh nose 👃"
 ) result
 ```
 
@@ -34,13 +34,13 @@ This may look familiar to you with just a few small changes. The `<-` represents
 generateRandoSequence ::
 ∀ eff. Eff (random :: RANDOM | eff) (List String)
 generateRandoSequence =
-map (\\v ->
+map (v ->
 case v of
 1 -> "red"
 2 -> "yellow"
 3 -> "green"
 4 -> "blue"
-\_ -> "Oh nose"
+_ -> "Oh nose"
 ) <$> replicateA 20 (randomInt 1 4)
 ```
 
@@ -51,13 +51,13 @@ generateRandoSequence ::
 ∀ eff. Eff (random :: RANDOM | eff) (List String)
 generateRandoSequence =
 replicateA 20 (randomInt 1 4) <#>
-map (\\v ->
+map (v ->
 case v of
 1 -> "red"
 2 -> "yellow"
 3 -> "green"
 4 -> "blue"
-\_ -> "Oh nose"
+_ -> "Oh nose"
 )
 ```
 
@@ -111,7 +111,7 @@ Then you will add the needed functions from those libraries as well as the modul
 
 ```purescript
 import App.View (view)
-import Data.Foldable (for\_)
+import Data.Foldable (for_)
 import DOM (DOM)
 import DOM.HTML (window)
 import DOM.HTML.Types (htmlDocumentToNonElementParentNode)
@@ -142,7 +142,7 @@ element <- getElementById (ElementId "app") $ htmlDocumentToNonElementParentNode
 There is a lot going on here. Suffice it to say it returns a `Maybe Element` as a return type. Almost to the finish line 🏁. Let's now render the `view` function and attach it to the `element` in the DOM.
 
 ```purescript
-for\_ element (render <@> view)
+for_ element (render <@> view)
 ```
 
 A new operator and function 🙌! Because `element` is of type `Maybe Element` you can use [for\_](https://pursuit.purescript.org/packages/purescript-foldable-traversable/3.4.0/docs/Data.Foldable#v:for_) to map over the `Maybe` applicative and apply a function. In this case, you are applying the `render` function from smolder. The `<@>` operator is kind of an alias for a common [flip](https://pursuit.purescript.org/packages/purescript-prelude/3.1.0/docs/Data.Function#v:flip) function that you will find in other functional libraries. In this case, however, this operator is an actual alias for a function called [flap](https://pursuit.purescript.org/packages/purescript-prelude/3.1.0/docs/Data.Functor#v:flap), a generalization of flip. That's a lot of flippy-flap 😂. The reason you need to flap the arguments is that `render` is expecting the `Maybe Element` type as the first argument, with `view` being the second. That's enough flippy-flap for today 🤣. Okay, I will stop. All together now!
@@ -154,7 +154,7 @@ main :: forall e. Eff (console :: CONSOLE, random :: RANDOM, dom :: DOM | e) Uni
 main = do
 documentType <- document =<< window
 element <- getElementById (ElementId "app") $ htmlDocumentToNonElementParentNode documentType
-for\_ element (render <@> view)
+for_ element (render <@> view)
 ```
 
 If you run `pulp server`, when you navigate to `localhost:1337` in the browser you should see `Hello, PureScript!`. Awesome sauce!

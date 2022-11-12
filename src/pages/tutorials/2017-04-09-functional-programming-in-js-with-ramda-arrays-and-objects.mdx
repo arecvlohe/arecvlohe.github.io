@@ -11,16 +11,16 @@ This is all swell and dandy to learn about but how does one address such madness
 
 ```javascript
 // Array example
-import update from 'ramda/src/update'
+import update from "ramda/src/update";
 
-const array = \[1,2,3,4,5\]
+const array = [1, 2, 3, 4, 5];
 const replaceSecondValueOfArray = update(
   1, // The index I want to update
   11 // The value I want to update it with
-)
+);
 
-const result = replaceSecondValueOfArray(array)
-console.log(result) //= \[1,11,3,4,5\] - this array is new!
+const result = replaceSecondValueOfArray(array);
+console.log(result); //= [1,11,3,4,5] - this array is new!
 ```
 
 Now let's take a look at an `{}` example.
@@ -43,16 +43,16 @@ That was a nice warm up. Let's now update the values more dynamically. For an `[
 
 ```javascript
 // Dynamic array example
-import adjust from 'ramda/src/adjust'
+import adjust from "ramda/src/adjust";
 
-const array = \[1,2,3,4,5\]
+const array = [1, 2, 3, 4, 5];
 const makeSecondArrayValueAnObject = adjust(
-  value => ({value}), // The function I want to call on that value
-  1                   // The index I want to call this function on
-)
+  (value) => ({ value }), // The function I want to call on that value
+  1 // The index I want to call this function on
+);
 
-const result = makeSecondArrayValueAnObject(array)
-console.log(result) //= \[1,{value: 2},3,4,5\]
+const result = makeSecondArrayValueAnObject(array);
+console.log(result); //= [1,{value: 2},3,4,5]
 ```
 
 Let's look at an `{}` example for good measure!

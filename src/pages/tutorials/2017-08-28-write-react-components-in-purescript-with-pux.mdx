@@ -58,8 +58,8 @@ type State = {
 data Event = Increment | Decrement
 
 foldp :: ∀ fx. Event -> State -> EffModel State Event fx
-foldp Increment state = { state: state { count = state.count + 1 }, effects: \[\] }
-foldp Decrement state = { state: state { count = state.count - 1 }, effects: \[\] }
+foldp Increment state = { state: state { count = state.count + 1 }, effects: [] }
+foldp Decrement state = { state: state { count = state.count - 1 }, effects: [] }
 
 view :: State -> HTML Event
 view state =
@@ -74,7 +74,7 @@ toReact state = do
     { initialState: state
     , view
     , foldp
-    , inputs: \[\]
+    , inputs: []
     }
 
 renderToReact app.markup app.input

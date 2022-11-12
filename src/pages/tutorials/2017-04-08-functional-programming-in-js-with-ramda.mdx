@@ -24,7 +24,7 @@ That's where Ramda 🐏 comes in. With a nice helper function called `path`, you
 
 import path from 'ramda/src/path'
 
-const name = path(\['body', 'data', 'name'\])
+const name = path(['body', 'data', 'name'])
 
 <h1>{name(this.props.response)}</h1>
 ```
@@ -36,12 +36,11 @@ But let's say you needed to do a bit more than just pluck the `name` from the `r
 Now we are getting into composition. Composition is similar to chaining, except that with ⛓*ing* you can't pass the data in last. Let's look at a contrived example.
 
 ```javascript
-const arr = \[1,2,3,4,5\]
-const addOneAndRemoveNumsSmallerThanFive =
-  arr
-    .map(v => v + 1)
-    .filter(v => v > 4)
-console.log(addOneAndRemoveNumsSmallerThanFive) //= \[5, 6\]
+const arr = [1, 2, 3, 4, 5];
+const addOneAndRemoveNumsSmallerThanFive = arr
+  .map((v) => v + 1)
+  .filter((v) => v > 4);
+console.log(addOneAndRemoveNumsSmallerThanFive); //= [5, 6]
 ```
 
 `addOneAndRemoveNumsSmallerThanFive` here is the result of the mapped and filtered value but there no way to reuse `addOneAndRemoveNumsSmallerThanFive` in any other context. Hello composition!
@@ -51,18 +50,18 @@ import map     from 'ramda/src/map'
 import filter  from 'ramda/src/filter'
 import compose from 'ramda/src/compose'
 
-const arr0 = \[5,6,7,8,9\]
-const arr1 = \[1,2,3,4,5\]
+const arr0 = [5,6,7,8,9]
+const arr1 = [1,2,3,4,5]
 const addOneAndRemoveSmallerThanFiveAllTheThings = compose(
   filter(x => x > 4)
   map(x => x + 1)
 )
 
 const result0 = addOneAndRemoveSmallerThanFiveAllTheThings(arr0)
-console.log(result0) //= \[5, 6\]
+console.log(result0) //= [5, 6]
 
 const result1 = addOneAndRemoveSmallerThanFiveAllTheThings(arr1)
-console.log(result1) //= \[6, 7, 8, 9, 10\]
+console.log(result1) //= [6, 7, 8, 9, 10]
 ```
 
 Wow, that's pretty nice! Now what does that have to do with what we were trying to solve before which was handling value transformations? Slow your roll, man! Here it is. We can do the exact same thing as above but instead we are transforming a response object from the server in style. Here goes!
@@ -75,7 +74,7 @@ import pathOr  from 'ramda/src/pathOr'
 
 const nameInAllCaps = compose(
   toUpper,
-  pathOr('', \['body', 'data', 'name'\])
+  pathOr('', ['body', 'data', 'name'])
 )
 
 <h1>{nameInAllCaps(this.props.response)}</h1>

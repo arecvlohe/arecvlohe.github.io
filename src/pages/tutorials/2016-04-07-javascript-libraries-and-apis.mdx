@@ -48,10 +48,10 @@ document.body.appendChild(paragraph);
 
 In the example above I used the following rules:
 
-1\. document.body to access the body object
-2\. createElement method to create an element
-3\. textContent method to insert text into that element
-4\. appendChild method to append that paragraph to the body
+1. document.body to access the body object
+2. createElement method to create an element
+3. textContent method to insert text into that element
+4. appendChild method to append that paragraph to the body
 
 Here we would be using the DOM API. DOM stands for Document Object Model, and it's the organization of HTML elements on a page.
 
@@ -79,7 +79,7 @@ Your first API call! Woohoo!
 
 The call here was made to the Giphy API and in the parameters of the URL, we requested a particular type of gif:
 
-`gifs/**random**?api\_key=dc6zaTOxFJmzC&**tag=cat**`
+`gifs/**random**?api_key=dc6zaTOxFJmzC&**tag=cat**`
 
 We requested a random cat gif using the random parameter, and the tag parameter of cat. I am such a millennial, sorry! What you should now see in your browser is a JSON object with data related to a random cat gif.
 
@@ -114,33 +114,33 @@ That's all well and good, but how do we access that information? Well, there are
 
 ```javascript
 var me = {
-    firstName: 'Adam',
-    middleName: 'Elliott',
-    lastName: 'Recvlohe',
-    favoriteFood: 'Mexican',
-    favoriteDrink: 'Kombucha',
-    race: 'Human'
-}
+  firstName: "Adam",
+  middleName: "Elliott",
+  lastName: "Recvlohe",
+  favoriteFood: "Mexican",
+  favoriteDrink: "Kombucha",
+  race: "Human",
+};
 
 // Dot Notation
 var myFirstName = me.firstName;
 
 // Bracket Notation
-var myLastName = me\['lastName'\];
+var myLastName = me["lastName"];
 ```
 
 Remember, as the object becomes more nested the more dots or brackets you will need.
 
 ```javascript
 var data = {
-    address: {
-        city: 'Tampa',
-        state: 'Florida'
-    }
-}
+  address: {
+    city: "Tampa",
+    state: "Florida",
+  },
+};
 
-var myCity = data.address.city
-var myState = data\['address'\]\['state'\];
+var myCity = data.address.city;
+var myState = data["address"]["state"];
 ```
 
 _Sidenote: The JSON standard requires object properties and values to be in double quotes. I showed you JavaScript object literals because the way that you access data from each is the same with the syntax of JSON being only slightly different._
@@ -198,20 +198,20 @@ That's nice and all but we can do one better. We can take that object and use th
 We are going to stick with using jQuery and create an image dynamically. To create an image in jQuery we can pass the image tag as a string with all necessary information like so:
 
 ```javascript
-var imageSource = object.data.image\_original\_url;
-var image = $('<img src=' + imageSource + ' />');
+var imageSource = object.data.image_original_url;
+var image = $("<img src=" + imageSource + " />");
 ```
 
 Now all we have to do is append that to the body of the DOM and we are good. Houston, all systems go!
 
 ```javascript
-$(document).ready(function() {
-  var url = 'http://api.giphy.com/v1/gifs/random?api\_key=dc6zaTOxFJmzC&tag=cat';
+$(document).ready(function () {
+  var url = "http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=cat";
 
-  $.getJSON(url, function(object) {
-    var imageSource = object.data.image\_original\_url;
-    var image = $('<img src=' + imageSource + ' />');
-    image.appendTo($('body'));
+  $.getJSON(url, function (object) {
+    var imageSource = object.data.image_original_url;
+    var image = $("<img src=" + imageSource + " />");
+    image.appendTo($("body"));
   });
 });
 ```
@@ -251,7 +251,7 @@ $(document).ready(function () {
   $("input").keypress(function (event) {
     if (event.which == 13) {
       var value = $("input").val();
-      value = value.trim().replace(/\\s+/g, "+");
+      value = value.trim().replace(/s+/g, "+");
       console.log(value);
       event.preventDefault();
     }
@@ -259,7 +259,7 @@ $(document).ready(function () {
 });
 ```
 
-The _replace_ method that is built into JavaScript takes two parameters: a regular expression and what you want a match to be replaced with. In my regular expression, I am using a special character, _\\s_. This represents white space. I added a '+' operator on the end to signify that I want to capture any number of white spaces in a string, _\\s+_. My thinking is a user may put more than one space between words and I want to correct that mistake if it happens.
+The _replace_ method that is built into JavaScript takes two parameters: a regular expression and what you want a match to be replaced with. In my regular expression, I am using a special character, _s_. This represents white space. I added a '+' operator on the end to signify that I want to capture any number of white spaces in a string, _s+_. My thinking is a user may put more than one space between words and I want to correct that mistake if it happens.
 
 This is a very primitive solution but for our purposes it works. If you look in your console, you should see your string text combined with '+' operators. Good, we got that down. Now we can compose a URL of the search API and the value we are searching for.
 
@@ -268,7 +268,7 @@ $(document).ready(function () {
   $("input").keypress(function (event) {
     if (event.which == 13) {
       var value = $("input").val();
-      value = value.trim().replace(/\\s+/g, "+");
+      value = value.trim().replace(/s+/g, "+");
       var url =
         "http://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=" + value;
       console.log(url);
@@ -285,7 +285,7 @@ $(document).ready(function () {
   $("input").keypress(function (event) {
     if (event.which == 13) {
       var value = $("input").val();
-      value = value.trim().replace(/\\s+/g, "+");
+      value = value.trim().replace(/s+/g, "+");
       var url =
         "http://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=" + value;
       $.getJSON(url, function (object) {

@@ -35,7 +35,7 @@ Okay, so what is a union type? A union type is a common data structure in functi
 ```elm
 case msg of
   ButtonClick ->
-      model ! \[\]
+      model ! []
 ```
 
 It's a really nice pattern that simplifies a common process: handling user interaction. It also allows you to be more declarative with your program by creating data types on the fly that speak more to the domain specific terminology of your application. Let's now create the messages for this program.
@@ -43,16 +43,16 @@ It's a really nice pattern that simplifies a common process: handling user inter
 ### Messages 💬
 
 ```javascript
-const Msg = Type({ INCREMENT: \[\], DECREMENT: \[\] });
+const Msg = Type({ INCREMENT: [], DECREMENT: [] });
 ```
 
 I am keeping with some Elm conventions here. Instead of calling these `Actions` for example, I simply call them `Msg`, short for message. I think this makes more sense for not just a beginner, but anyone with any background not in JavaScript or Elm. The `[]` is essentially the types that would be passed to these type unions if we passed any types. For example, a number. In this case we are not passing anything so it's left empty. Now that I have my types let's create the handlers for these different messages.
 
 ```javascript
 const nextState = Msg.caseOn({
-  INCREMENT: state => ({ count: state.count + 1 }),
-  DECREMENT: state => ({ count: state.count - 1 }),
-  \_: state => state
+  INCREMENT: (state) => ({ count: state.count + 1 }),
+  DECREMENT: (state) => ({ count: state.count - 1 }),
+  _: (state) => state,
 });
 ```
 
@@ -90,9 +90,9 @@ Next, it's time to initialize the store.
 
 const store = createStore(
   combineReducers({
-    state
+    state,
   }),
-  window.\_\_REDUX\_DEVTOOLS\_EXTENSION\_\_ && window.\_\_REDUX\_DEVTOOLS\_EXTENSION\_\_()
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 ```
 
@@ -116,7 +116,7 @@ One reason I like this is because I don't have to pass `mapDispatchToProps` to m
 Next to last, create a selector for your state. Here I am using some helpers from [Ramda](http://ramdajs.com/docs/) to create a memoized selector.
 
 ```javascript
-export const count = memoize(path(\["state", "count"\]));
+export const count = memoize(path(["state", "count"]));
 ```
 
 Last but not least, let's export the store in order to pass it down as a `prop` to our component.
@@ -176,7 +176,7 @@ registerServiceWorker();
 
 ### Summary ✅
 
-In this lesson you learned about union types and how to use them to \*reduce\* your Redux boilerplate. This also implies adhering to some conventions around file structure. This is not perfect and I am sure there are even more ways to make your Redux footprint smaller. If there is, please share! I am interested to hear how this model can be improved. Thank you and until next time, keep hacking!
+In this lesson you learned about union types and how to use them to _reduce_ your Redux boilerplate. This also implies adhering to some conventions around file structure. This is not perfect and I am sure there are even more ways to make your Redux footprint smaller. If there is, please share! I am interested to hear how this model can be improved. Thank you and until next time, keep hacking!
 
 > Did you know you can add additional type security in your application with union types? It's not something I talked very much about here but something that I think is worth your time looking into.
 

@@ -56,7 +56,7 @@ $ bsb -init learn-to-decode -theme basic-reason && cd learn-to-decode && yarn in
 Next, add `bs-json` to your `bsconfig.json`.
 
 ```javascript
-"bs-dependencies": \["[@glennsl/bs-json](http://twitter.com/glennsl/bs-json "Twitter profile for @glennsl/bs-json")"\],
+"bs-dependencies": ["[@glennsl/bs-json](http://twitter.com/glennsl/bs-json "Twitter profile for @glennsl/bs-json")"],
 ```
 
 Let's test things out and make sure they are working.
@@ -73,9 +73,9 @@ Since you need something to actually decode, let's create a nested JSON type usi
 ```javascript
 {
   info: {
-    name: "Adam"
-    hobbies: \["writing", "sleeping"\]
-    isYoloing: null
+    name: "Adam";
+    hobbies: ["writing", "sleeping"];
+    isYoloing: null;
   }
 }
 ```
@@ -84,21 +84,21 @@ To do this quickly in BuckleScript you can use `Js.Dict.fromList` where each val
 
 ```javascript
 let info =
-  Js.Dict.fromList(\[
+  Js.Dict.fromList([
     ("name", Js.Json.string("Adam")),
-    ("hobbies", Js.Json.stringArray(\[|"writing", "sleeping"|\])),
+    ("hobbies", Js.Json.stringArray([|"writing", "sleeping"|])),
     ("isYoloing", Js.Json.null),
-  \]);
+  ]);
 
-let person = Js.Dict.fromList(\[("info", Js.Json.object\_(info))\]);
+let person = Js.Dict.fromList([("info", Js.Json.object_(info))]);
 
-let json = Js.Json.object\_(person);
+let json = Js.Json.object_(person);
 
 Js.log(json);
 // {
 //  info: {
 //   name: 'Adam',
-//   hobbies: \[ 'writing', 'sleeping' \],
+//   hobbies: [ 'writing', 'sleeping' ],
 //   isYoloing: null
 //  }
 // }
@@ -148,7 +148,7 @@ Let's try out our decoder and see what happens.
 ```javascript
 let decoded = decodePerson(json);
 
-Js.log(decoded); // \[ \[ 'Adam', \[ 'writing', \[Array\] \], undefined \] \]
+Js.log(decoded); // [ [ 'Adam', [ 'writing', [Array] ], undefined ] ]
 ```
 
 What the bloody hell is that!? That my friend is what Reason code looks like in JS. BuckleScript does some funny things to it. `Record`s look like `arrays`, `lists` look like linked lists, and `option` looks like `undefined`. This stuff is optimized so even though it looks crazy, it's not.
@@ -159,14 +159,14 @@ Now that you have your value encoded, let's do the opposite and encode that valu
 
 ```javascript
 let encodeInfo = (info) =>
-  Json.Encode.object\_(\[
+  Json.Encode.object_([
     ("name", Json.Encode.string(info.name)),
     ("hobbies", Json.Encode.list(Json.Encode.string, info.hobbies)),
     ("isYoloing", Json.Encode.nullable(Json.Encode.bool, info.isYoloing)),
-  \]);
+  ]);
 
 let encodePerson = (person) =>
-  Json.Encode.object\_(\[("info", encodeInfo(person.info))\]);
+  Json.Encode.object_([("info", encodeInfo(person.info))]);
 ```
 
 The syntax is very much the same as they were for decoders with a slight difference. Here, instead of using the `.{}` syntax we are using `.object_([])`. Instead of passing in `json` to create the value, we pluck off the specific values from the record and pass those to the encoders. The `.object_([])` function works similar to the dictionary we used earlier to create JSON. In some cases, you have to pass an additional value to the encoder, one for the encoding the internal value as you see in `hobbies`.
@@ -176,7 +176,7 @@ Now let's check out what we have made.
 ```javascript
 let encoded = Json.stringify(encodePerson(decoded));
 
-Js.log(encoded); // {"info":{"name":"Adam","hobbies":\["writing","sleeping"\],"isYoloing":null}}
+Js.log(encoded); // {"info":{"name":"Adam","hobbies":["writing","sleeping"],"isYoloing":null}}
 ```
 
 Now this can be placed nice and neatly in local storage.

@@ -156,9 +156,9 @@ My `subscriptions` take in values and send out a `Sub Msg` based on those values
 subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.batch
-        \[ position NewPositionMsg
+        [ position NewPositionMsg
         , error NewErrorMsg
-        \]
+        ]
 ```
 
 The `update` function will listen for these `subscriptions` and make updates to the `model` accordingly. Here is how I am handling those `subscription` messages in my `update` function:
@@ -178,10 +178,10 @@ Pretty simple, right? I am updating my model based on the `subscription` message
 ```elm
 view : Model -> Html a
 view model =
-    div \[\]
-        \[ div \[\] \[ text (toString model.position.latitude)  \]
-        , div \[\] \[ text (toString model.position.longitude) \]
-        \]
+    div []
+        [ div [] [ text (toString model.position.latitude)  ]
+        , div [] [ text (toString model.position.longitude) ]
+        ]
 ```
 
 Again, nothing crazy going on here. Just rendering my `view` based on the `model`. As you can tell I am not rendering any `view` for my `error`. I leave that up to you 😉!
@@ -205,7 +205,7 @@ To compile my code more effectively I am using a couple `npm` packages: `elm` an
 
 ```javascript
 "start": "npm run watch:elm",
-"watch:elm": "chokidar '\*\*/\*.elm' -c 'npm run build:elm' --initial",
+"watch:elm": "chokidar '**/*.elm' -c 'npm run build:elm' --initial",
 "build:elm": "elm make src/Main.elm --output dist/main.js"
 ```
 
@@ -238,7 +238,7 @@ Darksky enforces strict CORS so I won't be able to make this request from my bro
 Once I have the repositories in their respective directories I will run a simple script, `elm_self_publish,` to unpack `elm-jsonp` and and add it to my `elm-stuff` directory. The command will look like this:
 
 ```bash
-python scripts/elm-ops-tooling/elm\_self\_publish.py vendor/elm-jsonp ./
+python scripts/elm-ops-tooling/elm_self_publish.py vendor/elm-jsonp ./
 ```
 
 Now that `elm-jsonp` is self-published I can import the module into my `Main.elm`. However, for it to work correctly we also need the `elm-lang/http` library because `elm-jsonp` depends on it. To install `elm-lang/http` just run `elm package install elm-lang/http` in your terminal.
@@ -279,7 +279,7 @@ getTemperature position =
         ( lat, lng ) =
         ( toString position.latitude, toString position.longitude )
     in
-        Jsonp.get decodeTemperature ("https://api.darksky.net/forecast/YOUR\_API\_KEY/" ++ lat ++ "," ++ lng)
+        Jsonp.get decodeTemperature ("https://api.darksky.net/forecast/YOUR_API_KEY/" ++ lat ++ "," ++ lng)
 ```
 
 This function will take a `Position` and return send out a `Task` that returns either an `Http.Error` or the result, which will be a `Float`. I am also using a a `let` expression here to destructure two variables, `lat` and `lng`, which turn the `position.latitude` and `position.longitude`, which are floats, into strings.
@@ -289,7 +289,7 @@ If you notice there is another function called `decodeTemperature`. Elm does not
 ```elm
 decodeTemperature : Decode.Decoder Float
 decodeTemperature =
-    Decode.at \[ "currently", "temperature" \] Decode.float
+    Decode.at [ "currently", "temperature" ] Decode.float
 ```
 
 Next I need to change my `update` function to handle when the temperature comes in. Because I am sending a `Task`, that means I will receive two results. Therefore, I need two handlers, one for the successful response and one for the error. One other thing I need to do is update my `NewPositionMsg` action. Previously I was sending just a `Cmd.none` but what I want to send is an actual `Task` to the Darksky API. Therefore I will use `Task.attempt` that takes a Msg, in this case, `NewTemperature`, and sends out a request that is shaped by `getTemperature`. When the `NewTemperature` comes in I update my model with the temperature from the API.
@@ -309,8 +309,8 @@ update msg model =
         NewTemperature (Ok temperature) ->
         ( { model | temperature = temperature }, Cmd.none )
 
-        NewTemperature (Err \_) ->
-        model ! \[\]
+        NewTemperature (Err _) ->
+        model ! []
 ```
 
 My `view` will be updated as well. Nothing too crazy, just adding a `div` that shows the temperature.
@@ -318,11 +318,11 @@ My `view` will be updated as well. Nothing too crazy, just adding a `div` that s
 ```elm
 view : Model -> Html a
 view model =
-    div \[\]
-        \[ div \[\] \[ text (toString model.position.latitude) \]
-        , div \[\] \[ text (toString model.position.longitude) \]
-        , div \[\] \[ text (toString model.temperature) \]
-        \]
+    div []
+        [ div [] [ text (toString model.position.latitude) ]
+        , div [] [ text (toString model.position.longitude) ]
+        , div [] [ text (toString model.temperature) ]
+        ]
 ```
 
 If you did not realize already, you will need to pull in the new libraries at the top of the `Main.elm` file. They include:

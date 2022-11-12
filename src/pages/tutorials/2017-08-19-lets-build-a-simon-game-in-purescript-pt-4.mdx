@@ -51,7 +51,7 @@ convertColor color =
     "green" -> green
     "yellow" -> yellow
     "blue" -> blue
-    \_ -> black
+    _ -> black
 ```
 
 Pretty simple, right? Just give this `convertColor` a color of type `String` and you get the color of type `Color` back. That's a lot of coloring 🖍. To make sure you account for all possible arguments, if you don't get a color of the Simon Game, you simple pass back `black`.
@@ -99,7 +99,7 @@ Now you can update the `foldp` function to handle this `Event` and gut whatever 
 foldp :: Event -> State -> EffModel State Event AppEffects
 foldp (UserClick color) state =
   { state: state
-  , effects: \[\]
+  , effects: []
   }
 ```
 
@@ -125,7 +125,7 @@ Now the `foldp` state will be updated when a button is clicked like so.
 ```haskell
 foldp (UserClick color) state =
   { state: state { currentColor = color }
-  , effects: \[\]
+  , effects: []
   }
 ```
 
@@ -136,7 +136,7 @@ Now based on the state you can change the value of the color of the button. Let'
 ```haskell
 div ! styledButton "red" currenColor #! onClick (const $ UserClick "red") $ text ""
 
-\-- Note, make sure this is on 1 line
+-- Note, make sure this is on 1 line
 ```
 
 To do this I am destucturing the `state` value passed to the `view` function.
@@ -149,7 +149,7 @@ view { currentColor } =
 This is not going to work quite yet. That's because you need to update the `styledButton` function to take another argument. That argument will determine the color of the button. It will look a little something like this:
 
 ```haskell
-\-- Added desaturate
+-- Added desaturate
 import CSS.Color (red, green, yellow, blue, black, desaturate)
 
 styledButton :: String -> String -> Attribute
@@ -189,7 +189,7 @@ Pux has a nice helper function [noEffects](https://pursuit.purescript.org/packag
 ```haskell
 foldp ResetColor state =
   { state: state { currentColor = "" }
-  , effects: \[\]
+  , effects: []
   }
 ```
 
@@ -210,7 +210,7 @@ Then inside of the `UserClick` event you can update the effects to first `delay`
 foldp (UserClick color) state =
   { state: state { currentColor = color }
   , effects:
-    \[ delay (Milliseconds 300.0) $> Just ResetColor \]
+    [ delay (Milliseconds 300.0) $> Just ResetColor ]
   }
 ```
 

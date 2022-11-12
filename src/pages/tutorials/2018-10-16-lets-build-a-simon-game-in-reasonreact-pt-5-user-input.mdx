@@ -29,7 +29,7 @@ type action =
   | PlaySequence
   | PlaySound(Types.colors)
   | ResetColor
-  | Input(Types.colors); /\* This is new \*/
+  | Input(Types.colors); /* This is new */
 ```
 
 Next update the `reducer` to handle that action as you have done before.
@@ -45,14 +45,14 @@ type state = {
   sequence,
   level: int,
   active: option(Types.colors),
-  input: list(Types.colors), /\* This is new \*/
+  input: list(Types.colors), /* This is new */
 };
 ```
 
 As usual, update initial state to reflect these changes.
 
 ```javascript
-initialState: () => {sequence: \[\], level: 5, active: None, input: \[\]},
+initialState: () => {sequence: [], level: 5, active: None, input: []},
 ```
 
 After the user clicks a box it's now important to check and make sure the input is correct. You can handle this using another action. Call it `CheckInput`. This action will fire right after `Input(color)` is handled.
@@ -64,7 +64,7 @@ type action =
   | PlaySound(Types.colors)
   | ResetColor
   | Input(Types.colors)
-  | CheckInput; /\* This is new \*/
+  | CheckInput; /* This is new */
 ```
 
 Update the reducer now.
@@ -83,9 +83,9 @@ First, there is going to be an `UpdateWithSideEffects` where the `input` is upda
 
 ```javascript
 ReasonReact.UpdateWithSideEffects(
-   {...state, input: \[color, ...state.input\]},
-  (self => self.send(CheckInput)),
-)
+  { ...state, input: [color, ...state.input] },
+  (self) => self.send(CheckInput)
+);
 ```
 
 I am adding a new `color` to `input` by adding to the head and spreading out the previous version of the list to the tail. Now that the input is updated, let's check to see if the user's input is accurate. That's why you call the action `CheckInput`, which will house the logic for how user actions are handled.
@@ -127,19 +127,19 @@ I am going to enjoy the next part because I will get to use [pattern matching](h
 Pattern matching is a great way to simplify what can turn into very inefficient or complex steps. There are three scenarios at the current moment to check on: If the user clicked an incorrect box, if the user clicked a correct box, and if a user clicked a correct box and graduates to the next level. I imagine this can get complex in an `if/else` statement but pattern matching makes this quite easy. Let me show you.
 
 ```javascript
-switch(
-currentUserColor === currentSequenceColor,
-inputLength === level) {
-    /\* More to come here \*/
+switch (
+  (currentUserColor === currentSequenceColor, inputLength === level)
+  /* More to come here */
+) {
 }
 ```
 
 That is all you will need. Pretty succinct, huh? Let's handle the first scenario for when a user hits the wrong box. The user will hear the error sound, then their input will be cleared, and the sequence will play again.
 
 ```javascript
-| (false, \_) =>
+| (false, _) =>
       ReasonReact.UpdateWithSideEffects(
-        {...state, input: \[\]},
+        {...state, input: []},
         (
           self => {
             Sounds.error##play();
@@ -165,7 +165,7 @@ Finally, handle when the user input is correct and has reached the last sequence
 ```javascript
 | (true, true) =>
       ReasonReact.UpdateWithSideEffects(
-        {...state, input: \[\], level: state.level + 1},
+        {...state, input: [], level: state.level + 1},
         (
           self => {
             self.send(PlaySound(currentUserColor));
@@ -178,7 +178,7 @@ Finally, handle when the user input is correct and has reached the last sequence
 You may have noticed that `PlaySequence` does not have an initial delay. For example when the index is `0`, `0` multiplied by `1000` is `0`. Therefore, `PlaySound` and `PlaySequence` will pretty much be simultaneous. Let's update `PlaySequence` slightly so that the first element has a slight delay.
 
 ```javascript
-(index + 1) \* 1000,
+(index + 1) * 1000,
 ```
 
 This will not do a darn thing without you adding the `Input(color)` action to the `onClick` handler in the boxes.
@@ -186,7 +186,7 @@ This will not do a darn thing without you adding the `Input(color)` action to th
 ```javascript
 <div
   className={Styles.box(~bgColor=Green, ~active)}
-  onClick={\_e => self.send(Input(Green))}
+  onClick={_e => self.send(Input(Green))}
 />
 ```
 
