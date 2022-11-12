@@ -4,6 +4,7 @@ import Header from "../components/Header.astro";
 import type { Frontmatter } from "../../utils/types";
 import { title, description, base } from "../../utils/const";
 import Footer from "../components/Footer.astro";
+import { mkAssetsPath } from "../../utils/functions";
 
 const posts = await Astro.glob<Frontmatter>("./posts/*.mdx");
 const tutorials = await Astro.glob<Frontmatter>("./tutorials/*.mdx");
@@ -42,7 +43,7 @@ allPosts.sort(
     <Header />
     <main>
       <section class="intro">
-        <img src="/static/assets/photo.jpg" />
+        <img src={mkAssetsPath("/photo.jpg")} />
         <p>
           Heresce! My name is Adam Recvlohe (Spotted Arrow). I am a citizen of
           Tvlvhase Wvkokaye Tribal Town, Muscogee Nation, United States, Canada,

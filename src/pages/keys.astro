@@ -3,6 +3,7 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import { title, description, base } from "../../utils/const";
 import Footer from "../components/Footer.astro";
+import { mkAssetsPath } from "../../utils/functions";
 ---
 
 <style>
@@ -18,7 +19,7 @@ import Footer from "../components/Footer.astro";
   <main>
     <h1>PGP Keys</h1>
     <p>
-      <a href="/static/assets/adamrecvlohe.asc">Public Key File</a>
+      <a href={mkAssetsPath("/adamrecvlohe.asc")}>Public Key File</a>
     </p>
     <pre>-----BEGIN PGP PUBLIC KEY BLOCK-----
 
