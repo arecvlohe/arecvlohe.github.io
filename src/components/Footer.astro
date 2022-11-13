@@ -1,7 +1,7 @@
 ---
 import { lastUpdated } from "../../utils/functions";
 
-const lastUpdate = await lastUpdated();
+const { hash, date } = await lastUpdated();
 ---
 
 <style>
@@ -17,7 +17,7 @@ const lastUpdate = await lastUpdated();
 <hr />
 <footer>
   <div>
-    Writings license - <a
+    Articles license - <a
       rel="noopener noreferrer"
       href="http://creativecommons.org/licenses/by-sa/4.0/"
       target="_blank">CC-BY-SA</a
@@ -33,5 +33,13 @@ const lastUpdate = await lastUpdated();
       >new.css</a
     >
   </div>
-  <div class="last-updated">Last Updated On {lastUpdate}</div>
+  <div class="last-updated">
+    Last updated on {date} (<a
+      rel="noopener noreferrer"
+      href={`https://gitlab.com/arecvlohe/arecvlohe.gitlab.io/-/commit/${hash.slice(
+        0,
+        8
+      )}`}>{hash.slice(0, 8)}</a
+    >)
+  </div>
 </footer>

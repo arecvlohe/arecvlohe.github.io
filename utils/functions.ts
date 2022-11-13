@@ -7,13 +7,14 @@ export const mkAssetsPath = (path: string): string => {
 };
 
 const options = {
-  weekday: "long",
+  weekday: "short",
   year: "numeric",
-  month: "long",
+  month: "short",
   day: "numeric",
+  timeZone: "America/Chicago",
 } as const;
 
-export const lastUpdated = (): Promise<string> => {
+export const lastUpdated = (): Promise<{ date: string; hash: string }> => {
   return new Promise((res, rej) => {
     git.getLastCommit((err, commit) => {
       if (err) {
@@ -22,8 +23,15 @@ export const lastUpdated = (): Promise<string> => {
 
       try {
         const unixTimestamp = parseInt(commit.authoredOn, 10) * 1000;
-        const date = new Date(unixTimestamp);
-        res(date.toLocaleDateString("en", options));
+        const date = new Date(unixTimestamp)
+          .toLocaleDateString("en", options)
+          .replace(/,/g, "");
+        const hash = commit.hash;
+        const result = {
+          date,
+          hash,
+        };
+        res(result);
       } catch (e) {
         return rej(`Failed to parse last commit with: ${e}`);
       }
