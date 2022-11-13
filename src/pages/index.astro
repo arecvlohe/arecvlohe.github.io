@@ -28,12 +28,16 @@ allPosts.sort(
       max-width: 300px;
       max-height: 240px;
       border-radius: 4px;
-      object-fit: fill;
+      object-fit: contain;
     }
 
     @media screen and (max-width: 768px) {
       .intro {
         flex-direction: column;
+      }
+
+      img {
+        object-fit: fill;
       }
     }
   </style>
