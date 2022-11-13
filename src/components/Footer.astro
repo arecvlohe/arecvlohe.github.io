@@ -1,24 +1,37 @@
+---
+import { lastUpdated } from "../../utils/functions";
+
+const lastUpdate = await lastUpdated();
+---
+
 <style>
   footer {
     text-align: center;
+  }
+
+  .last-updated {
+    margin-top: 10px;
   }
 </style>
 
 <hr />
 <footer>
-  Writings license - <a
-    rel="noopener noreferrer"
-    href="http://creativecommons.org/licenses/by-sa/4.0/"
-    target="_blank">CC-BY-SA</a
-  > / Souce Code license - <a
-    rel="noopener noreferrer"
-    href="https://www.gnu.org/licenses/gpl-3.0.en.html"
-    target="_blank">GPL</a
-  > / Inspiration - <a
-    rel="noopener noreferrer"
-    href="https://nora.codes/"
-    target="_blank">nora.codes</a
-  > & <a rel="noopeneer noreferrer" href="https://newcss.net" target="_blank"
-    >new.css</a
-  >
+  <div>
+    Writings license - <a
+      rel="noopener noreferrer"
+      href="http://creativecommons.org/licenses/by-sa/4.0/"
+      target="_blank">CC-BY-SA</a
+    > / Souce Code license - <a
+      rel="noopener noreferrer"
+      href="https://www.gnu.org/licenses/gpl-3.0.en.html"
+      target="_blank">GPL</a
+    > / Inspiration - <a
+      rel="noopener noreferrer"
+      href="https://nora.codes/"
+      target="_blank">nora.codes</a
+    > & <a rel="noopeneer noreferrer" href="https://newcss.net" target="_blank"
+      >new.css</a
+    >
+  </div>
+  <div class="last-updated">Last Updated On {lastUpdate}</div>
 </footer>
