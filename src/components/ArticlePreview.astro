@@ -1,13 +1,17 @@
 ---
-import type { PostPreview } from "../../utils/types";
+import type { ArticlePreview } from "../../utils/types";
 
-type Props = PostPreview;
+type Props = ArticlePreview;
 const { post }: Props = Astro.props;
 ---
 
 <style>
   p + h3 {
     border-bottom: none;
+  }
+
+  article:last-of-type + hr {
+    display: none;
   }
 </style>
 
