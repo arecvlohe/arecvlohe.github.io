@@ -9,7 +9,7 @@ To summarize, in the last [post](/tutorials/2017-08-14-lets-build-a-simon-game-i
 
 In this post you will learn how to use [Pux](http://purescript-pux.org/), the Elm-inspired front end UI library for PureScript.
 
-### Detour 👷
+## Detour 👷
 
 I had a bit of an issue with my `bower_components` loading correctly and getting the correct versions. If you experience the same, what I propose are two things. Copy pasta (🍝) the following to your `bower.json`:
 
@@ -33,7 +33,7 @@ bower install
 
 Hopefully this gets you back on track if you run into any issues.
 
-### Getting Started with Pux 🏒
+## Getting Started with Pux 🏒
 
 You are going to reorganize your current application in order for it to work with the Pux architecture. To start, pull in the Pux library using `bower`.
 
@@ -56,7 +56,7 @@ import Pux.Renderer.React (renderToDOM)
 
 Next you will gut the `main` function and replace it with the Pux architecture.
 
-### Main 💻
+## Main 💻
 
 ```haskell
 main :: ∀ fx. Eff (CoreEffects fx) Unit
@@ -87,7 +87,7 @@ data Event = Increment | Decrement
 
 The `data` keyword is what is called a `union type` in Elm. In PureScript this is know as a [tagged union](https://github.com/purescript/documentation/blob/master/language/Types.md#tagged-unions). You export a `tagged union` using `Event(..)`. Now that you have the events, let's declare a `foldp` function that handles these events.
 
-### Foldp 🗂
+## Foldp 🗂
 
 ```haskell
 module App.Update
@@ -135,7 +135,7 @@ For each change in the `State` you also log out the new state to the console. In
 
 With the `folp` and events defined let's work on the new `view` function. The `view` function will take `State` and return an `Html Event`. In the `view` you will add the buttons for `Increment` and `Decrement` as well as a `div` to display the current `State`.
 
-### View 🎑
+## View 🎑
 
 ```haskell
 module App.View
@@ -200,7 +200,7 @@ main = do
 
 If you run `pulp server` you should see two buttons and a count. In the console you should also see the state logged.
 
-### Summary ✅
+## Summary ✅
 
 In this post you learned:
 

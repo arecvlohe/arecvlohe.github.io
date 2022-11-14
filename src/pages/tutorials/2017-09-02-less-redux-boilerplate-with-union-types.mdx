@@ -9,7 +9,7 @@ If you have ever setup Redux in a new project you know the crazy amount of boile
 
 That was a bit of context and philosophy behind what spurred this blog post. Now let's get into coding something. We are going to create a simple counter (sorry I am not original!) with the help of the [union-type](https://github.com/paldepind/union-type) library with influence from [The Elm Architecture](https://guide.elm-lang.org/architecture/).
 
-### Getting Started 🚀
+## Getting Started 🚀
 
 To get started let's pull in the necessary libraries and create a simple react application using `create-react-app`.
 
@@ -19,7 +19,7 @@ $ create-react-app redux-union && cd redux-union && yarn add union-type redux re
 
 You might want to watch [this](https://www.youtube.com/watch?v=WyMpZTba5Tc&t=213s) to kill the time. It's going to be a while 😁.
 
-### Get Going Already! 🏃🏻
+## Get Going Already! 🏃🏻
 
 After everything is installed, create a single `index.js` file within a `store` folder and pull in the necesary dependencies.
 
@@ -40,7 +40,7 @@ case msg of
 
 It's a really nice pattern that simplifies a common process: handling user interaction. It also allows you to be more declarative with your program by creating data types on the fly that speak more to the domain specific terminology of your application. Let's now create the messages for this program.
 
-### Messages 💬
+## Messages 💬
 
 ```javascript
 const Msg = Type({ INCREMENT: [], DECREMENT: [] });
@@ -58,7 +58,7 @@ const nextState = Msg.caseOn({
 
 There is one thing that is a bit obscure about this function. In the background you are passing `action` and `state` to `nextState`. So to visually understand just imagine `nextState` as `nextState(action, state)`.
 
-### State 📱
+## State 📱
 
 In the typical Elm way, let's describe the model, in this case the `state`.
 
@@ -68,7 +68,7 @@ const initialState = {
 };
 ```
 
-### Update ⏰
+## Update ⏰
 
 Next, let's create the update function, in this case the reducer which will be called `state`.
 
@@ -81,7 +81,7 @@ function state(state = initialState, { type = Msg.DEFAULT, payload = null }) {
 
 I had a couple issues with getting the application to initialize properly with Redux but `if (typeof type === "string") return state` seemed to do the trick. Usually the first action to a reducer is `@@redux/INIT` to initialize it. It seems other actions were being passed as well that were also strings, so to get around this I just did a catch all for those actions coming from Redux.
 
-### Store 🏪
+## Store 🏪
 
 Next, it's time to initialize the store.
 
@@ -98,7 +98,7 @@ const store = createStore(
 
 If you have the [redux-devtools-extension](https://github.com/zalmoxisus/redux-devtools-extension), then great! But don't worry about it. We have a `store`, with a key of `state`, that also has a `state` key on it. Here I just want to work with a single reducer, not multiple. KISS! 💋
 
-### Actions 🤹‍
+## Actions 🤹‍
 
 With the `store` initialized I can create actions to dispatch to the store.
 
@@ -111,7 +111,7 @@ export const subtract = () => store.dispatch({ type: Msg.DECREMENT });
 
 One reason I like this is because I don't have to pass `mapDispatchToProps` to my `connect` function. I am trying to create less boilerplate, not more!
 
-### Selectors 👉
+## Selectors 👉
 
 Next to last, create a selector for your state. Here I am using some helpers from [Ramda](http://ramdajs.com/docs/) to create a memoized selector.
 
@@ -127,7 +127,7 @@ export default store;
 
 That wasn't too bad was it? At this point you can now wrap your application with `Provider` and your `App` component with `connect` passing in `mapStateToProps`.
 
-### App Component 👩‍💻
+## App Component 👩‍💻
 
 Inside of `App.js` this is what I have.
 
@@ -174,7 +174,7 @@ ReactDOM.render(
 registerServiceWorker();
 ```
 
-### Summary ✅
+## Summary ✅
 
 In this lesson you learned about union types and how to use them to _reduce_ your Redux boilerplate. This also implies adhering to some conventions around file structure. This is not perfect and I am sure there are even more ways to make your Redux footprint smaller. If there is, please share! I am interested to hear how this model can be improved. Thank you and until next time, keep hacking!
 

@@ -19,7 +19,7 @@ Let's step through how the game will function using good ole' bullet points.
 
 Let's make this into code!
 
-### Foundations 🚧
+## Foundations 🚧
 
 I like to start with the small stuff first and gradually move up to the things that are more complex. To handle user actions you will need, you guess it, an action. Create an action called `Input` which takes a `color` type.
 
@@ -75,7 +75,7 @@ Update the reducer now.
 
 Now let's get down to business.
 
-### Sound Logic 🧠
+## Sound Logic 🧠
 
 See what I did there. Sound. Logic. Dad joke of the year! But it actually makes sense here. When the user clicks a box, you add to state that `color`, then you can compare the first element in the `input` _and_ then get the size of the input to then pluck off the `color` in the sequence at the index equal to the size. If that went over your head let's write some code to clarify things.
 
@@ -122,7 +122,7 @@ let currentSequenceColor = Belt.List.getExn(sequence, inputLength - 1);
 
 I am going to enjoy the next part because I will get to use [pattern matching](https://reasonml.github.io/docs/en/pattern-matching#docsNav) to solve this problem!
 
-### Pattern Matching FTW 🙌
+## Pattern Matching FTW 🙌
 
 Pattern matching is a great way to simplify what can turn into very inefficient or complex steps. There are three scenarios at the current moment to check on: If the user clicked an incorrect box, if the user clicked a correct box, and if a user clicked a correct box and graduates to the next level. I imagine this can get complex in an `if/else` statement but pattern matching makes this quite easy. Let me show you.
 
@@ -192,7 +192,7 @@ This will not do a darn thing without you adding the `Input(color)` action to th
 
 Oh yeah, let's see this thing go!
 
-### Summary 📝
+## Summary 📝
 
 In this article, if you didn't just scroll to the bottom, you learned how to handle business logic pretty seamlessly using pattern matching. That was fun. In the next lesson, you will tidy up the application more by adding a reset button, a strictness option, and some more niceties.
 

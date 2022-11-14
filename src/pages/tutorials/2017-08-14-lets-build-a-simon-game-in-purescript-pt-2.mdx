@@ -9,7 +9,7 @@ To summarize, in the [last post](/tutorials/2017-08-12-lets-build-a-simon-game-i
 
 In this post, you will build on that knowledge and work on the view layer to the application. You will pull in the [smolder](https://pursuit.purescript.org/packages/purescript-smolder/10.1.0) library which provides helpers to generate HTML markup. I will not cover any styling in this post, so I leave that up to you to work on 😎.
 
-### Update the Rando Function 💁
+## Update the Rando Function 💁
 
 Before I move forward I want you to put a finishing touch on the function you created last time. The `generateRandoSequence` does nothing more than generate a random sequence of integers. Although this is nice, it doesn't really help further along the app you are building. Instead, what is needed is a random list of strings: red, green, blue, yellow. These are same colors the actual Simon Game uses. To do this I will map the random list of numbers to their corresponding color inside a simple `case` statement.
 
@@ -65,7 +65,7 @@ In this case, I removed the `<$>` and added `<#>` which is the opposite of `<$>`
 
 I hope I didn't lose you up to this point! That last part was a doozy but hopefully, you will see the light soon 💡. Now let's move on to markup. Markup is not that bad, right? You will find out!
 
-### Markup In PureScript with Smolder ⟨∕⟩
+## Markup In PureScript with Smolder ⟨∕⟩
 
 In order to use the smolder library with its helpful handlers for generating markup you will need to install it as a dependency.
 
@@ -97,7 +97,7 @@ $ text "Hello, PureScript!"
 
 In this function, there is a `div` with `text`. Simple enough, right? Now that the function is created, let's run it inside of our main function and `render` our markup to the DOM.
 
-### Bumpy Road Ahead 🚧
+## Bumpy Road Ahead 🚧
 
 There is a lot going on in this next section so I just want to prepare you for the fact you might see some things you may not understand 😤. Still ready to move forward? Okay, let's go!
 
@@ -161,7 +161,7 @@ If you run `pulp server`, when you navigate to `localhost:1337` in the browser y
 
 > Remember that trying to run `pulp run` on the current setup will cause an error as node has no such notion of a `window`.
 
-### Summary ✅
+## Summary ✅
 
 In this lesson you learned:
 

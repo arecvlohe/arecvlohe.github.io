@@ -7,7 +7,7 @@ layout: ../../layouts/Article.astro
 
 The other day I wrote some encoders/decoders in Reason and would like to document my journey doing so.
 
-### What is an encoder/decoder?
+## What is an encoder/decoder?
 
 In JavaScript, JSON works just fine in the browser environment. For example, when you make a fetch call, you can use the `Fetch` API's `Body.json` function to convert a completed response stream into JSON. You can copy/pasta the code below into your browser console.
 
@@ -23,13 +23,13 @@ _Reference:_ [_https://developer.mozilla.org/en-US/docs/Web/API/Body/json_](http
 
 This is not so easy in languages like ReasonML, Elm, or PureScript. The data needs to be converted into the data types those languages understand. This is where encoders/decoders step in. Decoders convert data from a foreign type, like JSON, into idiomatic types like ReasonML's `bool`. On the flip side, encoders take domain types, like ReasonML's `int`, and convert them into types that other domains can understand, like JSON.
 
-### Why is this helpful?
+## Why is this helpful?
 
 In JavaScript, how do you know the shape of the data you're getting back from the server? And even when you do know the shape of the data, how do you know you're using it correctly. Yes, you have things like TypeScript to model the shape of your data, but even then, how can you ensure that the data you are receiving is fool-proof from breaking the app at run-time? This is where encoders/decoders shine. Why? Because these functions check at run-time whether the data is in the shape you are decoding/encoding. If it's not, then the decoder will throw an error. This error is handled upstream, so any usage of the data down stream in your app is not effected.
 
-### How do I get started?
+## How do I get started?
 
-#### Background
+### Background
 
 In this article, we are going to look at how handle JSON in ReasonML using the well-know `bs-json` library.
 
@@ -41,7 +41,7 @@ FYI, the source code is in Ocaml. That syntax has tripped me up sometimes. If th
 
 There is a Chrome extension I believe but I am an unapologetic Firefox user so there you go.
 
-#### Installation and Setup
+### Installation and Setup
 
 Next, let's create a development environment. You will need a computer, ReasonML, and `bs-json`. To install ReasonML go here:
 
@@ -66,7 +66,7 @@ $ npm run build
 $ node src/Demo.bs.js  // output: Hello, BuckleScript and Reason!
 ```
 
-#### Json Setup
+### Json Setup
 
 Since you need something to actually decode, let's create a nested JSON type using some BuckleScript helpers. The structure will be something like this in JSON:
 
@@ -104,13 +104,13 @@ Js.log(json);
 // }
 ```
 
-#### Last but Not Least
+### Last but Not Least
 
 Once last thing. If you get lost the full repository is here:
 
 - [Learn to Decode](https://github.com/arecvlohe/learn-to-decode)
 
-### How do I decode?
+## How do I decode?
 
 Now that we have something to actually decode let's create a decoder for this bad boy data structure. Let's look at our data types. There is a string, an array of strings, and a null value. These are packaged in an object.
 
@@ -153,7 +153,7 @@ Js.log(decoded); // [ [ 'Adam', [ 'writing', [Array] ], undefined ] ]
 
 What the bloody hell is that!? That my friend is what Reason code looks like in JS. BuckleScript does some funny things to it. `Record`s look like `arrays`, `lists` look like linked lists, and `option` looks like `undefined`. This stuff is optimized so even though it looks crazy, it's not.
 
-### How do I write an encoder?
+## How do I write an encoder?
 
 Now that you have your value encoded, let's do the opposite and encode that value into a string. You might do this if you were trying to save information to local storage like I was.
 
@@ -181,6 +181,6 @@ Js.log(encoded); // {"info":{"name":"Adam","hobbies":["writing","sleeping"],"isY
 
 Now this can be placed nice and neatly in local storage.
 
-### What did I learn?
+## What did I learn?
 
 In this article, I hope you learned how to create encoders/decoders in ReasonML. If you didn't, that's on you, not me 😄. These functions can come in really handy when you need to convert data from the server into usable Reason types.

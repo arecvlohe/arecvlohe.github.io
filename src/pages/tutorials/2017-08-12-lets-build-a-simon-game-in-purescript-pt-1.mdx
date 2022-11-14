@@ -9,11 +9,11 @@ If you have read any of my other articles then you probably know I am getting in
 
 Elm had nice error messages, a terse syntax, and a welcoming community. I was in my comfort zone. But after I finished creating a [Simon Game in Elm](https://github.com/arecvlohe/elm-simon-game), I felt the challenge was right there for the taking. To make the transition to PureScript a bit more seamless I am choosing a front end library in [Pux](http://purescript-pux.org/) that mimics Elm in many ways. Sorry, I wasn't ready for you [Halogen](https://github.com/slamdata/purescript-halogen)!
 
-### What is PureScript and Why Use It? λ
+## What is PureScript and Why Use It? λ
 
 [PureScript](http://www.purescript.org/) is a functional, strongly typed 💪, programming language that compiles down to JavaScript and/or Node. A language like PureScript allows me to write programs that are more declarative and expressive, all the while handling data in such a way that I don't have to see `undefined is not a function` ever again. It forces you to know types well, to think about programs in greater abstractions, and to use those abstractions to build more safe and expressive code. But don't take my word for it! 📚 🌈
 
-### User Stories 👱
+## User Stories 👱
 
 So what does a Simon Game entail? User stories to the rescue!
 
@@ -32,17 +32,17 @@ So what does a Simon Game entail? User stories to the rescue!
 
 Sound like something you're into? Well, if you are, come along further down this page and I can show you a world…where you make a Simon Game 😄.
 
-### Getting Started 💥
+## Getting Started 💥
 
 To get started on this project you will need PureScript and it's build tool `pulp`. There are a few ways to get these but I think the easiest way to do this is `npm i -g purescript pulp bower`. Because `pulp` uses `bower` as its default to handle dependency management, `bower` is needed as well.
 
 One of the nice things about PureScript's `pulp` is you can get up and running with a project relatively easily. Just create a directory folder with `simon` in the name, `cd` into the folder and run `pulp init`. A project structure is scaffolded out so you don't have to start from scratch like grandma's biscuits 👵. The `pulp` CLI has a lot of great features. If you run `pulp -h` you can see all of the commands that are available to you. There are even more commands in the commands. Commands inception! To do this run `pulp <command> -h`. You'll be glad you did!
 
-### Development Mode 💻
+## Development Mode 💻
 
 Let's just get up and running to make sure things are working as expected. First, we will need an `index.html` file to render our script. Create an `index.html` file at the root of your directory. Add a `script` tag with a `src` of `/app.js`. To serve up your application in a development environment run `pulp server`. This command will run `pulp build` and serve up your application from `localhost:1337`. You can change the port by running `pulp server --port 3000` if you feel you aren't leet enough at this point 😄. But I think you are so let's carry on. If you open up your developer tools in the **console** you should see `Hello sailor!`. You have successfully created a project in PureScript, okay, now let's go home. Just kidding 😉.
 
-### What is a Monad? 🌯
+## What is a Monad? 🌯
 
 Let's have a look see in the `Main.purs` file. The `main` function, just like in Elm and Haskell, kicks off the whole program. But there are more interesting things in this file, like the weirdly long library names with words like monad in them. For example, there is the `Control.Monad.Eff` and `Control.Monad.Eff.Console` libraries. Like you maybe, when I saw these I just ran for the hills 🏔. I didn't know what they meant nor did I want to know. It all looked like magic to me and I already was feeling like I knew nothing.
 
@@ -50,7 +50,7 @@ In reality, though these things are quite simple. A monad is a burrito 🌯. Got
 
 Why is this even necessary, Adam? It removes the implicit nature of your program and forces you to be fully aware and conscious of what is going on and to handle it accordingly. At least that is what it does for me. Going through building the Simon Game forced me to think in greater detail about my program and what it actually does instead of thinking non-sensibly about what is going on.
 
-### Generate A Random Sequence 🔢
+## Generate A Random Sequence 🔢
 
 At the core of this game is a random sequence of 20 things. That is where we will start. This is not something that I was able to figure out on my own. When I first started I was stumped as to how I would do this in PureScript. In Elm, there are [generators](http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Random) for this. The generators fit nice and neat into the Elm architecture. They generate a `Cmd msg` and the Elm run time handles it from there. So I turned to the PureScript community and got some incredible help from Christoph Hegemann. He even wrote a [gist](https://gist.github.com/kRITZCREEK/ebc1a9340b946e68d32de880efe1f644) for goodness sake, look at this guy! Phil Freeman, the creator of PureScript chimed in as well, which is really cool. If you need help I recommend you hit up the functional programming group on [Slack](https://fpchat-invite.herokuapp.com/) or [Gitter](https://gitter.im/purescript/purescript).
 
@@ -92,7 +92,7 @@ logShow $ result
 
 If you're lucky, when you run `pulp run` you should see a "random" list sequence in your terminal. You can also run `pulp psci` then type `import Main` and call the function `generateRandoSequence` and you should see the same thing. Cool, right?!
 
-### Summary ✅
+## Summary ✅
 
 Well, this concludes part 1 where you generated a random list of 20 integers. "How useful is a random series of integers?" You ask. That my friend is something we will delve into when we get to part 2.
 

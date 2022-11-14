@@ -7,7 +7,7 @@ layout: ../../layouts/Article.astro
 
 I finally caved and tried out ReasonML over the weekend. Not because I wanted to but rather because I think ReasonML is a natural progression for web developers coming from JavaScript who want to get into functional programming (FP) using familiar syntax and libraries. If you are looking to shower your code with parenthesis, commas, and semicolons while utilizing FP features like pattern matching look no further than ReasonML. I do enjoy the terseness of Elm and the expressiveness of PureScript but I can't get away from the elegant paradigm that React inspired. React's component-based architecture is great and finding an FP language with React bindings that I understand is even better! In this article, I hope to fill in the gaps for those starting out and who need a few code snippets to hit the ground running on their ReasonML journey.
 
-### What You Will Need/Want
+## What You Will Need/Want
 
 - [Reason](https://reasonml.github.io/docs/en/global-installation.html)\*
 - [Editor Plugin](https://reasonml.github.io/docs/en/editor-plugins.html)
@@ -18,7 +18,7 @@ I finally caved and tried out ReasonML over the weekend. Not because I wanted to
 \*I used OPAM
 \*\*I used Reason Scripts
 
-### Step 1 Setup
+## Step 1 Setup
 
 After installing what you need above you can create a `reason-react` starter project using `yarn`:
 
@@ -26,7 +26,7 @@ After installing what you need above you can create a `reason-react` starter pro
 yarn create react-app <app-name> --scripts-version reason-scripts
 ```
 
-### Step 2 Dependencies
+## Step 2 Dependencies
 
 You will need an external library that implements the fetch API and you will get this from `bs-fetch`. I think it should be called `fetch-bs` but what do I know 😁.
 
@@ -47,7 +47,7 @@ Modules are not explicitly imported into files like they are in JavaScript. Inst
 ],
 ```
 
-### Step 3 Setup Component
+## Step 3 Setup Component
 
 A basic app component is already setup for you but it doesn't have everything you need to handle state like you expect in `react`. Instead you need what is called a `reducerComponent` along with some other boilerplate.
 
@@ -85,7 +85,7 @@ Let's have a look at what's familiar and not so familiar about this. There is `i
 yarn start
 ```
 
-### Step 4 Fetch Data
+## Step 4 Fetch Data
 
 Now it's about to get interesting. Next, you will fetch data. First, let's create a function that fetches the data. I will call this function `fetchQuote`.
 
@@ -155,7 +155,7 @@ didMount: (_self) => {
 
 Because `self` is not being used in this instance it is prepended with an underscore. I call the `fetchQuote` function and if all goes as planned you should see the API response in the `console`.
 
-### Step 5 Update Component State
+## Step 5 Update Component State
 
 In order to update component state, you need to transform this string representation of `JSON` into a `reason` `record`. With the help of `json-bs`, I mean `bs-json`, you can do this. The decoder will look something like this:
 
@@ -266,7 +266,7 @@ didMount: (self) => {
 
 I knew I couldn't get anything passed you! If all works as expected you should see a new random quote in your browser on each refresh.
 
-### Step 6 Update Quote on User Click Event
+## Step 6 Update Quote on User Click Event
 
 Let's add some interactivity! You will add a button that when clicked will fetch a new random quote. First, add an action type of `Click`.
 
@@ -356,14 +356,14 @@ let fetchQuote = (self) => {
 };
 ```
 
-### Step 7 Rejoice!
+## Step 7 Rejoice!
 
 Wow, you just completed your first reason/reason-react app. Now when you get around the water cooler with your co-workers you will have a pretty cool story to tell! Maybe.
 
-### Summary
+## Summary
 
 In this article, you learned how to create a random quote generator in `reason` with the `reason-react` UI library. Along the way you installed dependencies, utilized browser APIs, built a reason-react component with lifecycle methods, and created something completely useless 😆. I hope the code snippets above help you on your journey to learning ReasonML. And who knows, maybe it becomes the language that replaces `undefined is not a function`.
 
-### Source Code
+## Source Code
 
 [https://github.com/arecvlohe/reason-react-medium-example](https://github.com/arecvlohe/reason-react-medium-example)

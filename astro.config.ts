@@ -3,6 +3,9 @@ import preact from "@astrojs/preact";
 import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
 import image from "@astrojs/image";
+import rehypeSlug from "rehype-slug";
+import rehypeAutoLinkHeadings from "rehype-autolink-headings";
+import remarkToc from "remark-toc";
 import { h } from "hastscript";
 
 /**
@@ -28,37 +31,42 @@ const AnchorLinkIcon = h(
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [preact(), sitemap(), mdx(), image()],
+  integrations: [
+    preact(),
+    sitemap(),
+    mdx({
+      // remarkPlugins: [remarkToc],
+      rehypePlugins: [
+        rehypeSlug,
+        [
+          rehypeAutoLinkHeadings,
+          {
+            properties: {
+              class: "anchor-link",
+            },
+            behavior: "before",
+            group: ({ tagName }) =>
+              h(`div.header-link.level-${tagName}`, {
+                tabIndex: -1,
+              }),
+            content: () => [
+              h(
+                `span.anchor-icon`,
+                {
+                  ariaHidden: "true",
+                },
+                AnchorLinkIcon
+              ),
+            ],
+          },
+        ],
+      ],
+    }),
+    image(),
+  ],
   site: process.env.BUILD_GITLAB
     ? "https://adamrecvlohe.com"
     : "https://arecvlohe.github.io",
   outDir: process.env.BUILD_GITLAB ? "public" : undefined,
   publicDir: process.env.BUILD_GITLAB ? "static" : undefined,
-  markdown: {
-    rehypePlugins: [
-      "rehype-slug",
-      [
-        "rehype-autolink-headings",
-        {
-          properties: {
-            class: "anchor-link",
-          },
-          behavior: "before",
-          group: ({ tagName }) =>
-            h(`div.header-link.level-${tagName}`, {
-              tabIndex: -1,
-            }),
-          content: () => [
-            h(
-              `span.anchor-icon`,
-              {
-                ariaHidden: "true",
-              },
-              AnchorLinkIcon
-            ),
-          ],
-        },
-      ],
-    ],
-  },
 });

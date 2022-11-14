@@ -15,7 +15,7 @@ In this article, you are going to tidy up the application and make it behave in 
 - Add an alert for when the user wins the game
 - Update some CSS and styles of course
 
-### Header 💂‍♀️
+## Header 💂‍♀️
 
 I think adding a header makes the app feel more legitimate. The header I usually include for this series has the title of the game and the stack used to create it: Simon Game in ReasonReact.
 
@@ -28,7 +28,7 @@ I think adding a header makes the app feel more legitimate. The header I usually
 
 I learned in the process of making this series that you can also use the [fast pipe](https://reasonml.github.io/docs/en/fast-pipe#docsNav) operator for creating strings in ReasonReact. The one benefit to using this is you don't have to surround the converted string in parenthesis or curly braces as you would with the pipe operator. I don't know why this is the case so don't ask me that 😅.
 
-### Fonts 📄
+## Fonts 📄
 
 I don't really like the browser default for the `font-family`. Let's change this to how many modern apps set the `font-family` which is by using system fonts. Thankfully, `bs-css` has a `global` function which allows us to set defaults on tags.
 
@@ -46,7 +46,7 @@ open Css;
 
 This `font-family` is what Medium uses so I think it's fitting here. Make sure you to escape the internal font families which have quotes around them otherwise it won't compile.
 
-### Reset ⏪
+## Reset ⏪
 
 The user may want to reset the game. Let's add an action called `Reset` which takes no arguments and resets the `level` back to 1 and also clears the user's `input`.
 
@@ -82,7 +82,7 @@ Next, add the button to the markup section.
 
 Reset is now ready to go!
 
-### Strict 😤
+## Strict 😤
 
 The original Simon Game comes with a strictness option so that whenever the user clicks on the wrong box they are sent back to `level` 1. Let's also do that here. First, create a state field called `isStrict` which will be a boolean. Afterward, create an action which sets the strictness. It will not take an argument. Instead, it will take the previous state and have it be the opposite. Call this action `SetStrictness`.
 
@@ -182,7 +182,7 @@ switch (
 
 Notice you still have to handle the case for the other patterns even though it doesn't matter to them. That's why I just pass an underscore. With that I think we are done here.
 
-### Disabling the Buttons 🚫
+## Disabling the Buttons 🚫
 
 It kind of messes up the gameplay when a user can click buttons whenever they want. For example, when the game is playing back a sequence and it's not finished a user could click a box and that is not good. It's not that it's bad, but it's not how the user should play the game.
 
@@ -310,7 +310,7 @@ let baseStyle = [
 
 That should be all. If you now play around with the game while a sequence is going on you shouldn't be able to do a darn thing!
 
-### Alert User After Win 🚨
+## Alert User After Win 🚨
 
 To notify the user they have won you will use a simple alert. You could do this by using plain ole' JS inside of Reason but I think it's better to use a type-safe library. Here you will use the current web api library that's ported over the DOM to Reason.
 
@@ -429,7 +429,7 @@ For the first two patterns, you don't really care if you reached the end. This i
 
 Try it out! You should win the game pretty easily 😄.
 
-### Styles 💅
+## Styles 💅
 
 There are a few styles I want to update to make the app a little more presentable. Currently, the strict checkbox and buttons are not aligned. Let's fix that. Use `textAlign` to `center` the content inside the `controls` styles.
 
@@ -460,7 +460,7 @@ Hmm. I think it's starting to look good now. I am satisfied. If you're not then 
 
 That's all folks 🐷!
 
-### Summary 📝
+## Summary 📝
 
 In this lesson, you learned how to clean up the app and make it bit more presentable. What a series it's been. Six freaking parts. It was fun though. Thanks for tagging along and I hope you are now not only more competent using Reason/ReasonReact but also excited to use it too. That's it, get outta here!
 

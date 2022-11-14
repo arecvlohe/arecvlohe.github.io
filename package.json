@@ -20,9 +20,10 @@
     "astro-icon": "0.8.0",
     "git-last-commit": "1.0.1",
     "hastscript": "7.1.0",
-    "lodash.sortby": "^4.7.0",
+    "lodash.sortby": "4.7.0",
     "prettier": "2.7.1",
     "rehype-autolink-headings": "6.1.1",
-    "rehype-slug": "5.1.0"
+    "rehype-slug": "5.1.0",
+    "remark-toc": "8.0.1"
   }
 }

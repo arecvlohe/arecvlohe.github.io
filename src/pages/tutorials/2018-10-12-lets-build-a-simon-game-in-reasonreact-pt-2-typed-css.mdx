@@ -11,7 +11,7 @@ The advent of SPAs (single page applications) and CSS-in-JS have transformed how
 
 One of the main benefits of working within the Reason ecosystem is the [FFI](https://reasonml.github.io/docs/en/external#docsNav) (foreign function interface) it uses to bind to other libraries. It makes it easier to create wrappers around common libraries like [express](https://github.com/reasonml-community/bs-express#readme), [graphql](https://github.com/apollographql/reason-apollo#readme), and even [glamorous](https://github.com/reasonml-community/bs-glamor#readme) in comparison to other languages where wrapping may be considered bad practice. The bs-css library is a wrapper around [glamor](https://github.com/threepointone/glamor), a CSS-in-JS library that allows you to create reusable components. But in this case, you will also get the benefits of typed CSS, not that plain ole' CSS where you're allowed to pass in `visibility: show` to see what happens 😄.
 
-### Write Some CSS 🎨
+## Write Some CSS 🎨
 
 You are creating the Simon Game so all you need are four boxes. The following are the colors clock-wise from top-left to bottom-left: green, red, blue, yellow. Pretty simple. All in all, you will need some flexboxes and some colors to render. Let's get started. Above the component let's create the `Style` module and open up the helper functions provided by `Css`.
 
@@ -68,7 +68,7 @@ module Styles = {
 
 Voilà! The content should now render in the center of the page, both horizontally and vertically.
 
-### Write Some More CSS 👨‍🎨
+## Write Some More CSS 👨‍🎨
 
 Now that the content is centered let's create the `boxes` container. First, create a `boxes` style which will wrap your many a `box`. It will declare a `display` of `flex`. You will also want the boxes to `wrap` when there is not enough space for all of them to fit. To make this simpler, let's go with a defined `width` and `height` in pixels of `boxes`. This will make it easy to fit a box in accordingly.
 
@@ -133,7 +133,7 @@ Lastly, declare some `div`'s and give them their corresponding color.
 <div className={Styles.box(yellow)} />
 ```
 
-### Refactor 👷‍♀️
+## Refactor 👷‍♀️
 
 I am not satisfied with this solution, though. Instead of passing a reference to a string, let's create a tagged union of `Green`, `Red`, `Blue`, `Yellow`. When you pass the tag the function knows how to apply the correct color to the `div`.
 
@@ -172,7 +172,7 @@ Lastly, pass the tag to the declaration.
 
 This doesn't change a whole hell of a lot, maybe it makes the code harder to maintain, but let's just see where it takes us.
 
-### Summary 📝
+## Summary 📝
 
 In this article, you learned how to write type-safe CSS in ReasonReact using bs-css. I think it's a really awesome experience to write type-safe CSS and see errors at compile time instead of at run-time. It's also great to get editor intelligence to see what values are valid instead of depending on your memory. RIP `visibility: show` ✌️. If you liked what I wrote consider buying me a coffee.
 

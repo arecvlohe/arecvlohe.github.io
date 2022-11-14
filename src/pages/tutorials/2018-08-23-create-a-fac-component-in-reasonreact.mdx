@@ -7,7 +7,7 @@ layout: ../../layouts/Article.astro
 
 In the React ecosystem, RenderProp components are all the rage. Now with the latest release of React, the new Context API makes everyone also aware of the Function As Child pattern that inspired it. This pattern is used quite a bit in the ReasonReact ecosystem, for example [reason-apollo](https://github.com/apollographql/reason-apollo), so I will demonstrate with my words and code snippets how to create a Function as Child component in ReasonReact. Let's get started.
 
-### Getting Started 🚀
+## Getting Started 🚀
 
 You will be using [Jared Palmer](https://github.com/jaredpalmer)'s [Razzle](https://github.com/jaredpalmer/razzle) framework to get setup. I know, it's not the "official" setup when working with ReasonReact but I found it to be the easiest to setup. Plus, if you are interested in making this it into a full-blown application you are off to an excellent start.
 
@@ -17,7 +17,7 @@ Read through the example below and come back to me when you are done. ✌️
 
 You are going to create a FAC counter component. I know, "yet another counter example" but let's be honest, where would the development community be without "yet another" click-bait headlines? First, you will create the FAC component by creating a file called `CounterFAC.re`
 
-### Create the FAC 👨‍🎨
+## Create the FAC 👨‍🎨
 
 First, create the component and it's base functionality. All you want is some state, the current value of the count, and two functions that either add one or subtract one from the count.
 
@@ -63,7 +63,7 @@ let make = (children: childProps => ReasonReact.reactElement) => {
 
 > For some odd reason, `type childProps` needs to be above `type state` and `type action`.
 
-### Notes on Creating a FAC 🗒
+## Notes on Creating a FAC 🗒
 
 Let's dig in to what is happening here.
 
@@ -140,7 +140,7 @@ render: self =>
 
 Passing the `count`, as well as two functions, `increment` and `decrement`, to the child. Variables with an underscore, `_e`, means they are not being used even if they are being passed. Self refers to `this` in JS terms. The `send` refers to the `setState` function but it's more declarative because you say what action you want to fire and let the `reducer` handle the rest.
 
-### Render FAC 🌧 🦌
+## Render FAC 🌧 🦌
 
 Nice, huh?! Now you are ready to render this bad boy/girl. Go to `Home.re` and remove everything and put in your new `CounterFAC` and go to town with it.
 
@@ -167,7 +167,7 @@ let make = _children => {
     </CounterFAC>
 ```
 
-### Notes Pt. 2 📝
+## Notes Pt. 2 📝
 
 Some notes here.
 
@@ -197,6 +197,6 @@ I think this is because `ReasonReact` expects you to pass an array of elements s
 
 And that's it!
 
-### Summary 👏
+## Summary 👏
 
 In this article you learned how to create a FAC component in ReasonML. Now you can take your new found knowledge over to the water cooler where it belongs 😄.

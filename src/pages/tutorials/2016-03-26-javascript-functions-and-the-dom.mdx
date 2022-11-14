@@ -7,7 +7,7 @@ layout: ../../layouts/Article.astro
 
 This is the second lesson I gave as part of my 'Intro to JavaScript Course' for Tampa Bay youth. In this lesson, we discussed and programmed ways we can interact with the DOM through creating a hex clock and a simple drawing app. If you want to follow along create an account on codepen.io, create a new pen, and you will bet set.
 
-### What is the DOM?
+## What is the DOM?
 
 The DOM, or Document Object Model, represents the web page as a tree of elements. The tree is made up of parent-child relationships with the parent having one or many children referred to as nodes, but you can think of them as branches.
 
@@ -35,7 +35,7 @@ var canvas = document.body.getElementById("canvas");
 
 Here we are using the _document_ object's _getElementById_ method to traverse the DOM and pick out the node with the _id_ of 'canvas'. We then assign that node to the variable _canvas_. This will allow us to modify and make changes to that node within our script.
 
-### Show Me the Money! I mean Window Dimensions
+## Show Me the Money! I mean Window Dimensions
 
 Now let's take what we know and do something a little different. Instead of using HTML5 canvas to interact with a web page, we are going to interact with the body directly. Let's first get the _width_ and _height_ of the DOM window.
 
@@ -54,7 +54,7 @@ document.body.appendChild(dimensions);
 
 Here we are using the _document_ object's _createElement_ method to create a paragraph element. We then set the text for that element to equal what the dimensions of the window are. To display this on the actual page we use the _document_ object's _appendChild_ method, passing in the element we want to append, in this case, _dimensions_.
 
-### Where Is the Freaking Mouse?
+## Where Is the Freaking Mouse?
 
 That was okay. Now let's do something that's a bit more interactive. This time, we will get the x and y coordinates of the mouse when it hovers over the DOM.
 
@@ -83,11 +83,11 @@ Wow, pretty neat! Okay, maybe just for me.
 
 Let's recap. There are many ways to interact with the DOM. We can add elements, add event listeners, and manipulate the DOM based on the feedback we get from event listeners.
 
-### Let's Build a Hex Clock
+## Let's Build a Hex Clock
 
 We are going to take what we learned a step further and create a hex clock. What is a hex clock you say? A hex clock is a timer that changes a web pages color each second. To start let's create a function that gets the time of day.
 
-#### getTimeOfDay Function
+### getTimeOfDay Function
 
 ```javascript
 function getTimeOfDay() {
@@ -106,7 +106,7 @@ Now every time we call this function we will get a new date object and from that
 
 Next, let's make a function that creates a color based on the time we get from the _getTimeOfDay_ function.
 
-#### getColor Function
+### getColor Function
 
 ```javascript
 function getColor(time) {
@@ -119,7 +119,7 @@ This is simple enough. We are passing in a _time_ parameter and adding a hash to
 
 Now all we have to do is wire this up so that the background changes each second. Here we will use another handy global function called _setInterval_.
 
-#### setInterval Function
+### setInterval Function
 
 ```javascript
 setInterval(function () {
@@ -193,7 +193,7 @@ window.onload = start;
 
 As you will see here I added a _compose_ function and put our _setInterval_ inside of a _start_ function so that when the window is loaded the _start_ function will kick it all off. This is not much different, just a bit more functional in nature.
 
-### Simple Drawing App
+## Simple Drawing App
 
 What do you think we can do next? You think we can make a drawing app with everything that we know. Let's see what we can do.
 
@@ -290,11 +290,11 @@ window.onload = sizeCanvas;
 
 You freaking did it! Great job! Now if you want to level up your skills, even more, try to take on the challenge below.
 
-### Challenges
+## Challenges
 
 1.  Add functionality to the drawing app so that it allows you to draw circles along with lines.
 
-### Summary
+## Summary
 
 In this lesson, you learned how to add interactivity to your web page with the help of event listeners. You also learned a little bit about functional programming and how to make your code a bit more readable. I hope this lesson was helpful. I tried teaching these concepts making apps that are a bit more interesting than having a button pop-up an alert.
 

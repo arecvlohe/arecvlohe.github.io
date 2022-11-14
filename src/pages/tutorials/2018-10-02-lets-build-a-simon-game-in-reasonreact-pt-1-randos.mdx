@@ -9,27 +9,27 @@ layout: ../../layouts/Article.astro
 
 Doing tutorials using the Simon Game as inspiration all started with [FreeCodeCamp](https://www.freecodecamp.org/). But generally speaking, I think it's a good place to start for someone like myself who enjoys building things that are moderately complex in my free time. What I like most about the Simon Game is the amount of state one has to control for and how asynchronicity plays such a big part. Also, it forces me to learn the more obscure APIs, for example Audio, I would otherwise not touch.
 
-### Show Me da Code 👀
+## Show Me da Code 👀
 
 Code for this part of the project can be found here 👇
 
 [Reason React Simon Game Part 1](https://github.com/arecvlohe/reason-react-simon-game/tree/v2_part_1)
 
-### Getting Started 🚀
+## Getting Started 🚀
 
 To get start👇ed locally check out the article you can either use a setup using [webpack and bs-platform](/tutorials/2018-09-28-getting-started-with-reasonreact) or the `github` link above. After getting that up and running you should be ready for the next phase.
 
-### Install 📦
+## Install 📦
 
 The latest version of `reason-react` does not include the same kind of reducer as the old one. In order to reduce the number of changes in this article in relation to when this was last written, install `reason-react-update` and it to your add to your `bs.config.json`.
 
 yarn add reason-react-update
 
-### Component 📦
+## Component 📦
 
 With the help of `reason-react-update`, you will be able to update state in the same way as you did using the previous `reason-react` API. This way you can update the state with the sequence that is generated when the component mounts and update it when the user loses or wins the game.
 
-#### Helpful Resource
+### Helpful Resource
 
 - [https://github.com/bloodyowl/reason-react-update](https://github.com/bloodyowl/reason-react-update)
 
@@ -107,7 +107,7 @@ Each number in the sequence is converted to a string using `Js.Int.toString` the
 
 Like I said, not a damn thing is happening right now, but just you wait!
 
-### Randos 🔢
+## Randos 🔢
 
 You now are at the point where you want to actually render some ish to the screen. You will use `useEffect0`, an effect hook with no dependencies that triggers on mount. First though, let's generate a sequence of numbers between 1 and 4 (inclusive).
 
@@ -130,7 +130,7 @@ An example of ad-hoc polymorphism can be found in Haskell. When you want to add/
 
 Unfortunately, or fortunately depending on how you view this, Ocaml does not have ad-hoc polymorphism, or a comparable implementation, and therefore has separate operators for adding/subtracting/dividing/multiplying/etc. floats and integers.
 
-#### Example
+### Example
 
 ```javascript
 /* Adding Integers */
@@ -169,7 +169,7 @@ React.useEffect0(() => {
 
 There is a `None` at the bottom there because this effect expects an `Option` to be returned. A simple `None` will work to satisfy this requirement.
 
-### The Whole Enchilada 🌯
+## The Whole Enchilada 🌯
 
 ```javascript
 /* App.re */
@@ -210,7 +210,7 @@ React.useEffect0(() => {
 };
 ```
 
-### Summary 📚
+## Summary 📚
 
 In this lesson you learned how to generate random numbers, declare types, and update state in `reason-react`. This is a pretty good start if I do say so myself. In the next lesson, you will learn how to play the sequence and have the user interact with the game on the screen.
 

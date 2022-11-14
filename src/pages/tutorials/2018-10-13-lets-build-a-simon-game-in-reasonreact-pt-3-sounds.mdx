@@ -9,7 +9,7 @@ layout: ../../layouts/Article.astro
 
 Today you will look at how to add sounds to your Simon Game. As I have said in previous posts, Reason has an excellent [FFI](https://reasonml.github.io/docs/en/external#docsNav) (foreign function interface) that allows you to interoperate with JavaScript and still maintain a great level of type security 👮‍♀️. In this article, you will learn how to use Reason's FFI to bind to the Web Audio API in order to play a sound whenever a user clicks on a colored box. Specifically, you will create a binding to the [HTMLAudioElement API](https://developer.mozilla.org/en-US/docs/Web/API/HTMLAudioElement#Methods). You are not going to create a sound, although that would be super awesome. Instead, you will use the HTMLAudioElement API to merely play an audio file. Let's begin.
 
-### Background 👨‍🏫
+## Background 👨‍🏫
 
 First I want to talk about FFI in the context of ReasonReact and the Web API. When you use ReasonReact you have access to the Web API because your code is being run in the context of the browser. You create a binding using the `[@bs.val]` directive and `external` keyword. A good example of this is binding to a set of functions on the `window` object called `setTimeout` and `clearTimeout`.
 
@@ -28,7 +28,7 @@ Here is what is going, or at least how I understand it:
 - `= "clearTimeout"` the name of the function it's binding to that exists outside the file
 - `= ""` in some instances you will see this as an empty string, this means the internal name and external name are the same, although this is discouraged now
 
-### Web Audio API 🔊
+## Web Audio API 🔊
 
 With the knowledge above in hand let's create a binding for the `Audio` constructor. It works a little differently though. It's used as a constructor which means you instantiate it with the `new` keyword: `new Audio("some-audio-file.mp4")`. Thankfully BuckleScript gives us a good example of how to do this using the `Date` constructor.
 
@@ -110,7 +110,7 @@ type t;
 
 The `[@bs.send]` directive works with JS objects to add functions to an instance of `self`. So instead of doing what I posted above, I think it's easier to do it this way.
 
-### Sounds 🎶
+## Sounds 🎶
 
 With the `Audio` constructor now bound correctly to be used within Reason, create a `Sound.re` file in order to create audio instances for each sound in the game.
 
@@ -165,7 +165,7 @@ This is just what you need. Each value now has a `play` method which you can cal
 
 You don't need the `error` sound now but you will in the future. To be continued on that part.
 
-### Play ⏯
+## Play ⏯
 
 Now the important stuff. Let's actually play the sound! For now, let's just play the corresponding sound depending on which box the user clicks on.
 
@@ -179,7 +179,7 @@ Now the important stuff. Let's actually play the sound! For now, let's just play
 
 Yay! 🙌 Do this for each box. Start your application using `yarn start` and hear the sounds of accomplishment in your browser.
 
-### Summary 📝
+## Summary 📝
 
 In this article, you learned about Reason's FFI and you bound one function from the Web Audio API. Awesome work! There is still much to learn here but hopefully binding to DOM API's isn't so scary anymore 👹.
 
