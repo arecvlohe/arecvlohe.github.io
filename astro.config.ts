@@ -2,6 +2,7 @@ import { defineConfig } from "astro/config";
 import preact from "@astrojs/preact";
 import sitemap from "@astrojs/sitemap";
 import mdx from "@astrojs/mdx";
+import image from "@astrojs/image";
 import { h } from "hastscript";
 
 /**
@@ -27,7 +28,7 @@ const AnchorLinkIcon = h(
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [preact(), sitemap(), mdx()],
+  integrations: [preact(), sitemap(), mdx(), image()],
   site: process.env.BUILD_GITLAB
     ? "https://adamrecvlohe.com"
     : "https://arecvlohe.github.io",
