@@ -1,4 +1,5 @@
 ---
+import sortBy from "lodash.sortby";
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import ArticlePreview from "../components/ArticlePreview.astro";
@@ -7,11 +8,8 @@ import { title, description, base } from "../../utils/const";
 import Footer from "../components/Footer.astro";
 
 const tutorials = await Astro.glob<Frontmatter>("./tutorials/*.mdx");
-tutorials.sort(
-  (a, b) =>
-    new Date(b.frontmatter["publishDate"]).getTime() -
-    new Date(a.frontmatter["publishDate"]).getTime()
-);
+sortBy(tutorials, ["frontmatter.publishDate", "frontmatter.title"]);
+tutorials.reverse();
 ---
 
 <style>
@@ -21,7 +19,6 @@ tutorials.sort(
 </style>
 
 <BaseHead title={title} description={description} permalink={base} />
-
 
 <body>
   <Header />
