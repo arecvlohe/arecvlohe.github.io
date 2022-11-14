@@ -119,13 +119,9 @@ allPosts.sort(
           <li>
             <h2>📝 Writing</h2>
             <p>
-              I sometimes like to <a rel="noopener noreferrer" href="/posts"
-                >write my thoughts down</a
-              > or
-              <a rel="noopener noreferrer" href="/tutorials"
-                >learn a new technology</a
-              >. I hope you find them helpful. They are a mix of fun and
-              seriousness.
+              I sometimes like to <a href="/posts">write my thoughts down</a> or
+              <a href="/tutorials">learn a new technology</a>. I hope you find
+              them helpful. They are a mix of fun and seriousness.
             </p>
           </li>
           <li>
@@ -134,9 +130,7 @@ allPosts.sort(
               {
                 allPosts.slice(0, 4).map((p) => (
                   <li>
-                    <a rel="noopener noreferrer" href={p.url}>
-                      {p.frontmatter.title}
-                    </a>
+                    <a href={p.url}>{p.frontmatter.title}</a>
                   </li>
                 ))
               }
