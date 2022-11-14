@@ -238,8 +238,60 @@ In this lesson you learned about Elm, the typed functional language that compile
 
 Check out the complete code snippet below:
 
-In Gist form:
+```json
+{
+  "version": "1.0.0",
+  "summary": "Tell the world about your project!",
+  "repository": "https://github.com/user/project.git",
+  "license": "BSD3",
+  "source-directories": ["."],
+  "exposed-modules": [],
+  "dependencies": {
+    "elm-lang/core": "5.1.1 <= v < 5.1.1",
+    "elm-lang/html": "2.0.0 <= v < 2.0.0"
+  },
+  "elm-version": "0.18.0 <= v < 0.19.0"
+}
+```
 
-- [https://gist.github.com/anonymous/50828520c0664e6ab9b47c65e8002387#file-elm-package-json](https://gist.github.com/anonymous/50828520c0664e6ab9b47c65e8002387#file-elm-package-json)
-- [https://gist.github.com/anonymous/50828520c0664e6ab9b47c65e8002387#file-index-html](https://gist.github.com/anonymous/50828520c0664e6ab9b47c65e8002387#file-index-html)
-- [https://gist.github.com/anonymous/50828520c0664e6ab9b47c65e8002387#file-main-elm](https://gist.github.com/anonymous/50828520c0664e6ab9b47c65e8002387#file-main-elm)
+```html
+<html>
+  <head>
+    <style>
+      html {
+        background: #f7f7f7;
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      var app = Elm.Main.fullscreen();
+    </script>
+  </body>
+</html>
+```
+
+```elm
+module Main exposing (..)
+
+import Html exposing (Html, text)
+import String exposing (uncons, fromChar, toUpper, toLower)
+import Tuple exposing (first, second)
+
+capitalize : String -> String
+capitalize string =
+    case uncons string of
+        Just tuple ->
+            let
+              head = first tuple |> fromChar |>  toUpper
+              tail = second tuple |> toLower
+            in
+             head ++ tail
+        Nothing ->
+            ""
+
+main : Html a
+main =
+    text <| capitalize "Hello, World!"
+```
