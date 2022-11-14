@@ -11,7 +11,7 @@ import { mkAssetsPath } from "../../utils/functions";
 const posts = await Astro.glob<Frontmatter>("./posts/*.mdx");
 const tutorials = await Astro.glob<Frontmatter>("./tutorials/*.mdx");
 const allPosts = posts.concat(tutorials);
-const photo = mkAssetsPath("/photo.jpg");
+const photo = mkAssetsPath("photo.jpg");
 
 allPosts.sort(
   (a, b) =>
