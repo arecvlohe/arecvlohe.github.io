@@ -1,7 +1,7 @@
 import rss from "@astrojs/rss";
 
-const postImportResult = import.meta.glob("./posts/**/*.md", { eager: true });
-const posts = Object.values(postImportResult);
+const articleImportResult = import.meta.glob("./**/*.mdx", { eager: true });
+const articles = Object.values(articleImportResult);
 
 export const get = () =>
   rss({
@@ -10,10 +10,10 @@ export const get = () =>
     site: process.env.BUILD_GITLAB
       ? "https://adamrecvlohe.com"
       : "https://arecvlohe.github.io",
-    items: posts.map((post) => ({
-      link: post.url,
-      title: post.frontmatter.title,
-      pubDate: post.frontmatter.publishDate,
+    items: articles.map((article) => ({
+      link: article.url,
+      title: article.frontmatter.title,
+      pubDate: article.frontmatter.publishDate,
     })),
     ...(process.env.BUILD_GITLAB
       ? { stylesheet: "/rss/pretty-feed-v3.xsl" }
