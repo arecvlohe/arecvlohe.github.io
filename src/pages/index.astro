@@ -1,5 +1,6 @@
 ---
 import { Picture } from "@astrojs/image/components";
+import sortBy from "lodash.sortby";
 
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
@@ -13,11 +14,11 @@ const tutorials = await Astro.glob<Frontmatter>("./tutorials/*.mdx");
 const allPosts = posts.concat(tutorials);
 const photo = mkAssetsPath("photo.jpg");
 
-allPosts.sort(
-  (a, b) =>
-    new Date(b.frontmatter["publishDate"]).getTime() -
-    new Date(a.frontmatter["publishDate"]).getTime()
-);
+const nextArticles = sortBy(allPosts, [
+  "frontmatter.publishDate",
+  "frontmatter.title",
+]);
+nextArticles.reverse();
 ---
 
 <html lang="en">
@@ -131,7 +132,7 @@ allPosts.sort(
             <h2>✍️ Recent Articles</h2>
             <ul>
               {
-                allPosts.slice(0, 4).map((p) => (
+                nextArticles.slice(0, 4).map((p) => (
                   <li>
                     <a href={p.url}>{p.frontmatter.title}</a>
                   </li>
