@@ -20,6 +20,8 @@ export const get = () =>
       link: article.url,
       title: article.frontmatter.title,
       pubDate: article.frontmatter.publishDate,
+      description: article.frontmatter.description,
+      guid: article.url,
     })),
     ...(process.env.BUILD_GITLAB
       ? { stylesheet: "/rss/pretty-feed-v3.xsl" }
