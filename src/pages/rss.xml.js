@@ -7,6 +7,7 @@ const nextArticles = sortBy(articles, [
   "frontmatter.publishDate",
   "frontmatter.title",
 ]);
+nextArticles.reverse();
 
 export const get = () =>
   rss({
