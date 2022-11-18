@@ -1,8 +1,9 @@
 import rss from "@astrojs/rss";
 import sortBy from "lodash.sortby";
 
-const articleImportResult = import.meta.glob("./**/*.mdx", { eager: true });
-const articles = Object.values(articleImportResult);
+const posts = import.meta.glob("./posts/*.mdx", { eager: true });
+const tutorials = import.meta.glob("./tutorials/*.mdx", { eager: true });
+const articles = Object.values(posts).concat(Object.values(tutorials));
 const nextArticles = sortBy(articles, [
   "frontmatter.publishDate",
   "frontmatter.title",

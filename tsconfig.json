@@ -1,6 +1,10 @@
 {
   "extends": "astro/tsconfigs/base",
   "compilerOptions": {
-    "importsNotUsedAsValues": "error"
+    "module": "es2020",
+    "strict": true,
+    "importsNotUsedAsValues": "error",
+    "allowJs": true,
+    "checkJs": false
   }
 }

@@ -5,7 +5,6 @@ import mdx from "@astrojs/mdx";
 import image from "@astrojs/image";
 import rehypeSlug from "rehype-slug";
 import rehypeAutoLinkHeadings from "rehype-autolink-headings";
-import remarkToc from "remark-toc";
 import { h } from "hastscript";
 
 /**
@@ -35,7 +34,6 @@ export default defineConfig({
     preact(),
     sitemap(),
     mdx({
-      // remarkPlugins: [remarkToc],
       rehypePlugins: [
         rehypeSlug,
         [
