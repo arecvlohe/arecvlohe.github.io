@@ -135,6 +135,7 @@ nextArticles.reverse();
                 nextArticles.slice(0, 4).map((p) => (
                   <li>
                     <a href={p.url}>{p.frontmatter.title}</a>
+                    <span class="date">[{p.frontmatter.publishDate}]</span>
                   </li>
                 ))
               }
