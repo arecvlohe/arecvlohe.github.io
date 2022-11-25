@@ -1,6 +1,7 @@
 ---
 import { Picture } from "@astrojs/image/components";
 import sortBy from "lodash.sortby";
+import { Icon } from "astro-icon";
 
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
@@ -36,6 +37,10 @@ nextArticles.reverse();
       .intro {
         flex-direction: column;
       }
+    }
+
+    [astro-icon] {
+      height: 12px;
     }
   </style>
 
@@ -75,7 +80,13 @@ nextArticles.reverse();
                   href="https://mastodon.social/@adamrecvlohe"
                 >
                   Mastodon</a
-                >
+                >{" "}<sup
+                  ><a
+                    rel="noopener noreferrer"
+                    href="https://mastodon.social/@adamrecvlohe"
+                    ><Icon name="ic:round-vpn-key" />
+                  </a>
+                </sup>
               </li>
               <li>
                 <a
@@ -86,12 +97,24 @@ nextArticles.reverse();
               <li>
                 <a rel="noopener noreferrer" href="https://github.com/arecvlohe"
                   >GitHub</a
-                >
+                >{" "}<sup
+                  ><a
+                    rel="noopener noreferrer"
+                    href="https://gist.github.com/arecvlohe/8421a06c824bb52132116b7a4cba016d"
+                    ><Icon name="ic:round-vpn-key" />
+                  </a>
+                </sup>
               </li>
               <li>
                 <a rel="noopener noreferrer" href="https://gitlab.com/arecvlohe"
                   >Gitlab</a
-                >
+                >{" "}<sup
+                  ><a
+                    rel="noopener noreferrer"
+                    href="https://gitlab.com/arecvlohe/gitlab_proof"
+                    ><Icon name="ic:round-vpn-key" />
+                  </a>
+                </sup>
               </li>
             </ul>
           </li>
