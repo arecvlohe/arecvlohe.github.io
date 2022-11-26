@@ -15,3 +15,14 @@ export type Markdown = MarkdownInstance<Frontmatter>;
 
 export type Article = Pick<Markdown["frontmatter"], "title" | "publishDate"> &
   Pick<Markdown, "url">;
+
+export type WebMentions = {
+  count: number;
+  type: {
+    bookmark: number;
+    mention: number;
+    "rsvp-maybe": number;
+    "rsvp-no": number;
+    "rsvp-yes": number;
+  };
+};

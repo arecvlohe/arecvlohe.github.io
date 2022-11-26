@@ -1,9 +1,15 @@
 ---
-import type { Article } from "../../utils/types";
+import type { Article, WebMentions } from "../../utils/types";
 
 type Props = Article;
 
 const { publishDate, title, url }: Props = Astro.props;
+
+const webmentionsUrl = `https://webmention.io/api/count?target=https://adamrecvlohe.com${url}`;
+
+const webMentions: WebMentions = await fetch(webmentionsUrl)
+  .then((r) => r.json())
+  .then((r) => r);
 ---
 
 <style>
@@ -17,11 +23,37 @@ const { publishDate, title, url }: Props = Astro.props;
     <div class="link-wrapper">
       <a
         rel="noopener noreferrer"
-        href={`/${url.includes("posts") ? "posts" : "tutorials"}`}>Back</a
+        href={`/${url?.includes("posts") ? "posts" : "tutorials"}`}>Back</a
       >
     </div>
     <p>{publishDate}</p>
-    <h1>{title}</h1>
-    <slot />
+    <p>
+      {
+        webMentions.type.mention < 1 ? (
+          <p>
+            This article has no
+            <a
+              rel="noopener noreferrer"
+              href="https://www.w3.org/TR/webmention/#h-abstract"
+            >
+              WebMentions
+            </a>
+          </p>
+        ) : (
+          <p>
+            This article has {webMentions.type.mention}
+            <a
+              rel="noopener noreferrer"
+              href="https://www.w3.org/TR/webmention/#h-abstract"
+            >
+              WebMentions
+            </a>
+          </p>
+        )
+      }
+      <h1>{title}</h1>
+
+      <slot />
+    </p>
   </article>
 </main>
