@@ -16,7 +16,11 @@ const permalink = `${base}/${url}`;
 
 <html lang="en">
   <head>
-    <BaseHead title={title} description={description} permalink={permalink} />
+    <BaseHead
+      title={title}
+      description={description || ""}
+      permalink={permalink}
+    />
   </head>
   <body>
     <Header />
