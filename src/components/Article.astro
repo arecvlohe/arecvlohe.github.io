@@ -10,6 +10,8 @@ const webmentionsUrl = `https://webmention.io/api/count?target=https://adamrecvl
 const webMentions: WebMentions = await fetch(webmentionsUrl)
   .then((r) => r.json())
   .then((r) => r);
+
+console.log(webMentions);
 ---
 
 <style>
@@ -29,7 +31,7 @@ const webMentions: WebMentions = await fetch(webmentionsUrl)
     <p>{publishDate}</p>
     <p>
       {
-        webMentions.type.mention < 1 ? (
+        webMentions.type?.mention || 0 < 1 ? (
           <p>
             This article has no
             <a
