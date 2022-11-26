@@ -10,8 +10,6 @@ const webmentionsUrl = `https://webmention.io/api/count?target=https://adamrecvl
 const webMentions: WebMentions = await fetch(webmentionsUrl)
   .then((r) => r.json())
   .then((r) => r);
-
-console.log(webMentions);
 ---
 
 <style>
