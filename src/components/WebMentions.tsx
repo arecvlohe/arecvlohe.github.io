@@ -16,7 +16,7 @@ export const WebMentions = ({ url }: { url: string }) => {
       This article has no{" "}
       <a
         rel="noopener noreferrer"
-        href="https://www.w3.org/TR/webmention/#h-abstract"
+        href="https://www.ctrl.blog/entry/setup-webmention.html"
       >
         WebMentions
       </a>
