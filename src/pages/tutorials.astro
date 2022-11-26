@@ -12,17 +12,21 @@ sortBy(tutorials, ["frontmatter.publishDate", "frontmatter.title"]);
 tutorials.reverse();
 ---
 
-<style>
-  h1 {
-    margin-bottom: 20px;
-  }
-</style>
+<html lang="en">
+  <head>
+    <style>
+      h1 {
+        margin-bottom: 20px;
+      }
+    </style>
 
-<BaseHead title={title} description={description} permalink={base} />
+    <BaseHead title={title} description={description} permalink={base} />
+  </head>
 
-<body>
-  <Header />
-  <h1>Tutorials</h1>
-  <section>{tutorials.map((p) => <ArticlePreview post={p} />)}</section>
-</body>
-<Footer />
+  <body>
+    <Header />
+    <h1>Tutorials</h1>
+    <section>{tutorials.map((p) => <ArticlePreview post={p} />)}</section>
+    <Footer />
+  </body>
+</html>

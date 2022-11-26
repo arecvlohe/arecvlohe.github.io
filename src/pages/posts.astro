@@ -14,19 +14,23 @@ posts.sort(
 );
 ---
 
-<style>
-  h1 {
-    margin-bottom: 20px;
-  }
-</style>
+<html lang="en">
+  <head>
+    <style>
+      h1 {
+        margin-bottom: 20px;
+      }
+    </style>
 
-<BaseHead title={title} description={description} permalink={base} />
+    <BaseHead title={title} description={description} permalink={base} />
+  </head>
 
-<body>
-  <Header />
-  <main>
-    <h1>Posts</h1>
-    <section>{posts.map((p) => <ArticlePreview post={p} />)}</section>
-  </main>
-  <Footer />
-</body>
+  <body>
+    <Header />
+    <main>
+      <h1>Posts</h1>
+      <section>{posts.map((p) => <ArticlePreview post={p} />)}</section>
+    </main>
+    <Footer />
+  </body>
+</html>

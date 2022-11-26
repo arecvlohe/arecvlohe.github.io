@@ -6,22 +6,24 @@ import Footer from "../components/Footer.astro";
 import { mkAssetsPath } from "../../utils/functions";
 ---
 
-<style>
-  h1 {
-    margin-bottom: 20px;
-  }
-</style>
+<html lang="en">
+  <head>
+    <style>
+      h1 {
+        margin-bottom: 20px;
+      }
+    </style>
 
-<BaseHead title={title} description={description} permalink={base} />
-
-<body>
-  <Header />
-  <main>
-    <h1>PGP Keys</h1>
-    <p>
-      <a href={mkAssetsPath("adamrecvlohe.asc")}>Public Key File</a>
-    </p>
-    <pre>-----BEGIN PGP PUBLIC KEY BLOCK-----
+    <BaseHead title={title} description={description} permalink={base} />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <h1>PGP Keys</h1>
+      <p>
+        <a href={mkAssetsPath("adamrecvlohe.asc")}>Public Key File</a>
+      </p>
+      <pre>-----BEGIN PGP PUBLIC KEY BLOCK-----
 
 mQENBFq87JsBCADKjOLMh1dP1ZwQ0hwOwB20V89YD6DlVMlZo9SgmiAJjlBYhAhx
 8BkWeLpW9/fmqNGGdtnArbfPxNiVXTjSq05UUmMLpfpoQmSVoxTUlpvjErkwXshs
@@ -52,6 +54,7 @@ dauPfKWc8JnN
 =krgg
 
 -----END PGP PUBLIC KEY BLOCK-----</pre>
-  </main>
-  <Footer />
-</body>
+    </main>
+    <Footer />
+  </body>
+</html>
