@@ -5,6 +5,8 @@
     "strict": true,
     "importsNotUsedAsValues": "error",
     "allowJs": true,
-    "checkJs": false
+    "checkJs": false,
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
   }
 }

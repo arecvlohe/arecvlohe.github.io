@@ -1,15 +1,12 @@
 ---
-import type { Article, WebMentions } from "../../utils/types";
+import type { Article } from "../../utils/types";
+import { WebMentions } from "./WebMentions";
 
 type Props = Article;
 
 const { publishDate, title, url }: Props = Astro.props;
 
 const webmentionsUrl = `https://webmention.io/api/count?target=https://adamrecvlohe.com${url}`;
-
-const webMentions: WebMentions = await fetch(webmentionsUrl)
-  .then((r) => r.json())
-  .then((r) => r);
 ---
 
 <style>
@@ -27,33 +24,8 @@ const webMentions: WebMentions = await fetch(webmentionsUrl)
       >
     </div>
     <p>{publishDate}</p>
-    <p>
-      {
-        webMentions.type?.mention || 0 < 1 ? (
-          <p>
-            This article has no
-            <a
-              rel="noopener noreferrer"
-              href="https://www.w3.org/TR/webmention/#h-abstract"
-            >
-              WebMentions
-            </a>
-          </p>
-        ) : (
-          <p>
-            This article has {webMentions.type.mention}
-            <a
-              rel="noopener noreferrer"
-              href="https://www.w3.org/TR/webmention/#h-abstract"
-            >
-              WebMentions
-            </a>
-          </p>
-        )
-      }
-      <h1>{title}</h1>
-
-      <slot />
-    </p>
+    <WebMentions url={webmentionsUrl} client:load />
+    <h1>{title}</h1>
+    <slot />
   </article>
 </main>
