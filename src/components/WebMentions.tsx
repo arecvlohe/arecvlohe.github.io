@@ -6,7 +6,7 @@ export const WebMentions = ({ url }: { url: string }) => {
   const [mentions, setMentions] = useState<WebMentionsType | null>(null);
 
   useEffect(() => {
-    fetch(`https://webmention.io/api/count?target=${url}`)
+    fetch(url)
       .then((r) => r.json())
       .then((r) => setMentions(r));
   }, []);
