@@ -11,7 +11,7 @@ export const WebMentions = ({ url }: { url: string }) => {
       .then((r) => setMentions(r));
   }, []);
 
-  return mentions?.type?.mention || 0 < 1 ? (
+  return mentions?.type?.mention ?? 0 < 1 ? (
     <p>
       This article has no{" "}
       <a
