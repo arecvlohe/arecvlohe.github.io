@@ -1,0 +1,68 @@
+---
+title: Settting Up WebMentions
+publishDate: "2022-11-26"
+description: Implementing more open web protocols
+layout: ../../layouts/Article.astro
+---
+
+WebMention is an open web protocol for referencing other articles and giving them a "shout-out" for the work they've done. I've added WebMentions to this site but I also need to test them so in the process of doing that I might as well promote and discuss WebMentions in the hopes of encouraging other sites to do the same.
+
+## Background
+
+The [WebMention](https://www.w3.org/TR/webmention/) standard was established in 2017 and is starting to gain ground. I imagine this will continue as more people switch over to open protocols like the [Fediverse](https://www.fediverse.to/), as opposed to the more centralized and corporate ones we are accustomed to (i.e. the bird site).
+
+I was inspired to use WebMentions when reading an article by Xe Iaso about their [newest site update](https://xeiaso.net/blog/site-update-v3). When I scrolled to the bottom it said `This post was not WebMentioned yet. You could be the first!`. This got me interested in trying to add WebMentions to my site and seeing how this specification works.
+
+## The Plan
+
+To get WebMentions working on this site there were a couple of things I needed to do to set it up. I need to be able to receive and send WebMentions so that I can receive mentions about my articles as well as to let others know that I mentioned their article.
+
+## Sending
+
+To receive WebMentions I am using [webmention.io](https://webmention.io/), a free service to receive WebMentions for this site. Sign-up is relatively straightforward but I was not able to get pgp key sign-in to work so I settled on GitHub instead. Now, whenever someone sends a WebMention notification, this server can receive the notification to the database and append the mention. On my site, I can query the `webmention.io` API for mentions of any one of my articles.
+
+## Receiving
+
+To send WebMentions I am using [webmention.app](https://webmention.app/), another free service to send WebMentions whenever I write a new article. The suggested setup is to use [IFTT](https://ifttt.com) (If This, Then That), a webhook as a service that has a generous free tier. The IFTT hook connects to my RSS feed so that whenever I write a new article, it will send WebMentions, and if the user is set up to receive them, will show on their website.
+
+## Testing
+
+To test WebMentions I am using [webmention.rocks](https://webmention.rocks/). The site has links prepared for you to test, all you need to do is drop them on a webpage. I'll do that here:
+
+- <a href="https://webmention.rocks/test/1">Test 1</a>
+- <a href="https://webmention.rocks/test/2">Test 2</a>
+- <a href="https://webmention.rocks/test/3">Test 3</a>
+- <a href="https://webmention.rocks/test/4">Test 4</a>
+- <a href="https://webmention.rocks/test/5">Test 5</a>
+- <a href="https://webmention.rocks/test/6">Test 6</a>
+- <a href="https://webmention.rocks/test/7">Test 7</a>
+- <a href="https://webmention.rocks/test/8">Test 8</a>
+- <a href="https://webmention.rocks/test/9">Test 9</a>
+- <a href="https://webmention.rocks/test/10">Test 10</a>
+- <a href="https://webmention.rocks/test/11">Test 11</a>
+- <a href="https://webmention.rocks/test/12">Test 12</a>
+- <a href="https://webmention.rocks/test/13">Test 13</a>
+- <a href="https://webmention.rocks/test/14">Test 14</a>
+- <a href="https://webmention.rocks/test/15">Test 15</a>
+- <a href="https://webmention.rocks/test/16">Test 16</a>
+- <a href="https://webmention.rocks/test/17">Test 17</a>
+- <a href="https://webmention.rocks/test/18">Test 18</a>
+- <a href="https://webmention.rocks/test/19">Test 19</a>
+- <a href="https://webmention.rocks/test/20">Test 20</a>
+- <a href="https://webmention.rocks/test/21">Test 21</a>
+- <a href="https://webmention.rocks/test/22">Test 22</a>
+- <a href="https://webmention.rocks/test/23/page">Test 23</a>
+
+Depending on how well these tests do I'll be updating this page to fix any issues.
+
+## Mentions
+
+This article was written with help from:
+
+- [https://www.ctrl.blog/entry/setup-webmention.html](https://www.ctrl.blog/entry/setup-webmention.html)
+
+Hopefully, they get a WebMention if this all works correctly.
+
+## Conclusion
+
+WebMention is an open web protocol to give shoutouts to other web netizens. There are free services that you can utilize to send, receive, and test WebMentions. As with any open web protocol, it can be used for evil so be aware of spam and make sure to blacklist sites when you come across this.
