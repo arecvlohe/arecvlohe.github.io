@@ -16,7 +16,7 @@ export type Markdown = MarkdownInstance<Frontmatter>;
 export type Article = Pick<Markdown["frontmatter"], "title" | "publishDate"> &
   Pick<Markdown, "url">;
 
-export type WebMentions = {
+export type Webmentions = {
   count: number;
   type: {
     bookmark?: number;
@@ -25,4 +25,27 @@ export type WebMentions = {
     "rsvp-no"?: number;
     "rsvp-yes"?: number;
   };
+};
+
+export type WebmentionsFeed = {
+  type: string;
+  name: string;
+  children: Array<{
+    type: string;
+    author: {
+      type: string;
+      name: string;
+      photo: string;
+      url: string;
+    };
+    url: string;
+    published: string | null;
+    "wm-received": string;
+    "wm-id": number;
+    "wm-source": string;
+    "wm-target": string;
+    "mention-of": string;
+    "wm-property": string;
+    "wm-private": boolean;
+  }>;
 };

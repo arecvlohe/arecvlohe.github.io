@@ -1,12 +1,12 @@
 ---
 import type { Article } from "../../utils/types";
-import { WebMentions } from "./WebMentions";
+import { Webmentions } from "./Webmentions";
 
 type Props = Article;
 
 const { publishDate, title, url }: Props = Astro.props;
 
-const webmentionsUrl = `https://webmention.io/api/count?target=https://adamrecvlohe.com${url}/`;
+const webmentionsUrl = `https://webmention.io/api/mentions.jf2?target=https://adamrecvlohe.com${url}/`;
 ---
 
 <style>
@@ -24,8 +24,8 @@ const webmentionsUrl = `https://webmention.io/api/count?target=https://adamrecvl
       >
     </div>
     <p>{publishDate}</p>
-    <WebMentions url={webmentionsUrl} client:load />
     <h1>{title}</h1>
     <slot />
+    <Webmentions url={webmentionsUrl} client:visible />
   </article>
 </main>

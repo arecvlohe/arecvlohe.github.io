@@ -1,9 +1,9 @@
 import { h } from "preact";
 import { useEffect, useState } from "preact/hooks";
-import type { WebMentions as WebMentionsType } from "../../utils/types";
+import type { WebmentionsFeed } from "../../utils/types";
 
-export const WebMentions = ({ url }: { url: string }) => {
-  const [mentions, setMentions] = useState<WebMentionsType | null>(null);
+export const Webmentions = ({ url }: { url: string }) => {
+  const [mentions, setMentions] = useState<WebmentionsFeed | null>(null);
 
   useEffect(() => {
     fetch(url)
@@ -11,24 +11,24 @@ export const WebMentions = ({ url }: { url: string }) => {
       .then((r) => setMentions(r));
   }, []);
 
-  return mentions?.type?.mention ?? 0 < 1 ? (
+  return mentions?.children.length === 0 ? (
     <p>
       This article has no{" "}
       <a
         rel="noopener noreferrer"
         href="https://www.ctrl.blog/entry/setup-webmention.html"
       >
-        WebMentions
+        Webmentions
       </a>
     </p>
   ) : (
     <p>
-      This article has {mentions?.type.mention}{" "}
+      This article has {mentions?.children.length}{" "}
       <a
         rel="noopener noreferrer"
         href="https://www.ctrl.blog/entry/setup-webmention.html"
       >
-        WebMentions
+        Webmentions
       </a>
     </p>
   );
