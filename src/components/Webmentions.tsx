@@ -16,7 +16,7 @@ export const Webmentions = ({ url }: { url: string }) => {
       This article has no{" "}
       <a
         rel="noopener noreferrer"
-        href="https://www.ctrl.blog/entry/setup-webmention.html"
+        href="https://www.w3.org/TR/webmention/#h-abstract"
       >
         Webmentions
       </a>
@@ -26,7 +26,7 @@ export const Webmentions = ({ url }: { url: string }) => {
       This article has {mentions?.children.length}{" "}
       <a
         rel="noopener noreferrer"
-        href="https://www.ctrl.blog/entry/setup-webmention.html"
+        href="https://www.w3.org/TR/webmention/#h-abstract"
       >
         {["Webmention", mentions?.children.length === 1 ? "" : "s"].join("")}
       </a>
