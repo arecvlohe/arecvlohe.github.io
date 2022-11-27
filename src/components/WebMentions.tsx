@@ -28,8 +28,19 @@ export const Webmentions = ({ url }: { url: string }) => {
         rel="noopener noreferrer"
         href="https://www.ctrl.blog/entry/setup-webmention.html"
       >
-        Webmentions
+        {["Webmention", mentions?.children.length === 1 ? "" : "s"].join("")}
       </a>
+      <ul>
+        {mentions?.children.map((m) => {
+          return (
+            <li>
+              <a rel="noopener" href={m["wm-source"]}>
+                {m["wm-source"]}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
     </p>
   );
 };

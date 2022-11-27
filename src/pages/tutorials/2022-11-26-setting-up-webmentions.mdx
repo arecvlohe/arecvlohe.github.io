@@ -29,6 +29,10 @@ To send Webmentions I am using [webmention.app](https://webmention.app/), anothe
 
 To test Webmentions you can use [webmention.rocks](https://webmention.rocks/). I was not able to get it to work for myself so I tested it out in other ways.
 
+## Rendering
+
+I am using Preact with Astro to render mentions on the client when the component that renders them becomes visible. This should cut down on the number of times it makes a request to the API.
+
 ## Mentions
 
 This article was written with help from:
