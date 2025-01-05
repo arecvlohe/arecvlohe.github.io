@@ -1,4 +1,4 @@
-image: node:16
+image: docker:20
 pages:
   cache:
     paths:
