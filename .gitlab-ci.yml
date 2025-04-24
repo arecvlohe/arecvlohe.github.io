@@ -1,4 +1,4 @@
-image: node:18.18.1
+image: node:18.0
 pages:
   cache:
     paths:
