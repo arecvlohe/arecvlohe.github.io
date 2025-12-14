@@ -37,7 +37,7 @@ nextArticles.reverse();
 
       @media screen and (max-width: 768px) {
         .intro {
-          flex-direction: column;
+          grid-template-columns: 100%;
         }
       }
 
@@ -56,7 +56,7 @@ nextArticles.reverse();
         <Picture
           src={photo}
           aspectRatio="6:4"
-          alt="A photo of Adam Recvlohe in front of demon's landing in St. Pete, FL"
+          alt="A photo of Adam Recvlohe in his home, sitting in front of his desk"
           sizes="(max-width: 768px) 750px"
           widths={[750]}
           formats={["avif", "jpeg", "png", "webp"]}
