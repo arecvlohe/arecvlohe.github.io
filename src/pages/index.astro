@@ -26,7 +26,8 @@ nextArticles.reverse();
   <head>
     <style>
       .intro {
-        display: flex;
+        display: grid;
+        grid-template-columns: 70% 30%;
         gap: 16px;
       }
 
@@ -54,21 +55,17 @@ nextArticles.reverse();
       <section class="intro">
         <Picture
           src={photo}
-          aspectRatio="5:4"
+          aspectRatio="6:4"
           alt="A photo of Adam Recvlohe in front of demon's landing in St. Pete, FL"
-          sizes="(max-width: 768px) 300px"
-          widths={[300]}
+          sizes="(max-width: 768px) 750px"
+          widths={[750]}
           formats={["avif", "jpeg", "png", "webp"]}
         />
         <p>
           Heresce! My name is Adam Recvlohe (Spotted Arrow). I am a citizen of
-          Tvlvhase Wvkokaye Tribal Town, Muscogee Nation, United States, Canada,
-          and son of Nokosvlke. I am an advocate for <a
-            rel="noopener noreferrer"
-            href="https://nativesintech.org">Natives in Tech</a
-          >, a group of Native technologists cultivating a tech ecosystem for
-          the next 7 generations. I am working to keep Muscogee and Yuchi living
-          languages.
+          Tvlvhase Wvkokaye Tribal Town, Muscogee Nation, Canada, and the US. I
+          am son of Nokosvlke. I am an advocate for Natives in tech. Currently,
+          I am working to keep Muscogee and Yuchi living languages.
         </p>
       </section>
       <section>
