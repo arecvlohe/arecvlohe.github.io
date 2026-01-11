@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "devDependencies": {
     "@astrojs/image": "0.11.6",
